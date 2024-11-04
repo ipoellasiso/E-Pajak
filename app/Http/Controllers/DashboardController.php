@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PajaklsModel;
+use App\Models\Sp2dModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +34,12 @@ class DashboardController extends Controller
                                     ->first(),
         );
 
-        return view('Dashboard', $data);
+        $total_Ppn = PajaklsModel::sum('nilai_pajak');
+
+        // $total_kas_masjid = $kas_masjid_masuk - $kas_masjid_keluar;
+      
+        return view('Dashboard', $data, ['total_Ppn'=>$total_Ppn]);
+
+        // return view('Dashboard', $data);
     }
 }
