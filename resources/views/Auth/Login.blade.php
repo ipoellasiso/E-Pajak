@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/login/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(/login/images/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: url(/login/images/222.jpg);">
     {{-- <div class="showcase">
         <div class="video-container">
             <video src="/login/images/1.mp4" autoplay muted loop id="myVideo"></video>
@@ -76,7 +76,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    @if (session('success'))
+    if (session('success'))
         Swal.fire({
           position: "top-center",
           text: "Success",
@@ -85,11 +85,11 @@
           showConfirmButton: false,
           timer: 3500
         });
-    @endif
+    endif
 </script>
 
 <script>
-    @if (session('error'))
+    if (session('error'))
         Swal.fire({
           position: "top-center",
           text: "Upss Sorry !",
@@ -98,11 +98,11 @@
           showConfirmButton: false,
           timer: 5500
         });
-    @endif
+    endif
 </script>
 
 <script>
-    @if (session('status'))
+    if (session('status'))
         Swal.fire({
           position: "top-center",
           text: "Success",
@@ -111,7 +111,7 @@
           showConfirmButton: false,
           timer: 3500
         });
-    @endif
+    endif
 </script>
 
 	</body>
