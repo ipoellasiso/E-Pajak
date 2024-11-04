@@ -20,9 +20,9 @@
       <li>
         <a href="index.html"><i data-feather="hard-drive"></i>Master Data<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
-          <li><a href="/tampilpajakls"><i class="far fa-circle"></i>Data OPD</a></li>
-          <li><a href="#"><i class="far fa-circle"></i>Data Akun Pajak</a></li>
-          <li><a href="#"><i class="far fa-circle"></i>Data Jenis Pajak</a></li>
+          <li><a href="/tampilopd"><i class="far fa-circle"></i>Data OPD</a></li>
+          <li><a href="/tampilakunpajak"><i class="far fa-circle"></i>Data Akun Pajak</a></li>
+          <li><a href="/tampiljenispajak"><i class="far fa-circle"></i>Data Jenis Pajak</a></li>
         </ul>
       </li>
       <li>

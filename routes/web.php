@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AkunpajakController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboarduserController;
+use App\Http\Controllers\JenispajakController;
+use App\Http\Controllers\OpdController;
 use App\Http\Controllers\PajakguController;
 use App\Http\Controllers\PajaklsController;
 use App\Http\Controllers\TarikdataController;
@@ -34,6 +37,25 @@ Route::get('/logout', [AuthController::class, 'logout']);
 // ======= DASHBOARD =======
 Route::get('/home', [DashboardController::class, 'index']);
 Route::get('/homeuser', [DashboarduserController::class, 'index']);
+
+// ======= DATA OPD =======
+Route::get('/tampilopd', [OpdController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::post('/opd/store', [OpdController::class, 'store'])->middleware('auth:web','checkRole:Admin');
+Route::get('/opd/edit/{id}', [OpdController::class, 'edit'])->middleware('auth:web','checkRole:Admin');
+Route::delete('/opd/destroy/{id}', [OpdController::class, 'destroy'])->middleware('auth:web','checkRole:Admin');
+
+// ======= DATA Jenis Pajak =======
+Route::get('/tampiljenispajak', [JenispajakController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::post('/jenispajak/store', [JenispajakController::class, 'store'])->middleware('auth:web','checkRole:Admin');
+Route::get('/jenispajak/edit/{id}', [JenispajakController::class, 'edit'])->middleware('auth:web','checkRole:Admin');
+Route::delete('/jenispajak/destroy/{id}', [JenispajakController::class, 'destroy'])->middleware('auth:web','checkRole:Admin');
+
+// ======= DATA Akun Pajak =======
+Route::get('/tampilakunpajak', [AkunpajakController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::post('/akunpajak/store', [AkunpajakController::class, 'store'])->middleware('auth:web','checkRole:Admin');
+Route::get('/akunpajak/edit/{id}', [AkunpajakController::class, 'edit'])->middleware('auth:web','checkRole:Admin');
+Route::delete('/akunpajak/destroy/{id}', [AkunpajakController::class, 'destroy'])->middleware('auth:web','checkRole:Admin');
+
 
 // ======= DATA TARIK PAJAK SIPD RI =======
 Route::get('/tarikpajaksipdri', [TarikdataController::class, 'index'])->middleware('auth:web','checkRole:Admin');
