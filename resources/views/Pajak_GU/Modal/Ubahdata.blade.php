@@ -4,9 +4,9 @@
         @include('Template.Head')
     </head>
     <body>
-        <div class='loader'>
+        <!-- <div class='loader'>
             @include('Template.Loading')
-        </div>
+        </div> -->
 
         <div class="page-container">
             @include('Template.Navbar')

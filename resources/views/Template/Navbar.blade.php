@@ -7,21 +7,23 @@
                 </li>
                 <li class="nav-item">
                   <div class="logo">
-                    <img src="/theme/assets/images/logo2.png" width="90px" alt="">
+                    <img src="/theme/assets/images/logo24.png" width="40px" alt="">
                   </div>
                 </li>
-                {{-- <li class="nav-item">
-                  <a class="nav-link">Welcome !!!</a>
-                </li> --}}
+                <li class="nav-item">
+                  <li class="nav-item">
+                      <a class="nav-link">Hai {{ $userx->fullname }} ({{ $userx->role }}) Selamat Datang ...</a>
+                  </li>
+                </li>
                 {{-- <li class="nav-item">
                   <a class="nav-link" href="#">Help</a>
                 </li> --}}
             </ul>
         </div>
         <div>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link">Hai {{ $userx->fullname }} ({{ $userx->role }}) Selamat Datang ...</a>
-          </li>
+          </li> -->
           {{-- <li class="nav-item dropdown">
               <a class="nav-link search-dropdown" href="#" id="searchDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i data-feather="search"></i></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-lg search-drop-menu" aria-labelledby="searchDropDown">
