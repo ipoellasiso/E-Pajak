@@ -27,7 +27,7 @@ Route::get('/', function () {
 //     return view('Template.Layout');
 // });
 
-Route::get('/login1', [AuthController::class, 'index'])->name('login');
+Route::get('/login1', [AuthController::class, 'index']);
 Route::post('/cek_login', [AuthController::class, 'cek_login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 

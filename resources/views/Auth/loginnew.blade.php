@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
   	<title>Simelajang - Login</title>
+    <link rel="shortcut icon" href="/theme/assets/images/logo24.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -82,7 +83,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    if (session('success'))
+    @if (session('success'))
         Swal.fire({
           position: "top-center",
           text: "Success",
@@ -91,11 +92,11 @@
           showConfirmButton: false,
           timer: 3500
         });
-    endif
+    @endif
 </script>
 
 <script>
-    if (session('error'))
+    @if (session('error'))
         Swal.fire({
           position: "top-center",
           text: "Upss Sorry !",
@@ -104,11 +105,11 @@
           showConfirmButton: false,
           timer: 5500
         });
-    endif
+    @endif
 </script>
 
 <script>
-    if (session('status'))
+    @if (session('status'))
         Swal.fire({
           position: "top-center",
           text: "Success",
@@ -117,7 +118,7 @@
           showConfirmButton: false,
           timer: 3500
         });
-    endif
+    @endif
 </script>
 
 	</body>

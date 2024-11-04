@@ -10,6 +10,8 @@
         <!-- Title -->
         <title>Simelajang - {{ $title }}</title>
 
+        <link rel="shortcut icon" href="/theme/assets/images/logo24.png">
+
         <!-- Styles -->
         {{-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet"> --}}
         <link href="/theme/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
