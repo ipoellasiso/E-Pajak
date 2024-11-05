@@ -8,6 +8,7 @@ use App\Http\Controllers\JenispajakController;
 use App\Http\Controllers\OpdController;
 use App\Http\Controllers\PajakguController;
 use App\Http\Controllers\PajaklsController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\TarikdataController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 // ======= DASHBOARD =======
 Route::get('/home', [DashboardController::class, 'index']);
 Route::get('/homeuser', [DashboarduserController::class, 'index']);
+Route::get('/profil', [ProfilController::class, 'index']);
 
 // ======= DATA OPD =======
 Route::get('/tampilopd', [OpdController::class, 'index'])->middleware('auth:web','checkRole:Admin');

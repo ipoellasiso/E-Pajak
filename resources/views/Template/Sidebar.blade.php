@@ -13,10 +13,11 @@
         <a href="/homeuser"><i data-feather="home"></i>Dashboard</a>
       </li>
       @endif
-      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
+      
       <li class="sidebar-title">
         PENGATURAN
       </li>
+      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
       <li>
         <a href="index.html"><i data-feather="hard-drive"></i>Master Data<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
@@ -25,13 +26,17 @@
           <li><a href="/tampiljenispajak"><i class="far fa-circle"></i>Data Jenis Pajak</a></li>
         </ul>
       </li>
+      @endif
+      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'User')
       <li>
         <a href="index.html"><i data-feather="user"></i>Kelola User<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
           <li><a href="#"><i class="far fa-circle"></i>List User</a></li>
-          <li><a href="#"><i class="far fa-circle"></i>Profil</a></li>
+          <li><a href="/profil"><i class="far fa-circle"></i>Profil</a></li>
         </ul>
       </li>
+      @endif
+      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
       <li>
         <a href="index.html"><i data-feather="git-pull-request"></i>Tarik Pajak SIPD RI<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">

@@ -25,15 +25,16 @@ class AuthController extends Controller
     {
         $password = $request->input('password');
         $email = $request->input('email');
-        
+
         if(Auth::guard('web')->attempt(['email' => $email, 'password' => $password]))
         {
-            return redirect('/home')->with('success', 'Login Berhasil');
+            return redirect('/profil')->with('success', 'Login Berhasil');
         }
         else
         {
             return redirect('/login1')->with('error', 'Email atau Password Salah');
         }
+        
     }
 
     public function logout()
