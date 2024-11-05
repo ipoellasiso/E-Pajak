@@ -39,6 +39,12 @@ class PajaklsController extends Controller
                                     // ->select('fullname','nama_opd')
                                     ->where('id_opd', auth()->user()->id_opd)
                                     ->first(),
+            'total_ppn'            => PajaklsModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph21'          => PajaklsModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph22'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph23'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pajakls'          => PajaklsModel::where('status2', 'Terima')->sum('nilai_pajak'),
         );
 
         if ($request->ajax()) {

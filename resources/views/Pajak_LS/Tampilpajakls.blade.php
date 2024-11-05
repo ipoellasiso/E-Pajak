@@ -85,12 +85,12 @@
                                 <div class="col-3">
                                     <div class="invoice-info">
                                         {{-- @foreach ($total as $d) --}}
-                                            <p>Pajak Pertambahan Nilai <span>$1700</span></p>
-                                            <p>PPH 21<span>$30</span></p>
-                                            <p>Pajak Penghasilan Ps 22<span>$30</span></p>
-                                            <p>Pajak Penghasilan Ps 23<span>$30</span></p>
-                                            <p>Pajak Penghasilan Ps 24<span>$30</span></p>
-                                            <p class="bold">Total Pajak <span></span></p>
+                                            <p>Pajak Pertambahan Nilai <span>{{ number_format($total_ppn) }}</span></p>
+                                            <p>PPH 21<span>{{ number_format($total_pph21) }}</span></p>
+                                            <p>Pajak Penghasilan Ps 22<span>{{ number_format($total_pph22) }}</span></p>
+                                            <p>Pajak Penghasilan Ps 23<span>{{ number_format($total_pph23) }}</span></p>
+                                            <p>Pajak Penghasilan Ps 24<span>{{ number_format($total_pph24) }}</span></p>
+                                            <p class="bold">Total Pajak <span>{{ number_format($total_pajakls) }}</span></p>
                                         {{-- @endforeach --}}
                                         <div class="d-grid gap-2">
                                           {{-- <button class="btn btn-danger m-t-xs" type="button">Print Invoice</button> --}}

@@ -12,7 +12,7 @@
                 </li>
                 <li class="nav-item">
                   <li class="nav-item">
-                      <a class="nav-link">Hai {{ $userx->fullname }} ({{ $userx->role }}) Selamat Datang ...</a>
+                      <a class="nav-link">S i m e l a j a n g</a>
                   </li>
                 </li>
                 {{-- <li class="nav-item">

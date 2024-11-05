@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
         $password = $request->input('password');
         $email = $request->input('email');
-
+        
         if(Auth::guard('web')->attempt(['email' => $email, 'password' => $password]))
         {
             return redirect('/home')->with('success', 'Login Berhasil');

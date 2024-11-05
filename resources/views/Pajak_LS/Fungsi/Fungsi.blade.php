@@ -246,7 +246,7 @@
             method: 'GET',
             success: function(data) {
                 $.each(data, function(index, jenispajak) {
-                    $('#jenis_pajak').append(new Option(jenispajak.jenis_pajak, jenispajak.id)); // Ganti 'nama' dengan kolom yang sesuai
+                    $('#jenis_pajak').append(new Option(jenispajak.jenis_pajak, jenispajak.jenis_pajak)); // Ganti 'nama' dengan kolom yang sesuai
                 });
             },
             error: function(xhr) {
