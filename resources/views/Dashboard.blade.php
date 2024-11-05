@@ -27,7 +27,7 @@
                             <div class="card stat-widget">
                                 <div class="card-body">
                                     <h5 class="card-title">Pajak Pertambahan Nilai</h5>
-                                      <h2>{{ number_format($total_Ppn,2) }}</h2>
+                                      <h2>{{ number_format($dtppnls,2) }}</h2>
                                       <p>Rp.</p>
                                       <div class="progress">
                                         <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -39,7 +39,6 @@
                             <div class="card stat-widget">
                                 <div class="card-body">
                                     <h5 class="card-title">Orders</h5>
-                                      <h2>287</h2>
                                       <p>Orders in waitlist</p>
                                       <div class="progress">
                                         <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

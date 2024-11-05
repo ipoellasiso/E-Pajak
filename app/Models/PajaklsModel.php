@@ -25,4 +25,14 @@ class PajaklsModel extends Model
         'updated_at',
         'id_potonganls',
     ];
+
+    public function ppnls($id_opd)
+   {
+        return $this->db->table('pajakkpp')
+        ->where('status2', 'Terima')
+        ->where('id_opd', auth()->user()->id_opd)
+        ->where('pajakkpp.status2',['Pajak Pertambahan Nilai'])
+        ->get()->getResultArray();
+   }
+
 }

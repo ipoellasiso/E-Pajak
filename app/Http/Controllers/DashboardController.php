@@ -18,6 +18,8 @@ class DashboardController extends Controller
 
     public function index()
     {
+        // 'Pajakgu21' => $this->ModelJumlah->Pajakgunanggotapph21($id_anggota),
+
     $userId = Auth::guard('web')->user()->id;
     $data = array(
             'title'                => 'Home Admin',
@@ -34,11 +36,14 @@ class DashboardController extends Controller
                                     ->first(),
         );
 
-        $total_Ppn = PajaklsModel::sum('nilai_pajak');
+        // $dtidopd = DB::table('pajakkpp')->where('jenis_pajak', ['Pajak Pertambahan Nilai'])->sum('nilai_pajak')->first();
+
+        // $dtppnls = DB::select('SELECT SUM(nilai_pajak) as nilai_pajak1 FROM pajakkpp WHERE jenis_pajak="Pajak Penghasilan Ps 4 (2)"');
+        $dtppnls = PajaklsModel::sum('nilai_pajak');
 
         // $total_kas_masjid = $kas_masjid_masuk - $kas_masjid_keluar;
       
-        return view('Dashboard', $data, ['total_Ppn'=>$total_Ppn]);
+        return view('Dashboard', $data, ['dtppnls'=>$dtppnls]);
 
         // return view('Dashboard', $data);
     }
