@@ -13,7 +13,7 @@
                         <div class="d-flex flex-row">
                             {{-- <h4 class="card-title">{{ $title }}</h4> --}}
                             {{-- <a class="btn btn-secondary btn-tone m-r-5 btn-xs ml-auto" href="javascript:void(0)" id="createPajakls" data-toggle="tooltip" data-placement="top" title="Tambah Data">
-                                <i class="fas fa-pencil-alt"></i>
+                                <i data-feather="search"></i>
                             </a> --}}
                         </div>
                         {{-- class="m-t-25" --}}
@@ -21,7 +21,8 @@
                             <table id="data-table" class="tabelpajaklssipdri table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
+                                        <!-- <th class="text-center">No</th> -->
+                                        <th></th>
                                         {{-- <th>Nomor SPM</th> --}}
                                         <th>Tanggal SP2D</th>
                                         <th>Nomor SP2D</th>
@@ -29,7 +30,7 @@
                                         <th>Jenis Pajak</th>
                                         <th>Nilai Pajak</th>
                                         <th>E-Biling</th>
-                                        <th></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -21,15 +21,15 @@
                             <table id="data-table" class="tabelpajakgusipdri table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">No</th>
-                                        <th>Nama OPD</th>
+                                        <!-- <th class="text-center">No</th> -->
+                                        <th>Aksi</th>
                                         <th>Tanggal SP2D</th>
                                         <th>Nomor SP2D</th>
                                         <th>Nilai SP2D</th>
                                         <th>Jenis Pajak</th>
                                         <th>Nilai Pajak</th>
                                         <th>E-Biling</th>
-                                        <th></th>
+                                        <th>Nama OPD</th>
                                     </tr>
                                 </thead>
                                 <tbody>

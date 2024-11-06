@@ -22,7 +22,8 @@
         serverSide: true,
         ajax: "/tampilpajaklssipd1",
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'status2', name: 'status2'},
             // {data: 'nomor_spm', name: 'nomor_spm'},
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
@@ -30,7 +31,7 @@
             {data: 'jenis_pajak', name: 'jenis_pajak'},
             {data: 'nilai_pajak', name: 'nilai_pajak'},
             {data: 'ebilling', name: 'ebilling'},
-            {data: 'status2', name: 'status2'},
+            
         ]
     });
 

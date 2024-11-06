@@ -16,7 +16,7 @@
                                     <div class="col">
                                         
                                         <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editpajakgusipd" data-bs-dismiss="modal">
-                                            <i class="fas fa-server"></i>
+                                        <i data-feather="search"></i>
                                         </button>
                                         <label><= Pilih Pajak dari SIPD RI</label>
                                     </div>

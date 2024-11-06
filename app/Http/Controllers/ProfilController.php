@@ -35,18 +35,18 @@ class ProfilController extends Controller
                                     // ->select('fullname','nama_opd')
                                     ->where('id_opd', auth()->user()->id_opd)
                                     ->first(),
-            'total_ppn'            => PajaklsModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph21'          => PajaklsModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph22'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph23'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pajakls'        => PajaklsModel::where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph22gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
-            'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
+            'total_ppn'            => PajaklsModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph21'          => PajaklsModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph22'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph23'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pajakls'        => PajaklsModel::where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph22gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->sum('nilai_pajak'),
         );
 
         // $dtidopd = DB::table('pajakkpp')->where('jenis_pajak', ['Pajak Pertambahan Nilai'])->sum('nilai_pajak')->first();

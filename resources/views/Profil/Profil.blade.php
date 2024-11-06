@@ -17,7 +17,8 @@
                 <div class="main-wrapper">
                   <div class="row">
                     <div class="col-xl-12">
-                        <div><img src="app\assets\images\palu.jpg" alt="" height="500px" width="1360px"></div>
+                    <!-- <img src="app\assets\images\palu.jpg" alt="" height="500px" width="1360px"> -->
+                        <div class="profile-cover"></div>
                         <div class="profile-header">
                             <div class="profile-img">
                                 <img src="app\assets\images\foto_user\{{ $userx->gambar }}" alt="">
@@ -26,14 +27,14 @@
                                 <h3>{{ $userx->fullname }}</h3>
                             </div>
                             <div class="profile-header-menu">
-                                <ul class="list-unstyled">
+                                <!-- <ul class="list-unstyled">
                                     <li><a href="#" class="active">Feed</a></li>
                                     <li><a href="#">About</a></li>
                                     <li><a href="#">Friends</a></li>
                                     <li><a href="#">Photos</a></li>
                                     <li><a href="#">Videos</a></li>
                                     <li><a href="#">Music</a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
                     </div>
@@ -192,7 +193,7 @@
         @include('Template.Script')
 
         <script>
-            @if (session('success'))
+            if (session('success'))
                 Swal.fire({
                   position: "top-center",
                   text: "Success",
@@ -201,11 +202,11 @@
                   showConfirmButton: false,
                   timer: 3500
                 });
-            @endif
+            endif
         </script>
         
         <script>
-            @if (session('error'))
+            if (session('error'))
                 Swal.fire({
                   position: "top-center",
                   text: "Upss Sorry !",
@@ -214,11 +215,11 @@
                   showConfirmButton: false,
                   timer: 5500
                 });
-            @endif
+            endif
         </script>
         
         <script>
-            @if (session('status'))
+            if (session('status'))
                 Swal.fire({
                   position: "top-center",
                   text: "Success",
@@ -227,7 +228,7 @@
                   showConfirmButton: false,
                   timer: 3500
                 });
-            @endif
+            endif
         </script>
 
     </body>

@@ -31,12 +31,12 @@ class DashboarduserController extends Controller
                                     // ->select('fullname','nama_opd')
                                     ->where('id_opd', auth()->user()->id_opd)
                                     ->first(),
-            'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph22gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
+            'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
+            'total_pph22gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
+            'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
+            'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
+            'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->where('id_opd', auth()->user()->id_opd)->sum('nilai_pajak'),
         );
 
         return view('Dashboarduser', $data);
