@@ -21,7 +21,7 @@
                         <div class="profile-cover"></div>
                         <div class="profile-header">
                             <div class="profile-img">
-                                <img src="app\assets\images\foto_user\{{ $userx->gambar }}" alt="">
+                                <img src="app\assets\images\user\{{ $userx->gambar }}" alt="">
                             </div>
                             <div class="profile-name">
                                 <h3>{{ $userx->fullname }}</h3>

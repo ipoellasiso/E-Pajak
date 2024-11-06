@@ -87,7 +87,7 @@
                 <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
                     <i class="fa fa-save"></i>  Simpan
                 </button>
-            </div>
+              </div>
               </div>
             </form>
             </div>

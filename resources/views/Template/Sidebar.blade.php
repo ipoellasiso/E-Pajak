@@ -27,11 +27,20 @@
         </ul>
       </li>
       @endif
-      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'User')
+      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifiaksi')
       <li>
         <a href="index.html"><i data-feather="user"></i>Kelola User<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
-          <li><a href="#"><i class="far fa-circle"></i>List User</a></li>
+          <li><a href="/tampiluseradmin"><i class="far fa-circle"></i>List User</a></li>
+          <li><a href="/profil"><i class="far fa-circle"></i>Profil</a></li>
+        </ul>
+      </li>
+      @endif
+      @if(Auth::user()->role == 'User')
+      <li>
+        <a href="index.html"><i data-feather="user"></i>Kelola User<i class="fas fa-chevron-right dropdown-icon"></i></a>
+        <ul class="">
+          <li><a href="/tampiluser"><i class="far fa-circle"></i>List User</a></li>
           <li><a href="/profil"><i class="far fa-circle"></i>Profil</a></li>
         </ul>
       </li>

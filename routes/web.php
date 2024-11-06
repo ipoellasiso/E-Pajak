@@ -10,6 +10,8 @@ use App\Http\Controllers\PajakguController;
 use App\Http\Controllers\PajaklsController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\TarikdataController;
+use App\Http\Controllers\UseradminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,7 @@ Route::get('/', function () {
 //     return view('Template.Layout');
 // });
 
-Route::get('/login1', [AuthController::class, 'index']);
+Route::get('/login1', [AuthController::class, 'index'])->name('login');
 Route::post('/cek_login', [AuthController::class, 'cek_login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
@@ -58,6 +60,15 @@ Route::post('/akunpajak/store', [AkunpajakController::class, 'store'])->middlewa
 Route::get('/akunpajak/edit/{id}', [AkunpajakController::class, 'edit'])->middleware('auth:web','checkRole:Admin');
 Route::delete('/akunpajak/destroy/{id}', [AkunpajakController::class, 'destroy'])->middleware('auth:web','checkRole:Admin');
 
+// ======= DATA USER =======
+Route::get('/tampiluseradmin', [UseradminController::class, 'index'])->middleware('auth:web','checkRole:Admin,User');
+Route::get('/tampiluser', [UserController::class, 'index'])->middleware('auth:web','checkRole:Admin,User');
+Route::post('/user/store', [UserController::class, 'store'])->middleware('auth:web','checkRole:Admin,User');
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])->middleware('auth:web','checkRole:Admin,User');
+Route::delete('/user/destroy/{id}', [UserController::class, 'destroy'])->middleware('auth:web','checkRole:Admin,User');
+Route::post('/user/aktif/{id}', [UserController::class, 'aktif'])->middleware('auth:web','checkRole:Admin,User');
+Route::post('/user/nonaktif/{id}', [UserController::class, 'nonaktif'])->middleware('auth:web','checkRole:Admin,User');
+Route::get('/user/opd', [UserController::class, 'getDataopd'])->middleware('auth:web','checkRole:Admin,User');
 
 // ======= DATA TARIK PAJAK SIPD RI =======
 Route::get('/tarikpajaksipdri', [TarikdataController::class, 'index'])->middleware('auth:web','checkRole:Admin');

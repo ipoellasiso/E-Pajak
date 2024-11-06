@@ -40,7 +40,7 @@
                                         <div class="modal-body">
                                             <input type="hidden" name="id" value="{{ $dtpajakgu->id }}">
                                             <input type="hidden" name="id_potonganls" value="{{ $dtpajakgu->id_potonganls }}">
-                                            <input type="text" name="id_opd" value="{{ $dtpajakgu->id_opd }}">
+                                            <input type="hidden" name="id_opd" value="{{ $dtpajakgu->id_opd }}">
                                             <div class="row">
                                                 <div class="row">
                                                     <div class="col mb-5">

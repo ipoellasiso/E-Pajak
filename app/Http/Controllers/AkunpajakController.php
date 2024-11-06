@@ -29,9 +29,9 @@ class AkunpajakController extends Controller
             'breadcumd2'             => 'Data Akun Pajak',
             'userx'                  => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
             'opd'                  => DB::table('users')
-                                    ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
                                     // ->select('fullname','nama_opd')
-                                    ->where('id_opd', auth()->user()->id_opd)
+                                    ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
         );
 

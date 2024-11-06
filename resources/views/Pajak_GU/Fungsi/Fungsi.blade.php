@@ -23,7 +23,7 @@
         ajax: "/tampilpajakgu",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'nama_opd', name: 'nama_opd'},
+            {data: 'id_opd', name: 'id_opd'},
             {data: 'nomor_spm', name: 'nomor_spm'},
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
@@ -246,7 +246,7 @@
             method: 'GET',
             success: function(data) {
                 $.each(data, function(index, jenispajak) {
-                    $('#jenis_pajak').append(new Option(jenispajak.jenis_pajak, jenispajak.id)); // Ganti 'nama' dengan kolom yang sesuai
+                    $('#jenis_pajak').append(new Option(jenispajak.jenis_pajak, jenispajak.jenis_pajak)); // Ganti 'nama' dengan kolom yang sesuai
                 });
             },
             error: function(xhr) {
