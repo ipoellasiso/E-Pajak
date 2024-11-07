@@ -157,6 +157,7 @@ class PajaklsController extends Controller
                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                             ->whereIn('potongan2.jenis_pajak', ['Pajak Pertambahan Nilai','Pajak Penghasilan Ps 22','Pajak Penghasilan Ps 23','PPh 21','Pajak Penghasilan Ps 4 (2)', 'Pajak Penghasilan PS 24'])
                             ->where('potongan2.status1',['0'])
+                            ->where('sp2d.jenis',['LS'])
                             ->get();
 
             return Datatables::of($datapajaklssipd)
