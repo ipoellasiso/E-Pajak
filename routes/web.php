@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\TarikdataController;
 use App\Http\Controllers\UseradminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VerifikasitbpController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,8 +74,23 @@ Route::get('/user/opd', [UserController::class, 'getDataopd'])->middleware('auth
 // ======= DATA TARIK PAJAK SIPD RI =======
 Route::get('/tarikpajaksipdri', [TarikdataController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 Route::get('/tarikpajaksipdrigu', [TarikdataController::class, 'indexgu'])->middleware('auth:web','checkRole:Admin');
+Route::get('/tarikpajaksipdritbp', [TarikdataController::class, 'indextbp'])->middleware('auth:web','checkRole:User');
 Route::post('/simpanjson', [TarikdataController::class, 'save_json'])->middleware('auth:web','checkRole:Admin');
 Route::post('/simpanjsongu', [TarikdataController::class, 'save_jsongu'])->middleware('auth:web','checkRole:Admin');
+Route::post('/simpanjsontbp', [TarikdataController::class, 'save_jsontbp'])->middleware('auth:web','checkRole:User');
+
+// ======= DATA VERIFIKASI TBP =======
+Route::get('/tampilveriftbp', [VerifikasitbpController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::get('/verifikasitbp/tolak/{id}', [VerifikasitbpController::class, 'tolaktbp'])->middleware('auth:web','checkRole:Admin');
+Route::post('/verifikasitbp/tolakupdate/{id}', [VerifikasitbpController::class, 'tolaktbpupdate'])->middleware('auth:web','checkRole:Admin');
+Route::get('/verifikasitbp/terima/{id}', [VerifikasitbpController::class, 'terimatbp'])->middleware('auth:web','checkRole:Admin');
+Route::post('/verifikasitbp/terimaupdate/{id}', [VerifikasitbpController::class, 'terimatbpupdate'])->middleware('auth:web','checkRole:Admin');
+
+// ======= DATA PENGAJUAN TBP =======
+Route::get('/tariktbp/tolak/{id}', [TarikdataController::class, 'tariktolaktbp'])->middleware('auth:web','checkRole:User');
+Route::post('/tariktbp/tolakupdate/{id}', [TarikdataController::class, 'tariktolaktbpupdate'])->middleware('auth:web','checkRole:User');
+Route::get('/tariktbp/terima/{id}', [TarikdataController::class, 'tarikterimatbp'])->middleware('auth:web','checkRole:User');
+Route::post('/tariktbp/terimaupdate/{id}', [TarikdataController::class, 'tarikterimatbpupdate'])->middleware('auth:web','checkRole:User');
 
 // ======= DATA PAJAKLS =======
 Route::get('/tampilpajakls', [PajaklsController::class, 'index'])->middleware('auth:web','checkRole:Admin');

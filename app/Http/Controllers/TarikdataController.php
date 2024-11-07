@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sp2dModel;
+use App\Models\TbpModel;
 use App\Models\UserModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
@@ -89,6 +90,61 @@ class TarikdataController extends Controller
 
 
         return view('Tarik_data.Pajakgu', $data);
+    }
+
+    public function indextbp(Request $request)
+    {
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'             => 'Tarik Data Pajak GU SIPD RI',
+            'active_side_tarik' => 'active',
+            'active_tarikgu'      => 'active',
+            'page_title'        => 'Pengaturan',
+            'breadcumd1'        => 'Tarik Pajak SIPD RI',
+            'breadcumd2'        => 'Tarik Data Pajak GU SIPD RI',
+            'userx'             => UserModel::where('id',$userId)->first(['fullname','role','gambar']),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+        );
+
+        if ($request->ajax()) {
+
+            $dt1 = DB::table('tb_tbp')
+                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
+                        // ->where('status',['Terima'])
+                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+                        ->get();
+
+            return DataTables::of($dt1)
+                    ->addIndexColumn()
+                    ->addColumn('nilai_tbp', function($row) {
+                        return number_format($row->nilai_tbp);
+                    })
+                    ->addColumn('status', function($row){
+                        if($row->status == 'Tolak')
+                        {
+                            $btn1 = '
+                                    
+                                  <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="terimatbp btn btn-outline-danger m-b-xs"><i class="fas fa-thumbs-down"></i> Tolak
+                                    </a>
+                                  ';
+                        }else {
+                            $btn1 = '
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="tolaktbp btn btn-outline-primary m-b-xs"> <i class="fas fa-thumbs-up"></i> Terima
+                                    </a>
+                                  ';
+                        }
+                        return $btn1;
+                    })
+                    ->rawColumns(['nilai_tbp', 'status'])
+                    ->make(true);
+        }
+
+
+        return view('Tarik_data.Pajaktbp', $data);
     }
 
     public function save_json(Request $request)
@@ -215,4 +271,99 @@ class TarikdataController extends Controller
         return redirect()->back()->with('status', 'Data Berhasil diSimpan');
 
         }
+
+        public function save_jsontbp(Request $request)
+    {
+        // Validasi input
+        $nomoracak = Str::random(10);
+
+        $datatbp = $request->input('jsontextareatbp');
+        $dt = json_decode($datatbp, true);
+
+        $detail = $dt["detail"];
+        $potongantbp = $dt["pajak_potongan"];
+        
+        $cektbp = TbpModel::where('nomor_tbp', $dt["nomor_tbp"])->count();
+        if($cektbp > 0)
+        {
+            return redirect()->back()->with('error', 'TBP Sudah Ada');
+        }
+
+            // foreach($dt  as $row3){
+                $datatbp = [
+                    'id_tbp' => $nomoracak,
+                    'nomor_tbp' => $dt["nomor_tbp"],
+                    'nilai_tbp' => $dt["nilai_tbp"],
+                    'npwp' => $dt["npwp"],
+                    'keterangan_tbp' => $dt["keterangan_tbp"],
+                    'no_npd' => $dt["nomor_npd"],
+                    'nama_skpd' => $dt["nama_skpd"],
+                    'tanggal_tbp' => Carbon::Parse($dt["tanggal_tbp"])->format('Y-m-d'),
+                    'no_spm' => $request->no_spm, 
+                    'tgl_spm' => $request->tgl_spm 
+                ];
+                DB::table('tb_tbp')->insert($datatbp);
+            // } 
+
+            foreach($detail as $row){
+                $data1 = [
+                    'kode_rekening' => $row["kode_rekening"],
+                    'uraian' => $row["uraian"],
+                    'jumlah' => $row["jumlah"],
+                    'id_tbp' => $nomoracak
+                ];
+                DB::table('tb_belanjagu')->insert($data1);
+            } 
+
+            foreach($potongantbp as $row1){
+                $data2 = [
+                    'nama_pajak_potongan' => $row1["nama_pajak_potongan"],
+                    'id_billing' => $row1["id_billing"],
+                    'nilai_tbp_pajak_potongan' => $row1["nilai_tbp_pajak_potongan"],
+                    'id_tbp' => $nomoracak
+                ];
+                DB::table('tb_potongangu')->insert($data2);
+            }
+        
+        return redirect()->back()->with('status', 'Data Berhasil diSimpan');
+
+        }
+
+        public function tariktolaktbp($id)
+    {
+        $where = array('id' => $id);
+        $pajaklssipd = TbpModel::where($where)->first();
+
+        return response()->json($pajaklssipd);
+    }
+
+    public function tariktolaktbpupdate(Request $request, string $id)
+    {
+
+        TbpModel::where('id',$request->get('id'))
+        ->update([
+            'status' => 'Tolak',
+        ]);
+
+        return redirect()->back()->with('success','Data Berhasil Ditolak');
+    }
+
+    public function tarikterimatbp($id)
+    {
+        $where = array('id' => $id);
+        $pajaklssipd = TbpModel::where($where)->first();
+
+        return response()->json($pajaklssipd);
+    }
+
+    public function tarikterimatbpupdate(Request $request, string $id)
+    {
+
+        TbpModel::where('id',$request->get('id'))
+        ->update([
+            'status' => 'Terima',
+        ]);
+
+        return redirect()->back()->with('success','Data Berhasil Ditolak');
+    }
 }
