@@ -42,7 +42,7 @@
                                                     <th>Nomor NPD</th>
                                                     <th>Nomor SPM</th>
                                                     <th>Tanggal SPM</th>
-                                                    <!-- <th>Nomor SP2D</th> -->
+                                                    <th>Nomor SP2D</th>
                                                     <!-- <th width="100px">Keterangan TBP</th> -->
                                                     <th>Aksi</th>
                                                 </tr>

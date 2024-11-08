@@ -30,7 +30,8 @@
             {data: 'no_npd', name: 'no_npd'},
             {data: 'no_spm', name: 'no_spm'},
             {data: 'tgl_spm', name: 'tgl_spm'},
-            // {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+            // {data: 'id_billing', name: 'id_billing'},
+            {data: 'nomor_sp2d', name: 'nomor_sp2d'},
             // {data: 'keterangan_tbp', name: 'keterangan_tbp'},
             {data: 'status', name: 'status', orderable: false, searchable: false},
         ]

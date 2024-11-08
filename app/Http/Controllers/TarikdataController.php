@@ -116,6 +116,7 @@ class TarikdataController extends Controller
                         ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
                         // ->where('status',['Terima'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+                        ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                         ->get();
 
             return DataTables::of($dt1)

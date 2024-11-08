@@ -30,15 +30,14 @@ class VerifikasitbpController extends Controller
         );
 
         if ($request->ajax()) {
-
-            $dt1 = DB::table('tb_tbp')
-                        ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status')
-                        // ->join('tb_potongangu', 'tb_potongangu.id_tbp', 'tb_tbp.id_tbp')
-                        ->whereIn('status',['Tolak'])
-                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+            $datapajakls = DB::table('tb_tbp')
+                        ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'sp2d.nomor_sp2d')
+                        ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
+                        ->where('tb_tbp.status', ['Tolak'])
+                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
                         ->get();
 
-            return DataTables::of($dt1)
+            return DataTables::of($datapajakls)
                     ->addIndexColumn()
                     ->addColumn('nilai_tbp', function($row) {
                         return number_format($row->nilai_tbp);
