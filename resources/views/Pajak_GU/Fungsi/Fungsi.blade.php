@@ -42,7 +42,7 @@
         $('#saveBtn').val("create-pajakgu");
         $('#id').val('');
         $('#userForm').trigger("reset");
-        $('#tambahpajakgu').modal('show');
+        $('#editpajakgusipdajukantbp').modal('show');
         $('#modal-preview').attr('src', 'https://via/placeholder.com/150');
 
     });

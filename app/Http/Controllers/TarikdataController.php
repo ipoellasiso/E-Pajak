@@ -301,7 +301,8 @@ class TarikdataController extends Controller
                     'nama_skpd' => $dt["nama_skpd"],
                     'tanggal_tbp' => Carbon::Parse($dt["tanggal_tbp"])->format('Y-m-d'),
                     'no_spm' => $request->no_spm, 
-                    'tgl_spm' => $request->tgl_spm 
+                    'tgl_spm' => $request->tgl_spm, 
+                    'status' => 'Tolak'
                 ];
                 DB::table('tb_tbp')->insert($datatbp);
             // } 

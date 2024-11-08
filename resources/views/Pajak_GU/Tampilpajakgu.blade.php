@@ -107,6 +107,7 @@
         @include('Pajak_GU.Modal.Tolak')
         @include('Pajak_GU.Modal.Tambah')
         @include('Pajak_GU.Modal.Datapajakls')
+        @include('Pajak_GU.Modal.AjukanTBP')
 
         {{-- ############################## Batas Modal ################################ --}}
 
@@ -114,6 +115,7 @@
 
         @include('Pajak_GU.Fungsi.Fungsi')
         @include('Pajak_GU.Fungsi.Fungsipajaklssipd')
+        @include('Pajak_GU.Fungsi.Fungsitbp')
 
         {{-- ############################## Batas Fungsi ################################ --}}
         
