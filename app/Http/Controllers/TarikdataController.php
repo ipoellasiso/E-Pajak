@@ -113,7 +113,7 @@ class TarikdataController extends Controller
         if ($request->ajax()) {
 
             $dt1 = DB::table('tb_tbp')
-                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
+                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id', 'statuspilihtbp')
                         ->where('status',['Terima'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
@@ -125,12 +125,11 @@ class TarikdataController extends Controller
                         return number_format($row->nilai_tbp);
                     })
                     ->addColumn('status', function($row){
-                        if($row->status == 'Tolak')
+                        if($row->statuspilihtbp == '1')
                         {
                             $btn1 = '
                                     
-                                  <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="terimatbp btn btn-outline-danger m-b-xs"><i class="fas fa-thumbs-down"></i> Tolak
-                                    </a>
+                                  
                                   ';
                         }else {
                             $btn1 = '
@@ -414,7 +413,10 @@ class TarikdataController extends Controller
                     'akun_pajak' => $request->akun_pajak,
                     'nama_npwp' => $request->nama_npwp, 
                     'ntpn' => $request->ntpn, 
-                    'status' => 'Belum_Verifikasi'
+                    'id_billing' => $request->id_billing,
+                    'no_spm' => $request->no_spm,
+                    'status' => 'Belum_Verifikasi',
+                    'statuspilihtbp' => '0'
                 ];
 
                 if ($files = $request->file('bukti_pemby')){

@@ -124,7 +124,7 @@ Route::post('/pajakgu/update/{id}', [PajakguController::class, 'update'])->middl
 Route::delete('/pajakgu/destroy/{id}', [PajakguController::class, 'destroy'])->middleware('auth:web','checkRole:User,Admin');
 Route::post('/pajakgu/terima/{id}', [PajakguController::class, 'terima'])->middleware('auth:web','checkRole:User,Admin');
 Route::post('/pajakgu/tolak/{id}', [PajakguController::class, 'tolak'])->middleware('auth:web','checkRole:User,Admin');
-Route::get('/tampilpajakgusipd', [PajakguController::class, 'pilihpajakgusipd'])->middleware('auth:web','checkRole:User,Admin');
+Route::get('/tampilspmsp2dgusipd', [PajakguController::class, 'pilihspmsp2dgusipd'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/pajakgusipd/edit/{id}', [PajakguController::class, 'editpajakgusipd'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/pajakgu/akunpajak', [PajakguController::class, 'getDataakunpajak'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/pajakgu/jenispajak', [PajakguController::class, 'getDatajenispajak'])->middleware('auth:web','checkRole:User,Admin');

@@ -19,38 +19,60 @@
                         {{-- </div> --}}
                         <!-- <div class="m-t-25"> -->
                             
-                        <form method="POST" action="{{ url('simpanjsontbp') }}">
+                        <form method="POST" action="{{ url('pajakgu/store') }}">
                         @csrf
                         <div class="card">
                             <div class="card-body flex flex-col p-6">
-                                
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <label for="no_spm" class="form-label">Nomor SPM </label>
-                                        <input id="no_spm" name="no_spm" type="text" class="form-control" required></input>
+                                <div class="card">
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editpajakgusipd" data-bs-dismiss="modal">
+                                            <i data-feather="search"></i> Pilih SPM dan SP2D
+                                            </button>
+                                            {{-- <label><= Pilih SPM dan SP2D</label> --}}
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <label for="tgl_spm" class="form-label">Tanggal SPM </label>
-                                        <input id="tgl_spm" name="tgl_spm" type="date" class="form-control" required></input>
+
+                                    <div class="row mb-4">
+                                        <input id="id5" name="id5" type="hidden" class="form-control" readonly></input>
+                                        <input id="npwp5" name="npwp" type="hidden" class="form-control" readonly></input>
+                                        <input id="nama_npwp5" name="nama_npwp" type="hidden" class="form-control" readonly></input>
+                                        <input id="nilai_tbp_pajak_potongan5" name="nilai_tbp_pajak_potongan" type="hidden" class="form-control" readonly></input>
+                                        <input id="nomor_rekening5" name="nomor_rekening" type="hidden" class="form-control" readonly></input>
+                                        <div class="col">
+                                            <label for="nomor_spm" class="form-label">Nomor SPM </label>
+                                            <input id="nomor_spm5" name="nomor_spm" type="text" class="form-control" required readonly></input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="nomor_sp2d" class="form-label">Nomor SP2D </label>
+                                            <input id="nomor_sp2d5" name="nomor_sp2d" type="text" class="form-control" required readonly></input>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="row mb-4">
-                                    <div class="col">
-                                        <label for="url" class="form-label">Isi Data Json </label>
-                                        <!-- <textarea name="textarea" rows="5" cols="40">Write something here</textarea> -->
-                                        <textarea id="jsontextareatbp" name="jsontextareatbp" type="text" class="form-control" rows="30" required></textarea>
+                                <div class="card">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="akun_pajak">Akun Pajak</label>
+                                                <input class="form-control mb-4" id="akun_pajak5" name="akun_pajak" required readonly>
+                                                        {{-- <option value="" readonly></option>  --}}
+                                                </input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="nama_pajak_potongan">Jenis Pajak</label>
+                                                <input class="form-control mb-4" id="nama_pajak_potongan5" name="nama_pajak_potongan" required readonly>
+                                                        {{-- <option value="" readonly></option>  --}}
+                                                </input>
+                                        </div>
                                     </div>
-                                    <div class="col">
-
-                                        <label for="akun_pajak">Akun Pajak</label>
-                                            <select class="form-select mb-4" id="akun_pajak" name="akun_pajak">
-                                                    <option value=""></option> 
-                                            </select>
-
-                                        <label for="tgl_spm" class="form-label">Tanggal SPM </label>
-                                        <input id="tgl_spm" name="tgl_spm" type="date" class="form-control" required></input>
-
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <label for="id_billing5" class="form-label">E-Billing </label>
+                                            <input id="id_billing5" name="id_billing" type="text" class="form-control" required readonly></input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="ntpn5" class="form-label">NTPN </label>
+                                            <input id="ntpn5" name="ntpn" type="text" class="form-control" required readonly></input>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

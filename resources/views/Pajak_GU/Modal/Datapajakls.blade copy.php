@@ -17,18 +17,19 @@
                             </a> --}}
                         </div>
                         {{-- class="m-t-25" --}}
-                        <div>
-                            <table id="zero-confa" class="tabelspmsp2dgusipdri display table table-hover" style="width:100%">
+                        <div class="table-responsive">
+                            <table id="data-table" class="tabelpajakgusipdri table table-hover">
                                 <thead>
                                     <tr>
                                         <!-- <th class="text-center">No</th> -->
                                         <th>Aksi</th>
-                                        <th>Nomor SPM</th>
                                         <th>Tanggal SP2D</th>
                                         <th>Nomor SP2D</th>
                                         <th>Nilai SP2D</th>
-                                        {{-- <th>Keterangan SP2D</th> --}}
-                                        <th  width="100px">Nama OPD</th>
+                                        <th>Jenis Pajak</th>
+                                        <th>Nilai Pajak</th>
+                                        <th>E-Biling</th>
+                                        <th>Nama OPD</th>
                                     </tr>
                                 </thead>
                                 <tbody>

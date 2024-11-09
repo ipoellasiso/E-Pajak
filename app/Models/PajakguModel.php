@@ -24,6 +24,7 @@ class PajakguModel extends Model
         'created_at',
         'updated_at',
         'id_potonganls',
-        'id_opd'
+        'id_opd',
+        'no_spm'
     ];
 }

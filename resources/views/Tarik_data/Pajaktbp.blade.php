@@ -63,21 +63,27 @@
                                                                 <div class="col">
                                                                     <label for="url" class="form-label">Isi Data Json </label>
                                                                     <!-- <textarea name="textarea" rows="5" cols="40">Write something here</textarea> -->
-                                                                    <textarea id="jsontextareatbp" name="jsontextareatbp" type="text" class="form-control" rows="25"></textarea>
+                                                                    <textarea id="jsontextareatbp" name="jsontextareatbp" type="text" class="form-control" rows="35"></textarea>
                                                                 </div>
                                                                 <div class="col">
                                                                     <label for="akun_pajak">Akun Pajak</label>
                                                                         <select class="form-select mb-4" id="akun_pajak" name="akun_pajak">
                                                                                 <option value=""></option> 
                                                                         </select>
-                
+                                                                        
                                                                     {{-- <label for="tgl_spm" class="form-label">Nama NPWP</label>
                                                                     <input id="nama_npwp" name="nama_npwp" type="text" class="form-control mb-4"></input> --}}
                 
-                                                                    <label for="tgl_spm" class="form-label">Nama NPWP</label>
+                                                                    <label for="no_spm" class="form-label">Nomor SPM</label>
+                                                                    <input id="no_spm" name="no_spm" type="text" class="form-control mb-4"></input>
+
+                                                                    <label for="nama_npwp" class="form-label">Nama NPWP</label>
                                                                     <input id="nama_npwp" name="nama_npwp" type="text" class="form-control mb-4"></input>
+
+                                                                    <label for="id_billing" class="form-label">E-Billing</label>
+                                                                    <input id="id_billing" name="id_billing" type="text" class="form-control mb-4"></input>
                 
-                                                                    <label for="tgl_spm" class="form-label">NTPN</label>
+                                                                    <label for="ntpn" class="form-label">NTPN</label>
                                                                     <input id="ntpn" name="ntpn" type="text" class="form-control mb-4"></input>
                 
                                                                     <label>Upload Foto</label>
