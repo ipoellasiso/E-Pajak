@@ -28,11 +28,12 @@
             {data: 'tanggal_tbp', name: 'tanggal_tbp'},
             {data: 'nilai_tbp', name: 'nilai_tbp'},
             {data: 'no_npd', name: 'no_npd'},
-            {data: 'no_spm', name: 'no_spm'},
-            {data: 'tgl_spm', name: 'tgl_spm'},
+            // {data: 'no_spm', name: 'no_spm'},
+            // {data: 'tgl_spm', name: 'tgl_spm'},
             // {data: 'id_billing', name: 'id_billing'},
-            {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+            // {data: 'nomor_sp2d', name: 'nomor_sp2d'},
             // {data: 'keterangan_tbp', name: 'keterangan_tbp'},
+            {data: 'statustolak', name: 'statustolak', orderable: false, searchable: false},
             {data: 'status', name: 'status', orderable: false, searchable: false},
         ]
     });

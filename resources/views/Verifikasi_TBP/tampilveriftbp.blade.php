@@ -40,11 +40,12 @@
                                                     <th>Tanggal TBP</th>
                                                     <th>Nilai TBP</th>
                                                     <th>Nomor NPD</th>
-                                                    <th>Nomor SPM</th>
-                                                    <th>Tanggal SPM</th>
-                                                    <th>Nomor SP2D</th>
+                                                    {{-- <th>Nomor SPM</th> --}}
+                                                    {{-- <th>Tanggal SPM</th> --}}
+                                                    {{-- <th>Nomor SP2D</th> --}}
                                                     <!-- <th width="100px">Keterangan TBP</th> -->
-                                                    <th>Aksi</th>
+                                                    <th></th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>

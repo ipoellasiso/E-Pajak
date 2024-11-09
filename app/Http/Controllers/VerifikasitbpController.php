@@ -31,9 +31,9 @@ class VerifikasitbpController extends Controller
 
         if ($request->ajax()) {
             $datapajakls = DB::table('tb_tbp')
-                        ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'sp2d.nomor_sp2d')
-                        ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
-                        ->where('tb_tbp.status', ['Tolak'])
+                        ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status')
+                        // ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
+                        ->where('status',['Belum_Verifikasi'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
                         ->get();
 
@@ -43,22 +43,28 @@ class VerifikasitbpController extends Controller
                         return number_format($row->nilai_tbp);
                     })
                     ->addColumn('status', function($row){
-                        if($row->status == 'Tolak')
+                        if($row->status == 'Belum_Verifikasi')
                         {
                             $btn1 = '
                                     
-                                  <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="verifikasiterimatbp btn btn-outline-primary m-b-xs"><i class="fas fa-thumbs-down"></i> Terima
-                                    </a>
-                                  ';
-                        }else {
-                            $btn1 = '
-                                    <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="verifikasitolaktbp btn btn-outline-danger m-b-xs"> <i class="fas fa-thumbs-up"></i> Tolak
+                                  <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="verifikasiterimatbp btn btn-outline-primary m-b-xs"><i class="fas fa-thumbs-up"></i> Terima
                                     </a>
                                   ';
                         }
                         return $btn1;
                     })
-                    ->rawColumns(['nilai_tbp', 'status'])
+                    ->addColumn('statustolak', function($row){
+                        if($row->status == 'Belum_Verifikasi')
+                        {
+                            $btn1 = '
+                                    
+                                  <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="verifikasitolaktbp btn btn-outline-danger m-b-xs"><i class="fas fa-thumbs-down"></i> Tolak
+                                    </a>
+                                  ';
+                        }
+                        return $btn1;
+                    })
+                    ->rawColumns(['nilai_tbp', 'status', 'statustolak'])
                     ->make(true);
         }
 

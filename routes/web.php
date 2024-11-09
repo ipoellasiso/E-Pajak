@@ -74,7 +74,7 @@ Route::get('/user/opd', [UserController::class, 'getDataopd'])->middleware('auth
 // ======= DATA TARIK PAJAK SIPD RI =======
 Route::get('/tarikpajaksipdri', [TarikdataController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 Route::get('/tarikpajaksipdrigu', [TarikdataController::class, 'indexgu'])->middleware('auth:web','checkRole:Admin');
-Route::get('/tarikpajaksipdritbp', [TarikdataController::class, 'indextbp'])->middleware('auth:web','checkRole:User');
+
 Route::post('/simpanjson', [TarikdataController::class, 'save_json'])->middleware('auth:web','checkRole:Admin');
 Route::post('/simpanjsongu', [TarikdataController::class, 'save_jsongu'])->middleware('auth:web','checkRole:Admin');
 Route::post('/simpanjsontbp', [TarikdataController::class, 'save_jsontbp'])->middleware('auth:web','checkRole:User');
@@ -91,6 +91,11 @@ Route::get('/tariktbp/tolak/{id}', [TarikdataController::class, 'tariktolaktbp']
 Route::post('/tariktbp/tolakupdate/{id}', [TarikdataController::class, 'tariktolaktbpupdate'])->middleware('auth:web','checkRole:User');
 Route::get('/tariktbp/terima/{id}', [TarikdataController::class, 'tarikterimatbp'])->middleware('auth:web','checkRole:User');
 Route::post('/tariktbp/terimaupdate/{id}', [TarikdataController::class, 'tarikterimatbpupdate'])->middleware('auth:web','checkRole:User');
+Route::get('/tariktbp/akun_pajak', [TarikdataController::class, 'getDataakunpajak'])->middleware('auth:web','checkRole:User');
+Route::get('/tarikpajaksipdritbp', [TarikdataController::class, 'indextbp'])->middleware('auth:web','checkRole:User');
+Route::get('/tarikpajaksipdritbptolak', [TarikdataController::class, 'indextbptolak'])->middleware('auth:web','checkRole:User');
+Route::get('/tarikpajaksipdritbpbelumverifikasi', [TarikdataController::class, 'indextbpbelumverifikasi'])->middleware('auth:web','checkRole:User');
+Route::delete('/tariktbp/destroy/{id}', [TarikdataController::class, 'destroy'])->middleware('auth:web','checkRole:User');
 
 // ======= DATA PAJAKLS =======
 Route::get('/tampilpajakls', [PajaklsController::class, 'index'])->middleware('auth:web','checkRole:Admin');

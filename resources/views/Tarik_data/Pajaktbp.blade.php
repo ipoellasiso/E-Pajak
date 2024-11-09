@@ -26,71 +26,173 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="d-flex flex-row">
-                                        <h4 class="card-title">{{ $title }}</h4>
-                                    </div>
-                                    <div class="m-t-25">
-                            
-                                    <form method="POST" action="{{ url('simpanjsontbp') }}">
-                                    @csrf
-                                    <div class="card">
-                                        <div class="card-body flex flex-col p-6">
-                                            
-                                            <div class="row mb-4">
-                                                <div class="col">
-                                                    <label for="no_spm" class="form-label">Nomor SPM </label>
-                                                    <input id="no_spm" name="no_spm" type="text" class="form-control" rows="10"></input>
-                                                </div>
-                                                <div class="col">
-                                                    <label for="tgl_spm" class="form-label">Tanggal SPM </label>
-                                                    <input id="tgl_spm" name="tgl_spm" type="date" class="form-control" rows="10"></input>
-                                                </div>
+                                    <div class="card-text h-full">
+                                        <div>
+                                          <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4" id="tabs-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                              <a href="#tabs-pengajuan_tbp-withIcon" class="nav-link w-full flex items-center font-medium text-sm font-Inter leading-tight capitalize border-x-0 border-t-0 border-b border-transparent px-4 pb-2 my-2 hover:border-transparent focus:border-transparent active dark:text-slate-300" id="tabs-home-withIcon-tab" data-bs-toggle="pill" data-bs-target="#tabs-pengajuan_tbp-withIcon" role="tab" aria-controls="tabs-pengajuan_tbp-withIcon" aria-selected="true">
+                                                <iconify-icon class="mr-1" icon="heroicons-outline:home"></iconify-icon>
+                                                Pengajuan TBP</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a href="#tabs-tbp_belumverifikasi-withIcon" class="nav-link w-full flex items-center font-medium text-sm font-Inter leading-tight capitalize border-x-0 border-t-0 border-b border-transparent px-4 pb-2 my-2 hover:border-transparent focus:border-transparent dark:text-slate-300" id="tabs-profile-withIcon-tab" data-bs-toggle="pill" data-bs-target="#tabs-tbp_belumverifikasi-withIcon" role="tab" aria-controls="tabs-tbp_belumverifikasi-withIcon" aria-selected="false">
+                                                  <iconify-icon class="mr-1" icon="heroicons-outline:user"></iconify-icon>
+                                                  TBP Belum DIVerifikasi</a>
+                                              </li>
+                                            <li class="nav-item" role="presentation">
+                                              <a href="#tabs-tbp_diterima-withIcon" class="nav-link w-full flex items-center font-medium text-sm font-Inter leading-tight capitalize border-x-0 border-t-0 border-b border-transparent px-4 pb-2 my-2 hover:border-transparent focus:border-transparent dark:text-slate-300" id="tabs-profile-withIcon-tab" data-bs-toggle="pill" data-bs-target="#tabs-tbp_diterima-withIcon" role="tab" aria-controls="tabs-tbp_diterima-withIcon" aria-selected="false">
+                                                <iconify-icon class="mr-1" icon="heroicons-outline:user"></iconify-icon>
+                                                Verifikasi TBP DIterima</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                              <a href="#tabs-tbp_ditolak-withIcon" class="nav-link w-full flex items-center font-medium text-sm font-Inter leading-tight capitalize border-x-0 border-t-0 border-b border-transparent px-4 pb-2 my-2 hover:border-transparent focus:border-transparent dark:text-slate-300" id="tabs-messages-withIcon-tab" data-bs-toggle="pill" data-bs-target="#tabs-tbp_ditolak-withIcon" role="tab" aria-controls="tabs-tbp_ditolak-withIcon" aria-selected="false">
+                                                <iconify-icon class="mr-1" icon="heroicons-outline:chat-alt-2"></iconify-icon>
+                                                Verifikasi TBP Ditolak</a>
+                                            </li>
+                                          </ul>
+                                          
+                                          <div class="tab-content" id="tabs-tabContent">
+                                            <div class="tab-pane fade show active" id="tabs-pengajuan_tbp-withIcon" role="tabpanel" aria-labelledby="tabs-pengajuan_tbp-withIcon">
+
+                                                <form method="POST" action="{{ url('simpanjsontbp') }}" enctype=multipart/form-data>
+                                                    @csrf
+                                                    <div class="card">
+                                                        <div class="card-body flex flex-col p-6">
+                
+                                                            <div class="row mb-4">
+                                                                <div class="col">
+                                                                    <label for="url" class="form-label">Isi Data Json </label>
+                                                                    <!-- <textarea name="textarea" rows="5" cols="40">Write something here</textarea> -->
+                                                                    <textarea id="jsontextareatbp" name="jsontextareatbp" type="text" class="form-control" rows="25"></textarea>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label for="akun_pajak">Akun Pajak</label>
+                                                                        <select class="form-select mb-4" id="akun_pajak" name="akun_pajak">
+                                                                                <option value=""></option> 
+                                                                        </select>
+                
+                                                                    {{-- <label for="tgl_spm" class="form-label">Nama NPWP</label>
+                                                                    <input id="nama_npwp" name="nama_npwp" type="text" class="form-control mb-4"></input> --}}
+                
+                                                                    <label for="tgl_spm" class="form-label">Nama NPWP</label>
+                                                                    <input id="nama_npwp" name="nama_npwp" type="text" class="form-control mb-4"></input>
+                
+                                                                    <label for="tgl_spm" class="form-label">NTPN</label>
+                                                                    <input id="ntpn" name="ntpn" type="text" class="form-control mb-4"></input>
+                
+                                                                    <label>Upload Foto</label>
+                                                                    <input type="file" class="form-control mb-2" name="bukti_pemby" id="bukti_pemby" accept="image/*" onchange="readURL(this);">
+                                                                    <input type="hidden" name="hidden_image" id="hidden_image">
+                                                                    <small class="mb-4">Upload Foto Harus Format JPG,JPEG / PNS dan Max File 5MB </small>
+                
+                                                                    <div>
+                                                                        <img id="modal-preview" src="https://via/placeholder.com/150" alt="Preview" class="form-group hidden" width="300" height="210">
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
+                                                                        <i class="fa fa-save"> </i>  Ajukan
+                                                                    </button>
+                                                                </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    </form>
+
                                             </div>
 
-                                            <div class="row mb-4">
-                                                <div class="col">
-                                                    <label for="url" class="form-label">Isi Data Json </label>
-                                                    <!-- <textarea name="textarea" rows="5" cols="40">Write something here</textarea> -->
-                                                    <textarea id="jsontextareatbp" name="jsontextareatbp" type="text" class="form-control" rows="5"></textarea>
+                                            <div class="tab-pane fade" id="tabs-tbp_diterima-withIcon" role="tabpanel" aria-labelledby="tabs-profile-withIcon-tab">
+
+                                                <div class="m-t-25">
+                                                    <div class="table-responsive">
+                                                        <table id="zero-conf" class="datatabletbp display table table-hover" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Nomor TBP</th>
+                                                                    <th>Tanggal TBP</th>
+                                                                    <th>Nilai TBP</th>
+                                                                    <th>Keterangan TBP</th>
+                                                                    <th>Nomor NPD</th>
+                                                                    {{-- <th>Nomor SPM</th> --}}
+                                                                    {{-- <th>Tanggal SPM</th> --}}
+                                                                    <th>Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{-- datatable ajax --}}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
+
                                             </div>
 
-                                                <div class="modal-footer">
-                                                    <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
-                                                        <i class="fa fa-save"></i>  Simpan
-                                                    </button>
+                                            <div class="tab-pane fade" id="tabs-tbp_ditolak-withIcon" role="tabpanel" aria-labelledby="tabs-settings-withIcon-tab">
+
+                                                <div class="m-t-25">
+                                                    <div class="table-responsive">
+                                                        <table id="zero-confa" class="datatabletbptolak display table table-hover" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Nomor TBP</th>
+                                                                    <th>Tanggal TBP</th>
+                                                                    <th>Nilai TBP</th>
+                                                                    <th>Keterangan TBP</th>
+                                                                    <th>Nomor NPD</th>
+                                                                    {{-- <th>Nomor SPM</th> --}}
+                                                                    {{-- <th>Tanggal SPM</th> --}}
+                                                                    <th>Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{-- datatable ajax --}}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
-                                            
+                                              
+                                            </div>
+
+                                            <div class="tab-pane fade" id="tabs-tbp_belumverifikasi-withIcon" role="tabpanel" aria-labelledby="tabs-settings-withIcon-tab">
+
+                                                <div class="m-t-25">
+                                                    <div class="table-responsive">
+                                                        <table id="zero-confb" class="datatabletbpbelumverifikasi display table table-hover" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Nomor TBP</th>
+                                                                    <th>Tanggal TBP</th>
+                                                                    <th>Nilai TBP</th>
+                                                                    <th>Keterangan TBP</th>
+                                                                    <th>Nomor NPD</th>
+                                                                    {{-- <th>Nomor SPM</th> --}}
+                                                                    {{-- <th>Tanggal SPM</th> --}}
+                                                                    <th>Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{-- datatable ajax --}}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                              
+                                            </div>
+
+                                          </div>
                                         </div>
-                                    </div>
-                                    </form>
-                            
-                                    <div class="table-responsive">
-                                        <table id="zero-conf" class="datatabletbp display table table-hover" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Nomor TBP</th>
-                                                    <th>Tanggal TBP</th>
-                                                    <th>Nilai TBP</th>
-                                                    <th>Keterangan TBP</th>
-                                                    <th>Nomor NPD</th>
-                                                    <th>Nomor SPM</th>
-                                                    <th>Tanggal SPM</th>
-                                                    <th>Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {{-- datatable ajax --}}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                            
-                                    </div>
+                                      </div>
+
+                                        
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

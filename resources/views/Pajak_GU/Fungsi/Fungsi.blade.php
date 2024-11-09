@@ -272,7 +272,7 @@
         var id = $(this).data("id");
         var actionType = $('#saveBtntolak').val();
         $('#saveBtntolak').html('Sabar Ya Gaes.....');
-
+        
         var formData = new FormData(this);
 
         $.ajax({

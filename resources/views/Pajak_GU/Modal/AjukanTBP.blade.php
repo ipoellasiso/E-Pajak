@@ -42,10 +42,15 @@
                                         <textarea id="jsontextareatbp" name="jsontextareatbp" type="text" class="form-control" rows="30" required></textarea>
                                     </div>
                                     <div class="col">
-                                        <label for="tgl_spm" class="form-label">Nomor SPM </label>
-                                        <input id="tgl_spm" name="tgl_spm" type="text" class="form-control  mb-4" required></input>
+
+                                        <label for="akun_pajak">Akun Pajak</label>
+                                            <select class="form-select mb-4" id="akun_pajak" name="akun_pajak">
+                                                    <option value=""></option> 
+                                            </select>
+
                                         <label for="tgl_spm" class="form-label">Tanggal SPM </label>
                                         <input id="tgl_spm" name="tgl_spm" type="date" class="form-control" required></input>
+
                                     </div>
                                 </div>
                             </div>

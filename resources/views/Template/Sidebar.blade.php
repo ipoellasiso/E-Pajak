@@ -54,14 +54,6 @@
         </ul>
       </li>
       @endif
-      @if(Auth::user()->role == 'User')
-      <li>
-        <a href="#"><i data-feather="git-pull-request"></i>Tarik Pajak SIPD RI<i class="fas fa-chevron-right dropdown-icon"></i></a>
-        <ul class="">
-          <li><a href="/tarikpajaksipdritbp"><i class="far fa-circle"></i>GU</a></li>
-        </ul>
-      </li>
-      @endif
       @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
       <li>
         <a href="index.html"><i data-feather="git-pull-request"></i>Verifikasi TBP<i class="fas fa-chevron-right dropdown-icon"></i></a>
@@ -73,6 +65,14 @@
       <li class="sidebar-title">
         PENATAUSAHAAN
       </li>
+      @if(Auth::user()->role == 'User')
+      <li>
+        <a href="#"><i data-feather="git-pull-request"></i>Pengajuan TBP<i class="fas fa-chevron-right dropdown-icon"></i></a>
+        <ul class="">
+          <li><a href="/tarikpajaksipdritbp"><i class="far fa-circle"></i>Pembuatan</a></li>
+        </ul>
+      </li>
+      @endif
       <li @if(isset($active_side_pajakls)){{ $active_side_pajakls }} @endif>
         <a href="index.html"><i data-feather="hard-drive"></i>Data Pajak<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">

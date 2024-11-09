@@ -96,25 +96,25 @@ class TarikdataController extends Controller
     {
         $userId = Auth::guard('web')->user()->id;
         $data = array(
-            'title'             => 'Tarik Data Pajak GU SIPD RI',
-            'active_side_tarik' => 'active',
-            'active_tarikgu'      => 'active',
-            'page_title'        => 'Pengaturan',
-            'breadcumd1'        => 'Tarik Pajak SIPD RI',
-            'breadcumd2'        => 'Tarik Data Pajak GU SIPD RI',
-            'userx'             => UserModel::where('id',$userId)->first(['fullname','role','gambar']),
-            'opd'                  => DB::table('users')
-                                    // ->join('opd',  'opd.id', 'users.id_opd')
-                                    // ->select('fullname','nama_opd')
-                                    ->where('nama_opd', auth()->user()->nama_opd)
-                                    ->first(),
+            'title'                     => 'Pengajuan TBP',
+            'active_side_pengajuantbp'  => 'active',
+            'active_pengajuantbp'       => 'active',
+            'page_title'                => 'Penatausahaan',
+            'breadcumd1'                => 'Pengajuan TBP',
+            'breadcumd2'                => 'Pembuatan',
+            'userx'                     => UserModel::where('id',$userId)->first(['fullname','role','gambar']),
+            'opd'                       => DB::table('users')
+                                        // ->join('opd',  'opd.id', 'users.id_opd')
+                                        // ->select('fullname','nama_opd')
+                                        ->where('nama_opd', auth()->user()->nama_opd)
+                                        ->first(),
         );
 
         if ($request->ajax()) {
 
             $dt1 = DB::table('tb_tbp')
                         ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
-                        // ->where('status',['Terima'])
+                        ->where('status',['Terima'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                         ->get();
@@ -130,6 +130,117 @@ class TarikdataController extends Controller
                             $btn1 = '
                                     
                                   <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="terimatbp btn btn-outline-danger m-b-xs"><i class="fas fa-thumbs-down"></i> Tolak
+                                    </a>
+                                  ';
+                        }else {
+                            $btn1 = '
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="tolaktbp btn btn-outline-danger m-b-xs"> <i class="fas fa-thumbs-up"></i> Tolak
+                                    </a>
+                                  ';
+                        }
+                        return $btn1;
+                    })
+                    ->rawColumns(['nilai_tbp', 'status'])
+                    ->make(true);
+        }
+
+
+        return view('Tarik_data.Pajaktbp', $data);
+    }
+
+    public function indextbptolak(Request $request)
+    {
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                     => 'Pengajuan TBP',
+            'active_side_pengajuantbp'  => 'active',
+            'active_pengajuantbp'       => 'active',
+            'page_title'                => 'Penatausahaan',
+            'breadcumd1'                => 'Pengajuan TBP',
+            'breadcumd2'                => 'Pembuatan',
+            'userx'                     => UserModel::where('id',$userId)->first(['fullname','role','gambar']),
+            'opd'                       => DB::table('users')
+                                        // ->join('opd',  'opd.id', 'users.id_opd')
+                                        // ->select('fullname','nama_opd')
+                                        ->where('nama_opd', auth()->user()->nama_opd)
+                                        ->first(),
+        );
+
+        if ($request->ajax()) {
+
+            $dt1 = DB::table('tb_tbp')
+                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
+                        ->where('status',['Tolak'])
+                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+                        ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
+                        ->get();
+
+            return DataTables::of($dt1)
+                    ->addIndexColumn()
+                    ->addColumn('nilai_tbp', function($row) {
+                        return number_format($row->nilai_tbp);
+                    })
+                    ->addColumn('status', function($row){
+                        if($row->status == 'Tolak')
+                        {
+                            $btn1 = '
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" class="editTolaktbp btn btn-outline-danger m-b-xs">
+                                        <i class="fa fa-edit"> Perbaiki</i> 
+                                    </a>
+                                  ';
+                        }else {
+                            $btn1 = '
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->nomor_tbp.'" class="tolaktbp btn btn-outline-primary m-b-xs"> <i class="fas fa-thumbs-up"></i> Terima
+                                    </a>
+                                  ';
+                        }
+                        return $btn1;
+                    })
+                    ->rawColumns(['nilai_tbp', 'status'])
+                    ->make(true);
+        }
+
+
+        return view('Tarik_data.Pajaktbp', $data);
+    }
+
+    public function indextbpbelumverifikasi(Request $request)
+    {
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                     => 'Pengajuan TBP',
+            'active_side_pengajuantbp'  => 'active',
+            'active_pengajuantbp'       => 'active',
+            'page_title'                => 'Penatausahaan',
+            'breadcumd1'                => 'Pengajuan TBP',
+            'breadcumd2'                => 'Pembuatan',
+            'userx'                     => UserModel::where('id',$userId)->first(['fullname','role','gambar']),
+            'opd'                       => DB::table('users')
+                                        // ->join('opd',  'opd.id', 'users.id_opd')
+                                        // ->select('fullname','nama_opd')
+                                        ->where('nama_opd', auth()->user()->nama_opd)
+                                        ->first(),
+        );
+
+        if ($request->ajax()) {
+
+            $dt1 = DB::table('tb_tbp')
+                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
+                        ->where('status',['Belum_Verifikasi'])
+                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+                        ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
+                        ->get();
+
+            return DataTables::of($dt1)
+                    ->addIndexColumn()
+                    ->addColumn('nilai_tbp', function($row) {
+                        return number_format($row->nilai_tbp);
+                    })
+                    ->addColumn('status', function($row){
+                        if($row->status == 'Belum_Verifikasi')
+                        {
+                            $btn1 = '
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" class="deletepengajuantbp btn btn-outline-danger m-b-xs"> <i class="fa fa-trash"></i> Delete
                                     </a>
                                   ';
                         }else {
@@ -300,10 +411,19 @@ class TarikdataController extends Controller
                     'no_npd' => $dt["nomor_npd"],
                     'nama_skpd' => $dt["nama_skpd"],
                     'tanggal_tbp' => Carbon::Parse($dt["tanggal_tbp"])->format('Y-m-d'),
-                    'no_spm' => $request->no_spm, 
-                    'tgl_spm' => $request->tgl_spm, 
-                    'status' => 'Tolak'
+                    'akun_pajak' => $request->akun_pajak,
+                    'nama_npwp' => $request->nama_npwp, 
+                    'ntpn' => $request->ntpn, 
+                    'status' => 'Belum_Verifikasi'
                 ];
+
+                if ($files = $request->file('bukti_pemby')){
+                    $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
+                    $profileImage = " Simelajang " . " - " .date('YmdHis')." - " .$files->getClientOriginalName();
+                    $files->move($destinationPath, $profileImage);
+                    $datatbp['bukti_pemby'] = "$profileImage";
+                }
+
                 DB::table('tb_tbp')->insert($datatbp);
             // } 
 
@@ -368,4 +488,24 @@ class TarikdataController extends Controller
 
         return redirect()->back()->with('success','Data Berhasil Ditolak');
     }
+
+    public function getDataakunpajak()
+    {
+        $akunpajak = DB::table('tb_akun_pajak')
+        ->select('id', 'akun_pajak')
+        ->get();
+        return response()->json($akunpajak);
+        // return view('Penatausahaan.Pajakls.Pajakls', compact('akunpajak'));
+    }
+
+    public function destroy($id)
+    {
+        $data = TbpModel::where('id',$id)->first(['bukti_pemby']);
+        unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
+
+        TbpModel::where('id', $id)->delete();
+
+        return response()->json(['success'=>'Data Berhasil Dihapus']);
+    }
+
 }
