@@ -353,12 +353,12 @@
         });
     });
 
-    $.ajax({ url: '/pajakgu/totalnilai', 
-        type: 'GET', 
-        success: function(response) { 
-            $('#total_pajak').text(response.total); 
-        }
-    });
+    // $.ajax({ url: '/pajakgu/totalnilai', 
+    //     type: 'GET', 
+    //     success: function(response) { 
+    //         $('#total_pajak').text(response.total); 
+    //     }
+    // });
 });
 
 function readURL(input, id) {

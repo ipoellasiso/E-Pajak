@@ -35,6 +35,7 @@
 
                                     <div class="row mb-4">
                                         <input id="id5" name="id5" type="hidden" class="form-control" readonly></input>
+                                        <input id="bukti_pemby5" name="bukti_pemby" type="hidden" class="form-control" readonly></input>
                                         <input id="npwp5" name="npwp" type="hidden" class="form-control" readonly></input>
                                         <input id="nama_npwp5" name="nama_npwp" type="hidden" class="form-control" readonly></input>
                                         <input id="nilai_tbp_pajak_potongan5" name="nilai_tbp_pajak_potongan" type="hidden" class="form-control" readonly></input>

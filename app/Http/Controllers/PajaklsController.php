@@ -227,7 +227,7 @@ class PajaklsController extends Controller
 
             if ($files = $request->file('bukti_pemby')){
                 $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
-                $profileImage = " Simelajang " . " - " .date('YmdHis')." - " .$files->getClientOriginalName();
+                $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
                 $files->move($destinationPath, $profileImage);
                 $detailspajakls['bukti_pemby'] = "$profileImage";
             }
@@ -285,7 +285,7 @@ class PajaklsController extends Controller
                     File::delete('app/assets/images/bukti_pemby_pajak/'.$updatepajakls->bukti_pemby);
                 }
                 $file = $request->file('bukti_pemby');
-                $nama_file = " Simelajang " . " - " .date('YmdHis')." - " .$file->getClientOriginalName();
+                $nama_file = "Simelajang" . "-" .date('YmdHis')."-" .$file->getClientOriginalName();
                 $file->move('app/assets/images/bukti_pemby_pajak/', $nama_file);
                 $updatepajakls->bukti_pemby = $nama_file;
             }

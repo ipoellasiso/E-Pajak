@@ -50,6 +50,7 @@
             $('#nama_npwp5').val(data.nama_npwp);
             $('#nomor_rekening5').val(data.nomor_rekening);
             $('#ntpn5').val(data.ntpn);
+            $('#bukti_pemby5').val(data.bukti_pemby);
             $('.bd-example-modal-xl').modal('hide');
         })
     });

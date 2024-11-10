@@ -421,7 +421,7 @@ class TarikdataController extends Controller
 
                 if ($files = $request->file('bukti_pemby')){
                     $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
-                    $profileImage = " Simelajang " . " - " .date('YmdHis')." - " .$files->getClientOriginalName();
+                    $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
                     $files->move($destinationPath, $profileImage);
                     $datatbp['bukti_pemby'] = "$profileImage";
                 }

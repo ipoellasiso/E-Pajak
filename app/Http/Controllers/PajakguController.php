@@ -159,7 +159,7 @@ class PajakguController extends Controller
         if ($request->ajax()) {
 
             $datapajaklssipdgu = DB::table('tb_tbp')
-                                ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'sp2d.nama_skpd', 'status', 'id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d')
+                                ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'sp2d.nama_skpd', 'status', 'id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'bukti_pemby')
                                 ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
                                 ->where('sp2d.jenis',['GU'])
                                 ->where('tb_tbp.statuspilihtbp',['0'])
@@ -196,9 +196,9 @@ class PajakguController extends Controller
                 $id_opd = $row1->nama_opd;
             }
 
-        request()->validate([
-            'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
-        ]);
+        // request()->validate([
+        //     'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
+        // ]);
 
         // $nomoracak = Str::random(10);
         $pajakguId = $request->id;
@@ -243,6 +243,7 @@ class PajakguController extends Controller
                 'nama_npwp' => $request->nama_npwp,
                 'nomor_npwp' => $request->npwp,
                 'no_spm' => $request->nomor_spm,
+                'bukti_pemby' => $request->bukti_pemby,
                 'id_opd' => $id_opd,
                 // 'bukti_pemby' => $request->bukti_pemby,
                 'status2' => 'Terima',
@@ -288,14 +289,16 @@ class PajakguController extends Controller
         }
         else
         {
-            PotonganModel::where('id_pajakkpp',$request->get('id_potonganls'))
+            TbpModel::where('ntpn',$request->get('ntpn'))
                         ->update([
-                            'status1' => '1',
-                            'id_pajakkpp' => $request->id_potonganls,
-                            'ebilling' => $request->ebilling,
+                            'statuspilihtbp' => '1',
+                            // 'id_pajakkpp' => $request->id_potonganls,
+                            'id_billing' => $request->ebilling,
+                            'ntpn' => $request->ntpn,
+                            'akun_pajak' => $request->akun_pajak,
                         ]);
 
-            $updatepajakgu->id_potonganls = $request->get('id_potonganls');
+            // $updatepajakgu->id_potonganls = $request->get('id_potonganls');
             $updatepajakgu->akun_pajak = $request->get('akun_pajak');
             $updatepajakgu->ebilling = $request->get('ebilling');
             $updatepajakgu->ntpn = $request->get('ntpn');
@@ -303,7 +306,7 @@ class PajakguController extends Controller
             $updatepajakgu->nomor_npwp = $request->get('nomor_npwp');
             $updatepajakgu->jenis_pajak = $request->get('jenis_pajak');
             $updatepajakgu->rek_belanja = $request->get('rek_belanja');
-            $updatepajakgu->id_opd = $request->get('id_opd');
+            // $updatepajakgu->id_opd = $request->get('id_opd');
             $updatepajakgu->nilai_pajak = str_replace('.','', $request->get('nilai_pajak'));
             $updatepajakgu->status2 = 'Terima';
             
@@ -314,7 +317,7 @@ class PajakguController extends Controller
                     File::delete('app/assets/images/bukti_pemby_pajak/'.$updatepajakgu->bukti_pemby);
                 }
                 $file = $request->file('bukti_pemby');
-                $nama_file = " Simelajang " . " - " .date('YmdHis')." - " .$file->getClientOriginalName();
+                $nama_file = "Simelajang" . "-" .date('YmdHis')."-" .$file->getClientOriginalName();
                 $file->move('app/assets/images/bukti_pemby_pajak/', $nama_file);
                 $updatepajakgu->bukti_pemby = $nama_file;
             }
@@ -343,16 +346,28 @@ class PajakguController extends Controller
                                     ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
             'dtpajakgu'            => DB::table('pajakkppgu')
-                                    ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'potongan2.nilai_pajak','pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'potongan2.status1', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'potongan2.id_pajakkpp', 'pajakkppgu.id_opd')
+                                    ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd')
                                     // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                                     // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
-                                    ->join('potongan2',  'potongan2.id', 'pajakkppgu.id_potonganls')
-                                    ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                    // ->join('tb_tbp',  'tb_tbp.ntpn', 'pajakkppgu.ntpn')
+                                    ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                                    // ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
+
                                     ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                                     // ->where('pajakkpp.status2', ['Terima'])
                                     // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
-                                    ->where('pajakkppgu.id', $id)
                                     ->first(),
+                                    
+                                    // ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'potongan2.nilai_pajak','pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'potongan2.status1', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'potongan2.id_pajakkpp', 'pajakkppgu.id_opd')
+                                    // // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
+                                    // // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
+                                    // ->join('potongan2',  'potongan2.id', 'pajakkppgu.id_potonganls')
+                                    // ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                    // ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
+                                    // // ->where('pajakkpp.status2', ['Terima'])
+                                    // // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
+                                    // ->where('pajakkppgu.id', $id)
+                                    // ->first(),
         );
         // return response()->json($pajakls);
         return view('Pajak_GU.Modal.Ubahdata',$data);
@@ -375,17 +390,29 @@ class PajakguController extends Controller
                                     // ->select('fullname','nama_opd')
                                     ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
-            'lihatpajakgu'            => DB::table('pajakkppgu')
-                                        ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'potongan2.nilai_pajak','pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'potongan2.status1', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'potongan2.id_pajakkpp')
-                                        // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
-                                        // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
-                                        ->join('potongan2',  'potongan2.id', 'pajakkppgu.id_potonganls')
-                                        ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
-                                        ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
-                                        // ->where('pajakkpp.status2', ['Terima'])
-                                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
-                                        ->where('pajakkppgu.id', $id)
-                                        ->first(),
+            'lihatpajakgu'          => DB::table('pajakkppgu')
+                                    ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd')
+                                    // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
+                                    // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
+                                    // ->join('tb_tbp',  'tb_tbp.ntpn', 'pajakkppgu.ntpn')
+                                    ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                                    // ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
+
+                                    ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
+                                    // ->where('pajakkpp.status2', ['Terima'])
+                                    // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
+                                    ->first(),
+
+                                        // ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'potongan2.nilai_pajak','pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'potongan2.status1', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'potongan2.id_pajakkpp')
+                                        // // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
+                                        // // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
+                                        // ->join('potongan2',  'potongan2.id', 'pajakkppgu.id_potonganls')
+                                        // ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                        // ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
+                                        // // ->where('pajakkpp.status2', ['Terima'])
+                                        // // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
+                                        // ->where('pajakkppgu.id', $id)
+                                        // ->first(),
         );
         // return response()->json($pajakls);
         return view('Pajak_GU.Modal.Lihat',$data);
@@ -402,7 +429,7 @@ class PajakguController extends Controller
     public function editpajakgusipd($id)
     {
         $where = array('tb_tbp.id' => $id);
-        $pajaklssipdgu = TbpModel::select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_tbp.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_tbp.id_billing', 'tb_tbp.ntpn', 'tb_potongangu.nama_pajak_potongan', 'tb_tbp.akun_pajak', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.nomor_rekening', 'tb_tbp.npwp', 'tb_tbp.nama_npwp')
+        $pajaklssipdgu = TbpModel::select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_tbp.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_tbp.id_billing', 'tb_tbp.ntpn', 'tb_potongangu.nama_pajak_potongan', 'tb_tbp.akun_pajak', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.nomor_rekening', 'tb_tbp.npwp', 'tb_tbp.nama_npwp', 'tb_tbp.bukti_pemby')
         ->join('tb_potongangu', 'tb_potongangu.id_tbp', 'tb_tbp.id_tbp')
         ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
         ->where($where)->first();
@@ -431,17 +458,17 @@ class PajakguController extends Controller
     public function tolakgu($id)
     {
         $where = array('id' => $id);
-        $pajaklssipd = PajakguModel::where($where)->first();
+        $pajakgusipd = PajakguModel::where($where)->first();
 
-        return response()->json($pajaklssipd);
+        return response()->json($pajakgusipd);
     }
 
     public function tolakguupdate(Request $request, string $id)
     {
 
-        PotonganModel::where('ebilling',$request->get('ebilling'))
+        TbpModel::where('ntpn',$request->get('ntpn'))
         ->update([
-            'status1' => '0',
+            'statuspilihtbp' => '0',
         ]);
 
         PajakguModel::where('ebilling',$request->get('ebilling'))
@@ -455,20 +482,20 @@ class PajakguController extends Controller
     public function terimagu($id)
     {
         $where = array('id' => $id);
-        $pajaklssipd = PajakguModel::where($where)->first();
+        $pajakgusipd = PajakguModel::where($where)->first();
 
-        return response()->json($pajaklssipd);
+        return response()->json($pajakgusipd);
     }
 
     public function terimaguupdate(Request $request, string $id)
     {
 
-        PotonganModel::where('ebilling',$request->get('ebilling'))
+        TbpModel::where('ntpn',$request->get('ntpn'))
         ->update([
-            'status1' => '1',
+            'statuspilihtbp' => '1',
         ]);
 
-        PajakguModel::where('ebilling',$request->get('ebilling'))
+        PajakguModel::where('ntpn',$request->get('ntpn'))
         ->update([
             'status2' => 'Terima',
         ]);
