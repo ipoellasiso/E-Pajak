@@ -158,12 +158,13 @@ class PajakguController extends Controller
 
         if ($request->ajax()) {
 
-            $datapajaklssipdgu = DB::table('tb_tbp')
-                                ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'sp2d.nama_skpd', 'status', 'id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'bukti_pemby')
+            $datapajaklssipdgu = DB::table('tb_potongangu')
+                                ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_potongangu.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan')
+                                ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
                                 ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
                                 ->where('sp2d.jenis',['GU'])
-                                ->where('tb_tbp.statuspilihtbp',['0'])
-                                ->where('tb_tbp.status',['Terima'])
+                                // ->where('tb_potongangu.statuspil',['0'])
+                                ->where('tb_potongangu.status1',['Terima'])
                                 ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                                 ->get();
 
@@ -186,6 +187,10 @@ class PajakguController extends Controller
 
     public function store(Request $request)
     {
+        // request()->validate([
+        //     'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
+        // ]);
+
         $dtidopd = DB::table('opd')
             ->select ('nama_opd')
             ->where('id', auth()->user()->id_opd)
@@ -196,9 +201,9 @@ class PajakguController extends Controller
                 $id_opd = $row1->nama_opd;
             }
 
-        // request()->validate([
-        //     'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
-        // ]);
+        request()->validate([
+            'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
+        ]);
 
         // $nomoracak = Str::random(10);
         $pajakguId = $request->id;
@@ -226,12 +231,7 @@ class PajakguController extends Controller
                 // 'nilai_pajak' =>str_replace('.','', $request->nilai_pajak),
             // ];
 
-            TbpModel::where('ntpn',$request->get('ntpn'))
-                        ->update([
-                            'statuspilihtbp' => '1',
-                            // 'id_pajakkpp' => $request->id_potonganls,
-                            // 'ebilling' => $request->ebilling,
-                        ]);
+           
 
             $detailspajakgu = [
                 'ebilling' => $request->id_billing,
@@ -243,23 +243,31 @@ class PajakguController extends Controller
                 'nama_npwp' => $request->nama_npwp,
                 'nomor_npwp' => $request->npwp,
                 'no_spm' => $request->nomor_spm,
-                'bukti_pemby' => $request->bukti_pemby,
                 'id_opd' => $id_opd,
-                // 'bukti_pemby' => $request->bukti_pemby,
                 'status2' => 'Terima',
                 // 'id_potonganls' => $request->id_potonganls,
                 // 'id_potonganls' => $request->id,
                 // 'id_potonganls' => $request->id,
             ];
 
-            // if ($files = $request->file('bukti_pemby')){
-            //     $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
-            //     $profileImage = " Simelajang " . " - " .date('YmdHis')." - " .$files->getClientOriginalName();
-            //     $files->move($destinationPath, $profileImage);
-            //     $detailspajakgu['bukti_pemby'] = "$profileImage";
-            // }
+            if ($files = $request->file('bukti_pemby')){
+                $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
+                $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage);
+                $detailspajakgu['bukti_pemby'] = "$profileImage";
+                // $detailspajakgu->save();
+            }
+            // PajakguModel::updateOrCreate(['id' => $pajakguId], $detailspajakgu);
         }
 
+            // PotonganguModel::where('id_billing',$request->get('id_billing'))
+            // ->update([
+            //     'status3' => '1',
+            //     // 'id_pajakkpp' => $request->id_potonganls,
+            //     // 'ebilling' => $request->ebilling,
+            // ]);
+
+            // $detailspajakgu->save();
             PajakguModel::updateOrCreate(['id' => $pajakguId], $detailspajakgu);
             // TbpModel::updateOrCreate(['ntpn' => $request->ntpn], $details_tb_tbp);
             // PotonganModel::updateOrCreate(['id' => $pajaklsId_potonganls], $detailspotongan);
@@ -428,11 +436,15 @@ class PajakguController extends Controller
 
     public function editpajakgusipd($id)
     {
-        $where = array('tb_tbp.id' => $id);
-        $pajaklssipdgu = TbpModel::select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_tbp.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_tbp.id_billing', 'tb_tbp.ntpn', 'tb_potongangu.nama_pajak_potongan', 'tb_tbp.akun_pajak', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.nomor_rekening', 'tb_tbp.npwp', 'tb_tbp.nama_npwp', 'tb_tbp.bukti_pemby')
-        ->join('tb_potongangu', 'tb_potongangu.id_tbp', 'tb_tbp.id_tbp')
+        $where = array('tb_potongangu.id' => $id);
+        $pajaklssipdgu = PotonganguModel::select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_potongangu.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_potongangu.id_billing', 'tb_tbp.ntpn', 'tb_potongangu.nama_pajak_potongan', 'tb_tbp.akun_pajak', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.nomor_rekening', 'tb_tbp.npwp', 'tb_tbp.nama_npwp', 'tb_tbp.bukti_pemby')
+        ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
         ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
         ->where($where)->first();
+        // $pajaklssipdgu = TbpModel::select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_tbp.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_tbp.id_billing', 'tb_tbp.ntpn', 'tb_potongangu.nama_pajak_potongan', 'tb_tbp.akun_pajak', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.nomor_rekening', 'tb_tbp.npwp', 'tb_tbp.nama_npwp', 'tb_tbp.bukti_pemby')
+        // ->join('tb_potongangu', 'tb_potongangu.id_tbp', 'tb_tbp.id_tbp')
+        // ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
+        // ->where($where)->first();
 
         return response()->json($pajaklssipdgu);
     }

@@ -27,6 +27,9 @@
                                         <th>Tanggal SP2D</th>
                                         <th>Nomor SP2D</th>
                                         <th>Nilai SP2D</th>
+                                        <th>Jenis Pajak</th>
+                                        <th>E-Billing</th>
+                                        <th>Nilai Pajak</th>
                                         {{-- <th>Keterangan SP2D</th> --}}
                                         <th  width="100px">Nama OPD</th>
                                     </tr>

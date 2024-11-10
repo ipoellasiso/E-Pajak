@@ -22,8 +22,8 @@
                         <form method="POST" action="{{ url('pajakgu/store') }}">
                         @csrf
                         <div class="card">
-                            <div class="card-body flex flex-col p-6">
-                                <div class="card">
+                            {{-- <div class="card-body flex flex-col p-6"> --}}
+                                {{-- <div class="card"> --}}
                                     <div class="row mb-4">
                                         <div class="col">
                                             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editpajakgusipd" data-bs-dismiss="modal">
@@ -35,11 +35,6 @@
 
                                     <div class="row mb-4">
                                         <input id="id5" name="id5" type="hidden" class="form-control" readonly></input>
-                                        <input id="bukti_pemby5" name="bukti_pemby" type="hidden" class="form-control" readonly></input>
-                                        <input id="npwp5" name="npwp" type="hidden" class="form-control" readonly></input>
-                                        <input id="nama_npwp5" name="nama_npwp" type="hidden" class="form-control" readonly></input>
-                                        <input id="nilai_tbp_pajak_potongan5" name="nilai_tbp_pajak_potongan" type="hidden" class="form-control" readonly></input>
-                                        <input id="nomor_rekening5" name="nomor_rekening" type="hidden" class="form-control" readonly></input>
                                         <div class="col">
                                             <label for="nomor_spm" class="form-label">Nomor SPM </label>
                                             <input id="nomor_spm5" name="nomor_spm" type="text" class="form-control" required readonly></input>
@@ -49,34 +44,66 @@
                                             <input id="nomor_sp2d5" name="nomor_sp2d" type="text" class="form-control" required readonly></input>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card">
-                                    <div class="row mb-2">
+
+                                    <div class="row mb-4">
                                         <div class="col">
-                                            <label for="akun_pajak">Akun Pajak</label>
-                                                <input class="form-control mb-4" id="akun_pajak5" name="akun_pajak" required readonly>
-                                                        {{-- <option value="" readonly></option>  --}}
-                                                </input>
+                                            <label for="nomor_rekening5" class="form-label">Rekening Belanja </label>
+                                            <input id="nomor_rekening5" name="nomor_rekening" type="text" class="form-control" required ></input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="npwp5" class="form-label">Nomor NPWP </label>
+                                            <input id="npwp5" name="npwp" type="text" class="form-control" required></input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="nama_npwp" class="form-label">Nama NPWP </label>
+                                            <input id="nama_npwp5" name="nama_npwp" type="text" class="form-control" required></input>
+                                        </div>
+                                        <div class="col">
+                                            <label for="nilai_tbp_pajak_potongan" class="form-label">Nilai Pajak </label>
+                                            <input id="nilai_tbp_pajak_potongan5" name="nilai_tbp_pajak_potongan" type="text" class="form-control" required></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <label for="akun_pajak6">Akun Pajak</label>
+                                                <select class="form-select mb-4" id="akun_pajak6" name="akun_pajak" required>
+                                                        <option value=""></option> 
+                                                </select>
+                                            <label for="ntpn5" class="form-label">NTPN </label>
+                                                <input id="ntpn5" name="ntpn" type="text" class="form-control mb-4" required></input>
+                                            
+                                            {{-- <label>Upload Foto</label>
+                                                <input type="file" class="form-control" name="bukti_pemby" id="bukti_pemby" accept="image/*" onchange="readURL(this);">
+                                                <input type="hidden" name="hidden_image" id="hidden_image">
+                                                <small>Upload Foto Harus Format JPG,JPEG / PNS dan Max File 5MB </small> --}}
                                         </div>
                                         <div class="col">
                                             <label for="nama_pajak_potongan">Jenis Pajak</label>
-                                                <input class="form-control mb-4" id="nama_pajak_potongan5" name="nama_pajak_potongan" required readonly>
-                                                        {{-- <option value="" readonly></option>  --}}
-                                                </input>
+                                                <select class="form-select mb-4" id="nama_pajak_potongan5" name="nama_pajak_potongan" required>
+                                                        <option value="" readonly></option> 
+                                                </select>
+                                            <label for="id_billing" class="form-label">E-Billing </label>
+                                                <input id="id_billing5" name="id_billing" type="text" class="form-control mb-4" required></input>
+                                            
+                                            {{-- <img id="modal-preview5" src="https://via/placeholder.com/150" alt="Preview" class="form-group hidden" width="100" height="100"> --}}
                                         </div>
                                     </div>
-                                    <div class="row mb-2">
+
+                                    <div class="row mb-1">
                                         <div class="col">
-                                            <label for="id_billing5" class="form-label">E-Billing </label>
-                                            <input id="id_billing5" name="id_billing" type="text" class="form-control" required readonly></input>
+                                            <label>Upload Foto</label>
+                                            <input type="file" class="form-control" name="bukti_pemby" id="bukti_pemby" accept="image/*" onchange="readURL(this);">
+                                            <input type="hidden" name="hidden_image" id="hidden_image">
+                                            <small>Upload Foto Harus Format JPG,JPEG / PNS dan Max File 5MB </small>
                                         </div>
                                         <div class="col">
-                                            <label for="ntpn5" class="form-label">NTPN </label>
-                                            <input id="ntpn5" name="ntpn" type="text" class="form-control" required readonly></input>
+                                            <img id="modal-preview5" src="https://via/placeholder.com/150" alt="Hasil Upload Bukti" class="form-group hidden" width="200" height="150">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                   
+                                {{-- </div> --}}
+                            {{-- </div> --}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger m-b-xs" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#tambahpajakls">

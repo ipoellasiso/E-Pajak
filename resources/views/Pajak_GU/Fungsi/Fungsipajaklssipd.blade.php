@@ -28,6 +28,9 @@
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
             {data: 'nilai_sp2d', name: 'nilai_sp2d'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
             // {data: 'keterangan_sp2d', name: 'keterangan_sp2d'},
             {data: 'nama_skpd', name: 'nama_skpd'},
         ]
@@ -50,11 +53,25 @@
             $('#nama_npwp5').val(data.nama_npwp);
             $('#nomor_rekening5').val(data.nomor_rekening);
             $('#ntpn5').val(data.ntpn);
-            $('#bukti_pemby5').val(data.bukti_pemby);
             $('.bd-example-modal-xl').modal('hide');
         })
     });
 });
+
+function readURL(input, id) {
+    id = id || '#modal-preview5';
+    if (input.files && input.files[0]){
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $(id).attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+        $('#modal-preview5').removeClass('hidden');
+        $('#start').hide();
+    }
+}
 
 </script>
 

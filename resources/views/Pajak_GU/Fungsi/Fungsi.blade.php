@@ -231,7 +231,7 @@
                 method: 'GET',
                 success: function(data) {
                     $.each(data, function(index, akunpajak) {
-                        $('#akun_pajak').append(new Option(akunpajak.akun_pajak, akunpajak.akun_pajak)); // Ganti 'nama' dengan kolom yang sesuai
+                        $('#akun_pajak6').append(new Option(akunpajak.akun_pajak, akunpajak.akun_pajak)); // Ganti 'nama' dengan kolom yang sesuai
                     });
                 },
                 error: function(xhr) {
@@ -246,7 +246,7 @@
             method: 'GET',
             success: function(data) {
                 $.each(data, function(index, jenispajak) {
-                    $('#jenis_pajak').append(new Option(jenispajak.jenis_pajak, jenispajak.jenis_pajak)); // Ganti 'nama' dengan kolom yang sesuai
+                    $('#nama_pajak_potongan5').append(new Option(jenispajak.jenis_pajak, jenispajak.jenis_pajak)); // Ganti 'nama' dengan kolom yang sesuai
                 });
             },
             error: function(xhr) {
@@ -362,7 +362,7 @@
 });
 
 function readURL(input, id) {
-    id = id || '#modal-preview';
+    id = id || '#modal-preview5';
     if (input.files && input.files[0]){
         var reader = new FileReader();
 
@@ -371,7 +371,7 @@ function readURL(input, id) {
         };
 
         reader.readAsDataURL(input.files[0]);
-        $('#modal-preview').removeClass('hidden');
+        $('#modal-preview5').removeClass('hidden');
         $('#start').hide();
     }
 }
