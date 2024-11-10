@@ -24,12 +24,13 @@
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'nomor_tbp', name: 'nomor_tbp'},
-            {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
             {data: 'nilai_tbp', name: 'nilai_tbp'},
             {data: 'keterangan_tbp', name: 'keterangan_tbp'},
-            {data: 'no_npd', name: 'no_npd'},
-            // {data: 'no_spm', name: 'no_spm'},
-            // {data: 'tgl_spm', name: 'tgl_spm'},
+            // {data: 'no_npd', name: 'no_npd'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
             {data: 'status', name: 'status', orderable: false, searchable: false},
         ]
     });
@@ -79,12 +80,13 @@
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'nomor_tbp', name: 'nomor_tbp'},
-            {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
             {data: 'nilai_tbp', name: 'nilai_tbp'},
             {data: 'keterangan_tbp', name: 'keterangan_tbp'},
-            {data: 'no_npd', name: 'no_npd'},
-            // {data: 'no_spm', name: 'no_spm'},
-            // {data: 'tgl_spm', name: 'tgl_spm'},
+            // {data: 'no_npd', name: 'no_npd'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
             {data: 'status', name: 'status', orderable: false, searchable: false},
         ]
     });
@@ -96,12 +98,13 @@
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'nomor_tbp', name: 'nomor_tbp'},
-            {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
             {data: 'nilai_tbp', name: 'nilai_tbp'},
             {data: 'keterangan_tbp', name: 'keterangan_tbp'},
-            {data: 'no_npd', name: 'no_npd'},
-            // {data: 'no_spm', name: 'no_spm'},
-            // {data: 'tgl_spm', name: 'tgl_spm'},
+            // {data: 'no_npd', name: 'no_npd'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
             {data: 'status', name: 'status', orderable: false, searchable: false},
         ]
     });

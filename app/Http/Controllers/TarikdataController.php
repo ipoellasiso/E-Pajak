@@ -112,12 +112,13 @@ class TarikdataController extends Controller
 
         if ($request->ajax()) {
 
-            $dt1 = DB::table('tb_tbp')
-                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id', 'statuspilihtbp')
-                        ->where('status',['Terima'])
-                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
-                        ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
-                        ->get();
+            $dt1 = DB::table('tb_potongangu')
+                    ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id')
+                    ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
+                    ->where('tb_potongangu.status1',['Terima'])
+                    // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+                    ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
+                    ->get();
 
             return DataTables::of($dt1)
                     ->addIndexColumn()
@@ -125,7 +126,7 @@ class TarikdataController extends Controller
                         return number_format($row->nilai_tbp);
                     })
                     ->addColumn('status', function($row){
-                        if($row->statuspilihtbp == '1')
+                        if($row->status1 == 'Tolak')
                         {
                             $btn1 = '
                                     
@@ -167,12 +168,13 @@ class TarikdataController extends Controller
 
         if ($request->ajax()) {
 
-            $dt1 = DB::table('tb_tbp')
-                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
-                        ->where('status',['Tolak'])
-                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
-                        ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
-                        ->get();
+            $dt1 = DB::table('tb_potongangu')
+                    ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id')
+                    ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
+                    ->where('tb_potongangu.status1',['Tolak'])
+                    // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
+                    ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
+                    ->get();
 
             return DataTables::of($dt1)
                     ->addIndexColumn()
@@ -180,7 +182,7 @@ class TarikdataController extends Controller
                         return number_format($row->nilai_tbp);
                     })
                     ->addColumn('status', function($row){
-                        if($row->status == 'Tolak')
+                        if($row->status1 == 'Tolak')
                         {
                             $btn1 = '
                                     <a href="javascript:void(0)" data-id="'.$row->id.'" class="editTolaktbp btn btn-outline-danger m-b-xs">
@@ -223,9 +225,10 @@ class TarikdataController extends Controller
 
         if ($request->ajax()) {
 
-            $dt1 = DB::table('tb_tbp')
-                        ->select('nomor_tbp','tanggal_tbp','nilai_tbp','keterangan_tbp','no_npd','no_spm', 'tgl_spm', 'nilai_spm', 'nama_skpd', 'status', 'id')
-                        ->where('status',['Belum_Verifikasi'])
+            $dt1 = DB::table('tb_potongangu')
+                        ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id')
+                        ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
+                        ->where('tb_potongangu.status1',['Belum_Verifikasi'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                         ->get();
@@ -236,7 +239,7 @@ class TarikdataController extends Controller
                         return number_format($row->nilai_tbp);
                     })
                     ->addColumn('status', function($row){
-                        if($row->status == 'Belum_Verifikasi')
+                        if($row->status1 == 'Belum_Verifikasi')
                         {
                             $btn1 = '
                                     <a href="javascript:void(0)" data-id="'.$row->id.'" class="deletepengajuantbp btn btn-outline-danger m-b-xs"> <i class="fa fa-trash"></i> Delete
@@ -410,21 +413,21 @@ class TarikdataController extends Controller
                     'no_npd' => $dt["nomor_npd"],
                     'nama_skpd' => $dt["nama_skpd"],
                     'tanggal_tbp' => Carbon::Parse($dt["tanggal_tbp"])->format('Y-m-d'),
-                    'akun_pajak' => $request->akun_pajak,
-                    'nama_npwp' => $request->nama_npwp, 
-                    'ntpn' => $request->ntpn, 
-                    'id_billing' => $request->id_billing,
+                    // 'akun_pajak' => $request->akun_pajak,
+                    // 'nama_npwp' => $request->nama_npwp, 
+                    // 'ntpn' => $request->ntpn, 
+                    // 'id_billing' => $request->id_billing,
                     'no_spm' => $request->no_spm,
-                    'status' => 'Belum_Verifikasi',
-                    'statuspilihtbp' => '0'
+                    // 'status' => 'Belum_Verifikasi',
+                    // 'statuspilihtbp' => '0'
                 ];
 
-                if ($files = $request->file('bukti_pemby')){
-                    $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
-                    $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
-                    $files->move($destinationPath, $profileImage);
-                    $datatbp['bukti_pemby'] = "$profileImage";
-                }
+                // if ($files = $request->file('bukti_pemby')){
+                //     $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
+                //     $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
+                //     $files->move($destinationPath, $profileImage);
+                //     $datatbp['bukti_pemby'] = "$profileImage";
+                // }
 
                 DB::table('tb_tbp')->insert($datatbp);
             // } 
@@ -444,7 +447,8 @@ class TarikdataController extends Controller
                     'nama_pajak_potongan' => $row1["nama_pajak_potongan"],
                     'id_billing' => $row1["id_billing"],
                     'nilai_tbp_pajak_potongan' => $row1["nilai_tbp_pajak_potongan"],
-                    'id_tbp' => $nomoracak
+                    'id_tbp' => $nomoracak,
+                    'status1' => 'Belum_Verifikasi'
                 ];
                 DB::table('tb_potongangu')->insert($data2);
             }

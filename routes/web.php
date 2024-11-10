@@ -81,6 +81,7 @@ Route::post('/simpanjsontbp', [TarikdataController::class, 'save_jsontbp'])->mid
 
 // ======= DATA VERIFIKASI TBP =======
 Route::get('/tampilveriftbp', [VerifikasitbpController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::get('/tampilveriftbpnew', [VerifikasitbpController::class, 'indexnew'])->middleware('auth:web','checkRole:Admin');
 Route::get('/verifikasitbp/tolak/{id}', [VerifikasitbpController::class, 'tolaktbp'])->middleware('auth:web','checkRole:Admin');
 Route::post('/verifikasitbp/tolakupdate/{id}', [VerifikasitbpController::class, 'tolaktbpupdate'])->middleware('auth:web','checkRole:Admin');
 Route::get('/verifikasitbp/terima/{id}', [VerifikasitbpController::class, 'terimatbp'])->middleware('auth:web','checkRole:Admin');
