@@ -518,8 +518,8 @@ class TarikdataController extends Controller
 
     public function destroy($id)
     {
-        $data = TbpModel::where('id',$id)->first(['bukti_pemby']);
-        unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
+        // $data = TbpModel::where('id',$id)->first(['bukti_pemby']);
+        // unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
 
         TbpModel::where('id', $id)->delete();
 

@@ -457,9 +457,9 @@ class PajakguController extends Controller
     public function tolakguupdate(Request $request, string $id)
     {
 
-        TbpModel::where('ntpn',$request->get('ntpn'))
+        PotonganguModel::where('id_billing',$request->get('ebilling'))
         ->update([
-            'statuspilihtbp' => '0',
+            'status3' => '0',
         ]);
 
         PajakguModel::where('ebilling',$request->get('ebilling'))
@@ -481,9 +481,9 @@ class PajakguController extends Controller
     public function terimaguupdate(Request $request, string $id)
     {
 
-        TbpModel::where('ntpn',$request->get('ntpn'))
+        PotonganguModel::where('id_billing',$request->get('ebilling'))
         ->update([
-            'statuspilihtbp' => '1',
+            'status3' => '1',
         ]);
 
         PajakguModel::where('ntpn',$request->get('ntpn'))
