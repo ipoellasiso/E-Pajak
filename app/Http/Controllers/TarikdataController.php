@@ -42,6 +42,7 @@ class TarikdataController extends Controller
                         ->select('jenis', 'nomor_sp2d','tanggal_sp2d','nama_skpd','keterangan_sp2d','nilai_sp2d','nomor_spm')
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->where('jenis',['LS'])
+                        ->whereBetween('sp2d.tanggal_sp2d', ['2024-11-01', '2024-12-31'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->get();
 
@@ -80,6 +81,7 @@ class TarikdataController extends Controller
             $dt1 = DB::table('sp2d')
                         ->select('nomor_sp2d','tanggal_sp2d','nama_skpd','keterangan_sp2d','nilai_sp2d','nomor_spm', 'jenis')
                         ->whereIn('jenis',['GU'])
+                        ->whereBetween('sp2d.tanggal_sp2d', ['2024-11-01', '2024-12-31'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->get();
 
@@ -113,9 +115,10 @@ class TarikdataController extends Controller
         if ($request->ajax()) {
 
             $dt1 = DB::table('tb_potongangu')
-                    ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id')
+                    ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id', 'tb_potongangu.status3')
                     ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
                     ->where('tb_potongangu.status1',['Terima'])
+                    // ->where('tb_potongangu.status3',['0'])
                     // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                     ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                     ->get();
@@ -126,11 +129,11 @@ class TarikdataController extends Controller
                         return number_format($row->nilai_tbp);
                     })
                     ->addColumn('status', function($row){
-                        if($row->status1 == 'Tolak')
+                        if($row->status3 == '1')
                         {
                             $btn1 = '
-                                    
-                                  
+                                    <a class="badge bg-primary"> Pajak Sudah Final
+                                    </a>
                                   ';
                         }else {
                             $btn1 = '
@@ -139,6 +142,9 @@ class TarikdataController extends Controller
                                   ';
                         }
                         return $btn1;
+                    })
+                    ->addColumn('nilai_tbp_pajak_potongan', function($row) {
+                        return number_format($row->nilai_tbp_pajak_potongan);
                     })
                     ->rawColumns(['nilai_tbp', 'status'])
                     ->make(true);
@@ -197,6 +203,9 @@ class TarikdataController extends Controller
                         }
                         return $btn1;
                     })
+                    ->addColumn('nilai_tbp_pajak_potongan', function($row) {
+                        return number_format($row->nilai_tbp_pajak_potongan);
+                    })
                     ->rawColumns(['nilai_tbp', 'status'])
                     ->make(true);
         }
@@ -237,6 +246,9 @@ class TarikdataController extends Controller
                     ->addIndexColumn()
                     ->addColumn('nilai_tbp', function($row) {
                         return number_format($row->nilai_tbp);
+                    })
+                    ->addColumn('nilai_tbp_pajak_potongan', function($row) {
+                        return number_format($row->nilai_tbp_pajak_potongan);
                     })
                     ->addColumn('status', function($row){
                         if($row->status1 == 'Belum_Verifikasi')

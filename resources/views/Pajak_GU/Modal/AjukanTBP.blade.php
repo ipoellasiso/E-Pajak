@@ -19,7 +19,7 @@
                         {{-- </div> --}}
                         <!-- <div class="m-t-25"> -->
                             
-                        <form method="POST" action="{{ url('pajakgu/store') }}">
+                        <form method="POST" action="{{ url('pajakgu/store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             {{-- <div class="card-body flex flex-col p-6"> --}}
@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col">
                                             <label for="nilai_tbp_pajak_potongan" class="form-label">Nilai Pajak </label>
-                                            <input id="nilai_tbp_pajak_potongan5" name="nilai_tbp_pajak_potongan" type="text" class="form-control" required></input>
+                                            <input id="nilai_tbp_pajak_potongan5" name="nilai_tbp_pajak_potongan" type="text" class="form-control amount" required></input>
                                         </div>
                                     </div>
 
@@ -107,10 +107,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger m-b-xs" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#tambahpajakls">
-                                <i class="fas fa-arrow-alt-circle-left"></i> Close
+                                <i class="fas fa-times-circle"></i> Close
                             </button>
                             <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
-                                <i class="fa fa-save"></i>  Simpan
+                                <i data-feather="git-pull-request"></i>  Simpan
                             </button>
                         </div>
                         </form>

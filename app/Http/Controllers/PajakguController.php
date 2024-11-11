@@ -165,6 +165,7 @@ class PajakguController extends Controller
                                 ->where('sp2d.jenis',['GU'])
                                 // ->where('tb_potongangu.statuspil',['0'])
                                 ->where('tb_potongangu.status1',['Terima'])
+                                ->where('tb_potongangu.status3',['0'])
                                 ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                                 ->get();
 
@@ -177,6 +178,12 @@ class PajakguController extends Controller
                                 ';
 
                         return $btn1;
+                    })
+                    ->addColumn('nilai_tbp_pajak_potongan', function($row) {
+                        return number_format($row->nilai_tbp_pajak_potongan);
+                    })
+                    ->addColumn('nilai_sp2d', function($row) {
+                        return number_format($row->nilai_sp2d);
                     })
                     ->rawColumns(['status2'])
                     ->make(true);
@@ -210,7 +217,7 @@ class PajakguController extends Controller
         // $pajaklsId_potonganls = $request->id_potonganls;
         // $pajaklsebill = $request->ebilling;
 
-        $cek_ebilling = PajakguModel::where('ebilling', $request->ebilling)->where('id', '!=', $request->id)->first();
+        $cek_ebilling = PajakguModel::where('ebilling', $request->id_billing)->where('id', '!=', $request->id)->first();
         $cek_ntppn = PajakguModel::where('ntpn', $request->ntpn)->where('id', '!=', $request->id)->first();
 
         if($cek_ebilling)
@@ -223,15 +230,12 @@ class PajakguController extends Controller
         }
         else
         {
-            // $details_tb_tbp = [
-                // 'statuspilihtbp' => '1',
-                // 'id_pajakkpp' => $request->id,
+            PotonganguModel::where('id_billing',$request->get('id_billing'))
+            ->update([
+                'status3' => '1',
+                // 'id_pajakkpp' => $request->id_potonganls,
                 // 'ebilling' => $request->ebilling,
-                // 'jenis_pajak' => $request->jenis_pajak,
-                // 'nilai_pajak' =>str_replace('.','', $request->nilai_pajak),
-            // ];
-
-           
+            ]);
 
             $detailspajakgu = [
                 'ebilling' => $request->id_billing,
@@ -245,9 +249,6 @@ class PajakguController extends Controller
                 'no_spm' => $request->nomor_spm,
                 'id_opd' => $id_opd,
                 'status2' => 'Terima',
-                // 'id_potonganls' => $request->id_potonganls,
-                // 'id_potonganls' => $request->id,
-                // 'id_potonganls' => $request->id,
             ];
 
             if ($files = $request->file('bukti_pemby')){
@@ -255,22 +256,10 @@ class PajakguController extends Controller
                 $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
                 $files->move($destinationPath, $profileImage);
                 $detailspajakgu['bukti_pemby'] = "$profileImage";
-                // $detailspajakgu->save();
             }
-            // PajakguModel::updateOrCreate(['id' => $pajakguId], $detailspajakgu);
         }
 
-            // PotonganguModel::where('id_billing',$request->get('id_billing'))
-            // ->update([
-            //     'status3' => '1',
-            //     // 'id_pajakkpp' => $request->id_potonganls,
-            //     // 'ebilling' => $request->ebilling,
-            // ]);
-
-            // $detailspajakgu->save();
             PajakguModel::updateOrCreate(['id' => $pajakguId], $detailspajakgu);
-            // TbpModel::updateOrCreate(['ntpn' => $request->ntpn], $details_tb_tbp);
-            // PotonganModel::updateOrCreate(['id' => $pajaklsId_potonganls], $detailspotongan);
             return redirect()->back()->with(['success' =>'Data Berhasil Disimpan']);
         
     }

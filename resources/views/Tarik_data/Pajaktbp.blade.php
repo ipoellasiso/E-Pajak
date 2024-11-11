@@ -76,7 +76,7 @@
                 
                                                                 <div class="modal-footer">
                                                                     <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
-                                                                        <i class="fa fa-save"> </i>  Ajukan Pajak TBP
+                                                                    <i data-feather="check-square"></i>  Ajukan Pajak TBP
                                                                     </button>
                                                                 </div>
                                                             

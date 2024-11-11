@@ -113,7 +113,7 @@
                                                         <small>Upload Foto Harus Format JPG,JPEG / PNS dan Max File 5MB </small>
                                                     </div>
                                                     <div class="col">
-                                                        <img id="modal-preview" src="https://via/placeholder.com/150" alt="Preview" class="form-group hidden" width="100" height="100">
+                                                        <img id="modal-preview5" src="https://via/placeholder.com/150" alt="Preview" class="form-group hidden" width="450" height="250">
                                                     </div>
                                                 </div>
                                             </div>

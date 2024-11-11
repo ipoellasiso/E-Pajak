@@ -58,7 +58,7 @@
       <li>
         <a href="index.html"><i data-feather="git-pull-request"></i>Verifikasi TBP<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
-          <li><a href="/tampilveriftbp"><i class="far fa-circle"></i>TBP</a></li>
+          <!-- <li><a href="/tampilveriftbp"><i class="far fa-circle"></i>TBP</a></li> -->
           <li><a href="/tampilveriftbpnew"><i class="far fa-circle"></i>TBP</a></li>
         </ul>
       </li>
