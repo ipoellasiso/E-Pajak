@@ -33,7 +33,7 @@
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img class="card-img-top" src="/app/assets/images/bukti_pemby_pajak/{{ $lihatpajakgu->bukti_pemby }}" alt="">
+                                        <img class="card-img-top" src="/app/assets/images/bukti_pemby_pajak/{{ $lihatpajakgu->bukti_pemby }}" width="100px" height="500px" alt="">
                                     </div>
                                 </div>
                                 <div class="float-right">
