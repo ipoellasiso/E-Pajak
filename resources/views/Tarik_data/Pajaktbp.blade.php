@@ -83,6 +83,32 @@
                                                         </div>
                                                     </div>
                                                     </form>
+                                                    <div class="card">
+                                                        <div class="card-body flex flex-col p-6">
+
+                                                            <div class="m-t-25">
+                                                                <div class="table-responsive">
+                                                                    <table id="zero-conf" class="datatabletbplist display table table-hover" style="width:100%">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>No</th>
+                                                                                <th>Nomor TBP</th>
+                                                                                <th>Tanggal TBP</th>
+                                                                                <th>Nilai TBP</th>
+                                                                                <th>Keterangan TBP</th>
+                                                                                <th>Nomor NPD</th>
+                                                                                <th>Aksi</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {{-- datatable ajax --}}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
 
                                             </div>
 

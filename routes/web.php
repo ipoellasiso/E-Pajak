@@ -97,6 +97,8 @@ Route::get('/tarikpajaksipdritbp', [TarikdataController::class, 'indextbp'])->mi
 Route::get('/tarikpajaksipdritbptolak', [TarikdataController::class, 'indextbptolak'])->middleware('auth:web','checkRole:User');
 Route::get('/tarikpajaksipdritbpbelumverifikasi', [TarikdataController::class, 'indextbpbelumverifikasi'])->middleware('auth:web','checkRole:User');
 Route::delete('/tariktbp/destroy/{id}', [TarikdataController::class, 'destroy'])->middleware('auth:web','checkRole:User');
+Route::get('/tarikpajaksipdritbplist', [TarikdataController::class, 'indextbplist'])->middleware('auth:web','checkRole:User');
+Route::delete('/tariktbp/destroylist/{id}', [TarikdataController::class, 'destroylist'])->middleware('auth:web','checkRole:User');
 
 // ======= DATA PAJAKLS =======
 Route::get('/tampilpajakls', [PajaklsController::class, 'index'])->middleware('auth:web','checkRole:Admin');

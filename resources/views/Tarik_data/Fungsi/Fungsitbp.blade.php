@@ -73,6 +73,44 @@
         })
     });
 
+    $('body').on('click', '.deletepengajuantbplist', function () {
+
+        var id = $(this).data("id");
+
+        Swal.fire({
+            title: 'Warning ?',
+            text: "Hapus Data Ini ?"  +id,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/tariktbp/destroylist/"+id,
+                    dataType: "JSON",
+                    success: function(data)
+                    {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: data.success
+                        })
+                        table.draw();
+                    },
+                });
+            }else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Data Gagal Dihapus"
+                })
+            }
+        })
+    });
+
     var table = $('.datatabletbptolak').DataTable({
         processing: true,
         serverSide: true,
@@ -109,13 +147,28 @@
         ]
     });
 
+    var table = $('.datatabletbplist').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/tarikpajaksipdritbplist",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'nomor_tbp', name: 'nomor_tbp'},
+            {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            {data: 'nilai_tbp', name: 'nilai_tbp'},
+            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
+            {data: 'no_npd', name: 'no_npd'},
+            {data: 'status', name: 'status', orderable: false, searchable: false},
+        ]
+    });
+
     $('body').on('click', '.tolaktbp', function()  {
         var iduser = $(this).data('id');
         $.get("/tariktbp/tolak/"+iduser, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#edittolak_modal').modal('show');
             $('#id').val(data.id);
-            $('#ebilling').val(data.nomor_tbp);
+            $('#ebilling').val(data.id_billing);
         })
     });
 
@@ -164,7 +217,7 @@
             // $('#saveBtn').val("edit-pajakls");
             $('#editterima_modal').modal('show');
             $('#id1').val(data.id);
-            $('#ebilling1').val(data.nomor_tbp);
+            $('#ebilling1').val(data.id_billing);
         })
     });
 
