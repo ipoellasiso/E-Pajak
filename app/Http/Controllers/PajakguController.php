@@ -233,6 +233,7 @@ class PajakguController extends Controller
             PotonganguModel::where('id_billing',$request->get('id_billing'))
             ->update([
                 'status3' => '1',
+                'status4' => 'Input',
                 // 'id_pajakkpp' => $request->id_potonganls,
                 // 'ebilling' => $request->ebilling,
             ]);
@@ -460,6 +461,7 @@ class PajakguController extends Controller
         PotonganguModel::where('id_billing',$request->get('ebilling'))
         ->update([
             'status3' => '0',
+            'status4' => 'TolakInput',
         ]);
 
         PajakguModel::where('ebilling',$request->get('ebilling'))
@@ -484,6 +486,7 @@ class PajakguController extends Controller
         PotonganguModel::where('id_billing',$request->get('ebilling'))
         ->update([
             'status3' => '1',
+            'status4' => 'Input',
         ]);
 
         PajakguModel::where('ntpn',$request->get('ntpn'))

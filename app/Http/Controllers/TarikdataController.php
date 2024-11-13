@@ -116,7 +116,7 @@ class TarikdataController extends Controller
         if ($request->ajax()) {
 
             $dt1 = DB::table('tb_potongangu')
-                    ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id', 'tb_potongangu.status3')
+                    ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'tb_tbp.nama_skpd', 'tb_tbp.id', 'tb_tbp.status', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.status1', 'tb_potongangu.id', 'tb_potongangu.status3', 'tb_potongangu.status4')
                     ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
                     ->where('tb_potongangu.status1',['Terima'])
                     // ->where('tb_potongangu.status3',['0'])
@@ -133,12 +133,20 @@ class TarikdataController extends Controller
                         if($row->status3 == '1')
                         {
                             $btn1 = '
-                                    <a class="badge bg-primary"> Pajak Sudah Final
+                                    <a class="badge bg-danger"> Pajak Sudah Final
+                                    </a>
+                                  ';
+                        }elseif($row->status4 == 'TolakInput') {
+                            $btn1 = '
+                                    <a class="badge bg-secondary"> Pajak Sudah Diinput<br> Klik Tombol -->
+                                        <div href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->id_billing.'"        class="Ubahstatuspajakgu btn btn-outline-danger btn-sm">Ubah
+                                        </div>
+                                    <br>Untuk Merubah Status Pajak TBP Tersebut
                                     </a>
                                   ';
                         }else {
                             $btn1 = '
-                                    <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->id_billing.'" class="tolaktbp btn btn-outline-danger m-b-xs"> <i class="fas fa-thumbs-up"></i> Tolak
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" data-ebilling="'.$row->id_billing.'" class="tolaktbp btn btn-outline-danger m-b-xs"> <i class="fas fa-thumbs-down"></i> Tolak
                                     </a>
                                   ';
                         }
@@ -556,6 +564,25 @@ class TarikdataController extends Controller
         return redirect()->back()->with('success','Data Berhasil Ditolak');
     }
 
+    public function ubahstatustbp($id)
+    {
+        $where = array('id' => $id);
+        $pajaklssipd = PotonganguModel::where($where)->first();
+
+        return response()->json($pajaklssipd);
+    }
+
+    public function ubahstatustbpupdate(Request $request, string $id)
+    {
+
+        PotonganguModel::where('id',$request->get('id'))
+        ->update([
+            'status4' => 'Belum',
+        ]);
+
+        return redirect('/tarikpajaksipdritbp')->with('success','Data Berhasil Dirubah');
+    }
+
     public function getDataakunpajak()
     {
         $akunpajak = DB::table('tb_akun_pajak')
@@ -565,17 +592,21 @@ class TarikdataController extends Controller
         // return view('Penatausahaan.Pajakls.Pajakls', compact('akunpajak'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // $data = TbpModel::where('id',$id)->first(['bukti_pemby']);
         // unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
+        // PotonganguModel::where('id',$id)
+        // ->update([
+        //     'status4' => 'Belum',
+        // ]);
 
         PotonganguModel::where('id', $id)->delete();
 
         return response()->json(['success'=>'Data Berhasil Dihapus']);
     }
 
-    public function destroylist($id)
+    public function destroylist(Request $request, $id)
     {
         // $data = TbpModel::where('id',$id)->first(['bukti_pemby']);
         // unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);

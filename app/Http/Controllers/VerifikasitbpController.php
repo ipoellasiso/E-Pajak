@@ -167,6 +167,7 @@ class VerifikasitbpController extends Controller
         PotonganguModel::where('id',$request->get('id'))
         ->update([
             'status1' => 'Terima',
+            'status4' => 'Belum',
         ]);
 
             return redirect()->back()->with('success','Data Berhasil Ditolak');

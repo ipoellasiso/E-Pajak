@@ -219,12 +219,14 @@
         
         @include('Tarik_data.Modal.Terima')
         @include('Tarik_data.Modal.Tolak')
+        @include('Tarik_data.Modal.Ubahstatus')
 
         {{-- ############################## Batas Modal ################################ --}}
 
         {{-- ################################# Fungsi ################################### --}}
 
         @include('Tarik_data.Fungsi.Fungsitbp')
+        
 
         {{-- ############################## Batas Fungsi ################################ --}}
         

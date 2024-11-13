@@ -274,6 +274,94 @@
         });
     });
 
+    $('body').on('click', '.Ubahstatuspajakgu', function()  {
+        var iduser = $(this).data('id');
+        $.get("/tariktbp/ubahstatus/"+iduser, function (data) {
+            // $('#saveBtn').val("edit-pajakls");
+            $('#ubahstatus_modal').modal('show');
+            $('#id6').val(data.id);
+            $('#ebilling6').val(data.id_billing);
+        })
+    });
+
+    $('body').on('submit', '#userFormubahstatus', function(e){
+        e.preventDefault();
+
+        var id = $(this).data("id");
+        var actionType = $('#saveBtnUbahstatus').val();
+        $('#saveBtnUbahstatus').html('Sabar Ya Gaes.....');
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: "/tariktbp/ubahstatusupdate/"+id,
+            data: formData,
+            cacha: false,
+            contentType: false,
+            processData: false,
+            // processing: true,
+            success: (data) => {
+
+                $('#userFormubahstatus').trigger("reset");
+                $('#ubahstatus_modal').modal('hide');
+                $('#saveBtnUbahstatus').html('Ubah_Status');
+                // $('.bd-example-modal-xl').modal('hide');
+
+                Swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text: "Data Berhasil Dirubah"
+                })
+
+                table.draw();
+            },
+            error: function(data){
+                console.log('Error:', data);
+                $('saveBtnUbahstatus').html('Ubah_Status');
+            }
+        });
+    });
+
+    $('body').on('click', '.Ubahstatuspajakgubackup', function () {
+
+        var id6 = $(this).data("id");
+        // var ebilling6 = $(this).data("ebilling");
+
+        Swal.fire({
+        title: 'Warning ?',
+        text: "Ubah Status Pajak Ini ?"+id6,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Ubah!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "POST",
+                url: "/tariktbp/ubahstatusupdate/"+id6,
+                dataType: "JSON",
+                success: function(data)
+                {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: data.success
+                    })
+                    table.draw();
+                },
+            });
+        }else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Data Gagal Diterima"
+            })
+        }
+        })
+    });
+
 });
 
 function readURL(input, id) {
