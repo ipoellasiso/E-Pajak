@@ -15,5 +15,8 @@ class PotonganguModel extends Model
         'id_billing',
         'nilai_tbp_pajak_potongan',
         'id_tbp',
+        'status1',
+        'status3',
+        'status4'
     ];
 }

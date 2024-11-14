@@ -35,6 +35,57 @@
         ]
     });
 
+    var table = $('.datatabletbptolak').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/tarikpajaksipdritbptolak",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'nomor_tbp', name: 'nomor_tbp'},
+            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            {data: 'nilai_tbp', name: 'nilai_tbp'},
+            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
+            // {data: 'no_npd', name: 'no_npd'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
+            {data: 'status', name: 'status', orderable: false, searchable: false},
+        ]
+    });
+
+    var table = $('.datatabletbpbelumverifikasi').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/tarikpajaksipdritbpbelumverifikasi",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'nomor_tbp', name: 'nomor_tbp'},
+            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            {data: 'nilai_tbp', name: 'nilai_tbp'},
+            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
+            // {data: 'no_npd', name: 'no_npd'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
+            {data: 'status', name: 'status', orderable: false, searchable: false},
+        ]
+    });
+
+    var table = $('.datatabletbplist').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/tarikpajaksipdritbplist",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'nomor_tbp', name: 'nomor_tbp'},
+            {data: 'tanggal_tbp', name: 'tanggal_tbp'},
+            {data: 'nilai_tbp', name: 'nilai_tbp'},
+            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
+            {data: 'no_npd', name: 'no_npd'},
+            {data: 'status', name: 'status', orderable: false, searchable: false},
+        ]
+    });
+
     $('body').on('click', '.deletepengajuantbp', function () {
 
         var id = $(this).data("id");
@@ -91,12 +142,12 @@
                     type: "DELETE",
                     url: "/tariktbp/destroylist/"+id,
                     dataType: "JSON",
-                    success: function(data)
+                    success: function(data1)
                     {
                         Swal.fire({
                             icon: "success",
                             title: "Success",
-                            text: data.success
+                            text: data1.success
                         })
                         table.draw();
                     },
@@ -109,57 +160,6 @@
                 })
             }
         })
-    });
-
-    var table = $('.datatabletbptolak').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "/tarikpajaksipdritbptolak",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'nomor_tbp', name: 'nomor_tbp'},
-            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
-            {data: 'nilai_tbp', name: 'nilai_tbp'},
-            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
-            // {data: 'no_npd', name: 'no_npd'},
-            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
-            {data: 'id_billing', name: 'id_billing'},
-            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
-            {data: 'status', name: 'status', orderable: false, searchable: false},
-        ]
-    });
-
-    var table = $('.datatabletbpbelumverifikasi').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "/tarikpajaksipdritbpbelumverifikasi",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'nomor_tbp', name: 'nomor_tbp'},
-            // {data: 'tanggal_tbp', name: 'tanggal_tbp'},
-            {data: 'nilai_tbp', name: 'nilai_tbp'},
-            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
-            // {data: 'no_npd', name: 'no_npd'},
-            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
-            {data: 'id_billing', name: 'id_billing'},
-            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
-            {data: 'status', name: 'status', orderable: false, searchable: false},
-        ]
-    });
-
-    var table = $('.datatabletbplist').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "/tarikpajaksipdritbplist",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'nomor_tbp', name: 'nomor_tbp'},
-            {data: 'tanggal_tbp', name: 'tanggal_tbp'},
-            {data: 'nilai_tbp', name: 'nilai_tbp'},
-            {data: 'keterangan_tbp', name: 'keterangan_tbp'},
-            {data: 'no_npd', name: 'no_npd'},
-            {data: 'status', name: 'status', orderable: false, searchable: false},
-        ]
     });
 
     $('body').on('click', '.tolaktbp', function()  {
@@ -359,6 +359,44 @@
                 text: "Data Gagal Diterima"
             })
         }
+        })
+    });
+
+    $('body').on('click', '.editperbaikitbp', function () {
+
+        var id = $(this).data("id");
+
+        Swal.fire({
+            title: 'Warning ?',
+            text: "Ubah Data Ini ?"+id,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Ubah Status!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "/tariktbp/status4/"+id,
+                    dataType: "JSON",
+                    success: function(data)
+                    {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: data.success
+                        })
+                        table.draw();
+                    },
+                });
+            }else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Data Gagal Diubah"
+                })
+            }
         })
     });
 

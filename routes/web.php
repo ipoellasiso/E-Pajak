@@ -101,6 +101,7 @@ Route::get('/tarikpajaksipdritbplist', [TarikdataController::class, 'indextbplis
 Route::delete('/tariktbp/destroylist/{id}', [TarikdataController::class, 'destroylist'])->middleware('auth:web','checkRole:User');
 Route::post('/tariktbp/ubahstatusupdate/{id}', [TarikdataController::class, 'ubahstatustbpupdate'])->middleware('auth:web','checkRole:User');
 Route::get('/tariktbp/ubahstatus/{id}', [TarikdataController::class, 'ubahstatustbp'])->middleware('auth:web','checkRole:User');
+Route::post('/tariktbp/status4/{id}', [TarikdataController::class, 'indexstatus4'])->middleware('auth:web','checkRole:User');
 
 // ======= DATA PAJAKLS =======
 Route::get('/tampilpajakls', [PajaklsController::class, 'index'])->middleware('auth:web','checkRole:Admin');
