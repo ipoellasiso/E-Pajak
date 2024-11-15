@@ -56,7 +56,7 @@ class PajaklsController extends Controller
                         ->join('potongan2',  'potongan2.id', 'pajakkpp.id_potonganls')
                         ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                         // ->where('pajakkpp.status2', ['Terima'])
-                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
+                        // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-12-31'])
                         ->get();
 
             return Datatables::of($datapajakls)
