@@ -220,7 +220,7 @@ class BpjsController extends Controller
         $cart = session()->get('cart');
         
         $nomorsp2d     = $request->nomor_sp2d;
-        $dts = "1";
+        $potonganId = $request->id;
         // $nomorsp2d = BpjsModel::where('id', $id)->first();
 
         foreach($cart as $g){
@@ -250,10 +250,27 @@ class BpjsController extends Controller
                                 // 'ebilling' => $request->ebilling,
                             ]);
             }
-            
+
+            // foreach($cart as $rows1){
+            //     if ($files = $request->file('bukti_pemby')){
+            //         $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
+            //         $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
+            //         $files->move($destinationPath, $profileImage);
+            //         $detailspotonganbpjs['bukti_pemby'] = "$profileImage";
+            //     }
+
+            //     BpjsModel::save($rows1[$detailspotonganbpjs])
+            // }
 
             foreach($cart as $items){
-    
+
+                if ($files = $request->file('bukti_pemby')){
+                    $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
+                    $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
+                    $files->move($destinationPath, $profileImage);
+                    $detailspotonganbpjs['bukti_pemby'] = "$profileImage";
+                }
+
                 BpjsModel::create([
                     'id_bpjs'           => $items['id'],
                     'ebilling'          => $request->ebilling,
@@ -265,10 +282,13 @@ class BpjsController extends Controller
                     'ntpn'              => $request->ntpn,
                     // 'id_potonganls'     => $request->id_potonganls,
                     'rek_belanja'       => $request->rek_belanja,
-
+                    // 'bukti_pemby'       => $items->$detailspotonganbpjs,
                 ]);
-                
+
+                BpjsModel::updateOrCreate($detailspotonganbpjs);
             }
+
+            
             session()->forget('cart');
             return redirect('/tampilbpjs')->with('success', 'Data Disimpan');
         }

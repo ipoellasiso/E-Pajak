@@ -10,14 +10,14 @@
                     <form id="userFormbpjs" name="userFormbpjs" method="POST" action="/dtbpjs/store" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
-                            <input type="text" name="id" id="id5">
-                            <input type="text" name="id_potongan" id="id_potongan5">
-                            <input type="text" class="amount" name="nilai_potongan" id="nilai_potongan5">
+                            <input type="hidden" name="id" id="id5">
+                            <input type="hidden" name="id_potongan" id="id_potongan5">
+                            <input type="hidden" class="amount" name="nilai_potongan" id="nilai_potongan5">
                             <div class="row">
                                 <div class="row mb-4">
                                     <div class="col">
                                         
-                                        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editBpjssipd" data-bs-dismiss="modal">
+                                        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editBpjssipd" data-bs-dismiss="modal">
                                         <i data-feather="search"></i>Tambah Potongan Dari SIPD RI
                                         </button>
                                         {{-- <label><= Tambah Potongan Dari SIPD RI</label> --}}
@@ -81,7 +81,8 @@
                                         <label for="akun_pajak">Akun Potongan</label>
                                         <input type="text" class="form-control" name="akun_potongan" id="akun_potongan" value="" placeholder="" required>
                                     </div>
-                                    {{-- <div class="col">
+                                </div>
+                                <div class="row mb-4">
                                         <div class="col">
                                             <label>Upload Foto</label>
                                             <input type="file" class="form-control" name="bukti_pemby" id="bukti_pemby" accept="image/*" onchange="readURL(this);">
@@ -91,7 +92,6 @@
                                         <div class="col">
                                             <img id="modal-preview" src="https://via/placeholder.com/150" alt="Preview" class="form-group hidden" width="100" height="100">
                                         </div>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
