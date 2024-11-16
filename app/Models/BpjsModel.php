@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BpjsModel extends Model
 {
     use HasFactory;
-    protected $table = "pajakkpp";
+    protected $table = "tb_bpjs";
     protected $primaryKey = "id";
     protected $fillable = [
         'ebilling',
@@ -21,7 +21,10 @@ class BpjsModel extends Model
         'bukti_pemby',
         'status1',
         'status2',
+        'id_potonganls',
+        'rek_belanja',
         'created_at',
         'updated_at',
+        'id_bpjs',
     ];
 }

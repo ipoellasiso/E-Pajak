@@ -17,7 +17,7 @@
       Render DataTable
       --------------------------------------------
       --------------------------------------------*/
-    var table = $('.datatabletbp').DataTable({
+    var datatabletbp = $('.datatabletbp').DataTable({
         processing: true,
         serverSide: true,
         ajax: "/tarikpajaksipdritbp",
@@ -35,7 +35,7 @@
         ]
     });
 
-    var table = $('.datatabletbptolak').DataTable({
+    var datatabletbptolak = $('.datatabletbptolak').DataTable({
         processing: true,
         serverSide: true,
         ajax: "/tarikpajaksipdritbptolak",
@@ -53,7 +53,7 @@
         ]
     });
 
-    var table = $('.datatabletbpbelumverifikasi').DataTable({
+    var datatabletbpbelumverifikasi = $('.datatabletbpbelumverifikasi').DataTable({
         processing: true,
         serverSide: true,
         ajax: "/tarikpajaksipdritbpbelumverifikasi",
@@ -71,7 +71,7 @@
         ]
     });
 
-    var table = $('.datatabletbplist').DataTable({
+    var datatabletbplist = $('.datatabletbplist').DataTable({
         processing: true,
         serverSide: true,
         ajax: "/tarikpajaksipdritbplist",
@@ -111,7 +111,10 @@
                             title: "Success",
                             text: data.success
                         })
-                        table.draw();
+                        datatabletbp.draw();
+                        datatabletbptolak.draw();
+                        datatabletbplist.draw();
+                        datatabletbpbelumverifikasi.draw();
                     },
                 });
             }else {
@@ -126,11 +129,11 @@
 
     $('body').on('click', '.deletepengajuantbplist', function () {
 
-        var id = $(this).data("id");
+        var id1 = $(this).data("id");
 
         Swal.fire({
             title: 'Warning ?',
-            text: "Hapus Data Ini ?"  +id,
+            text: "Hapus Data Ini ?"  +id1,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -140,7 +143,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: "DELETE",
-                    url: "/tariktbp/destroylist/"+id,
+                    url: "/tariktbp/destroylist/"+id1,
                     dataType: "JSON",
                     success: function(data1)
                     {
@@ -149,7 +152,10 @@
                             title: "Success",
                             text: data1.success
                         })
-                        table.draw();
+                        datatabletbp.draw();
+                        datatabletbptolak.draw();
+                        datatabletbplist.draw();
+                        datatabletbpbelumverifikasi.draw();
                     },
                 });
             }else {
@@ -163,8 +169,8 @@
     });
 
     $('body').on('click', '.tolaktbp', function()  {
-        var iduser = $(this).data('id');
-        $.get("/tariktbp/tolak/"+iduser, function (data) {
+        var iduser3 = $(this).data('id');
+        $.get("/tariktbp/tolak/"+iduser3, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#edittolak_modal').modal('show');
             $('#id').val(data.id);
@@ -176,15 +182,15 @@
         e.preventDefault();
 
         var id = $(this).data("id");
-        var actionType = $('#saveBtntolak').val();
+        var actionType1 = $('#saveBtntolak').val();
         $('#saveBtntolak').html('Sabar Ya Gaes.....');
 
-        var formData = new FormData(this);
+        var formData3 = new FormData(this);
 
         $.ajax({
             type:'POST',
             url: "/tariktbp/tolakupdate/"+id,
-            data: formData,
+            data: formData3,
             cacha: false,
             contentType: false,
             processData: false,
@@ -202,7 +208,10 @@
                     text: "Data Berhasil diTolak"
                 })
 
-                table.draw();
+                datatabletbp.draw();
+                datatabletbptolak.draw();
+                datatabletbplist.draw();
+                datatabletbpbelumverifikasi.draw();
             },
             error: function(data){
                 console.log('Error:', data);
@@ -212,8 +221,8 @@
     });
 
     $('body').on('click', '.terimatbp', function()  {
-        var iduser = $(this).data('id');
-        $.get("/tariktbp/terima/"+iduser, function (data) {
+        var iduser2 = $(this).data('id');
+        $.get("/tariktbp/terima/"+iduser2, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#editterima_modal').modal('show');
             $('#id1').val(data.id);
@@ -228,12 +237,12 @@
         var actionType = $('#saveBtnterima').val();
         $('#saveBtnterima').html('Sabar Ya.....');
 
-        var formData = new FormData(this);
+        var formData2 = new FormData(this);
 
         $.ajax({
             type:'POST',
             url: "/tariktbp/terimaupdate/"+id,
-            data: formData,
+            data: formData2,
             cacha: false,
             contentType: false,
             processData: true,
@@ -250,7 +259,10 @@
                     text: "Data Berhasil diTerima"
                 })
 
-                table.draw();
+                datatabletbp.draw();
+                datatabletbptolak.draw();
+                datatabletbplist.draw();
+                datatabletbpbelumverifikasi.draw();
             },
             error: function(data){
                 console.log('Error:', data);
@@ -275,8 +287,8 @@
     });
 
     $('body').on('click', '.Ubahstatuspajakgu', function()  {
-        var iduser = $(this).data('id');
-        $.get("/tariktbp/ubahstatus/"+iduser, function (data) {
+        var iduser1 = $(this).data('id');
+        $.get("/tariktbp/ubahstatus/"+iduser1, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#ubahstatus_modal').modal('show');
             $('#id6').val(data.id);
@@ -291,12 +303,12 @@
         var actionType = $('#saveBtnUbahstatus').val();
         $('#saveBtnUbahstatus').html('Sabar Ya Gaes.....');
 
-        var formData = new FormData(this);
+        var formData1 = new FormData(this);
 
         $.ajax({
             type:'POST',
             url: "/tariktbp/ubahstatusupdate/"+id,
-            data: formData,
+            data: formData1,
             cacha: false,
             contentType: false,
             processData: false,
@@ -314,7 +326,10 @@
                     text: "Data Berhasil Dirubah"
                 })
 
-                table.draw();
+                datatabletbp.draw();
+                datatabletbptolak.draw();
+                datatabletbplist.draw();
+                datatabletbpbelumverifikasi.draw();
             },
             error: function(data){
                 console.log('Error:', data);
@@ -323,44 +338,44 @@
         });
     });
 
-    $('body').on('click', '.Ubahstatuspajakgubackup', function () {
+    // $('body').on('click', '.Ubahstatuspajakgubackup', function () {
 
-        var id6 = $(this).data("id");
-        // var ebilling6 = $(this).data("ebilling");
+    //     var id6 = $(this).data("id");
+    //     // var ebilling6 = $(this).data("ebilling");
 
-        Swal.fire({
-        title: 'Warning ?',
-        text: "Ubah Status Pajak Ini ?"+id6,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Ubah!'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                type: "POST",
-                url: "/tariktbp/ubahstatusupdate/"+id6,
-                dataType: "JSON",
-                success: function(data)
-                {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Success",
-                        text: data.success
-                    })
-                    table.draw();
-                },
-            });
-        }else {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Data Gagal Diterima"
-            })
-        }
-        })
-    });
+    //     Swal.fire({
+    //     title: 'Warning ?',
+    //     text: "Ubah Status Pajak Ini ?"+id6,
+    //     icon: 'warning',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: 'Yes, Ubah!'
+    //     }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "/tariktbp/ubahstatusupdate/"+id6,
+    //             dataType: "JSON",
+    //             success: function(data)
+    //             {
+    //                 Swal.fire({
+    //                     icon: "success",
+    //                     title: "Success",
+    //                     text: data.success
+    //                 })
+    //                 datatabletbp.draw();
+    //             },
+    //         });
+    //     }else {
+    //         Swal.fire({
+    //             icon: "error",
+    //             title: "Error",
+    //             text: "Data Gagal Diterima"
+    //         })
+    //     }
+    //     })
+    // });
 
     $('body').on('click', '.editperbaikitbp', function () {
 
@@ -387,7 +402,10 @@
                             title: "Success",
                             text: data.success
                         })
-                        table.draw();
+                        datatabletbp.draw();
+                        datatabletbptolak.draw();
+                        datatabletbplist.draw();
+                        datatabletbpbelumverifikasi.draw();
                     },
                 });
             }else {

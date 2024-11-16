@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AkunpajakController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BpjsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\JenispajakController;
@@ -141,3 +142,13 @@ Route::post('/pajakgu/terimaguupdate/{id}', [PajakguController::class, 'terimagu
 Route::get('/pajakgu/lihat/{id}', [PajakguController::class, 'lihat'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/pajakgu/totalnilai', [PajakguController::class, 'totalpajakgu'])->middleware('auth:web','checkRole:User,Admin');
 
+// ======= DATA PAJAKLS =======
+Route::get('/tampilbpjs', [BpjsController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::get('/tampilbpjssipd', [BpjsController::class, 'pilihbpjssipd'])->middleware('auth:web','checkRole:Admin');
+Route::post('/dtbpjs/store', [BpjsController::class, 'store'])->middleware('auth:web','checkRole:Admin');
+
+
+Route::get('/dtbpjs/load_cart', [BpjsController::class, 'load_cart'])->middleware('auth:web','checkRole:Admin');
+Route::post('/dtbpjs/addToCart', [BpjsController::class, 'addToCart'])->middleware('auth:web','checkRole:Admin');
+Route::post('/dtbpjs/deleteCart/{id}', [BpjsController::class, 'deleteCart'])->middleware('auth:web','checkRole:Admin');
+Route::get('/dtbpjs/editpotcart/{id}', [BpjsController::class, 'editpotcartsipd'])->middleware('auth:web','checkRole:Admin');
