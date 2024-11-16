@@ -57,7 +57,7 @@
                                                 <th>Nomor SP2D</th>
                                                 <th>Nilai SP2D</th>
                                                 <th>Akun Potongan</th>
-                                                <th>Jenis Potongan</th>
+                                                {{-- <th>Jenis Potongan</th> --}}
                                                 <th>Nilai Potongan</th>
                                                 <th>E-Biling</th>
                                                 <th>NTPN</th>
@@ -85,12 +85,9 @@
                                 <div class="col-3">
                                     <div class="invoice-info">
                                         {{-- @foreach ($total as $d) --}}
-                                            <p>Pajak Pertambahan Nilai <spa</span></p>
-                                            <p>PPH 21<span></span></p>
-                                            <p>Pajak Penghasilan Ps 22<span></span></p>
-                                            <p>Pajak Penghasilan Ps 23<span></span></p>
-                                            <p>Pajak Penghasilan Ps 24<span></span></p>
-                                            <p class="bold">Total Pajak <span></span></p>
+                                        <p>Iuran Jaminan Kesehatan 4 %<span>{{ number_format($total_4) }}</span></p>
+                                        <p>Iuran Jaminan Kesehatan 1 %<span>{{ number_format($total_1) }}</span></p>
+                                        <p class="bold">Total Pajak <span>{{ number_format($total_potongan) }}</span></p>
                                         {{-- @endforeach --}}
                                         <div class="d-grid gap-2">
                                           {{-- <button class="btn btn-danger m-t-xs" type="button">Print Invoice</button> --}}

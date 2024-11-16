@@ -40,12 +40,9 @@ class BpjsController extends Controller
                                     // ->select('fullname','nama_opd')
                                     ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
-            'total_ppn'            => PajaklsModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph21'          => PajaklsModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph22'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph23'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pajakls'          => PajaklsModel::where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_4'              => BpjsModel::join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')->where('tb_bpjs.akun_potongan', '800001')->sum('potongan2.nilai_pajak'),
+            'total_1'              => BpjsModel::join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')->where('tb_bpjs.akun_potongan', '800002')->sum('potongan2.nilai_pajak'),
+            'total_potongan'       => BpjsModel::join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')->sum('potongan2.nilai_pajak'),
         );
 
         if ($request->ajax()) {
@@ -54,7 +51,7 @@ class BpjsController extends Controller
                         ->select('tb_bpjs.id_bpjs', 'tb_bpjs.ebilling', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'tb_bpjs.nomor_npwp', 'tb_bpjs.akun_potongan', 'tb_bpjs.ntpn', 'tb_bpjs.jenis_potongan', 'potongan2.nilai_pajak','tb_bpjs.rek_belanja','tb_bpjs.nama_npwp', 'tb_bpjs.id_potonganls', 'tb_bpjs.id', 'potongan2.status1', 'tb_bpjs.status2', 'tb_bpjs.created_at', 'tb_bpjs.bukti_pemby', 'sp2d.nilai_sp2d', 'tb_bpjs.nilai_potongan', 'potongan2.id_pajakkpp')
                         // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                         // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
-                        ->join('potongan2',  'potongan2.id', 'tb_bpjs.id_potonganls')
+                        ->join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')
                         ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                         // ->where('pajakkpp.status2', ['Terima'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-12-31'])
@@ -106,13 +103,13 @@ class BpjsController extends Controller
                         }
                         return $btn1;
                     })
-                    ->addColumn('nilai_potongan', function($row) {
-                        return number_format($row->nilai_potongan);
+                    ->addColumn('nilai_pajak', function($row) {
+                        return number_format($row->nilai_pajak);
                     })
                     ->addColumn('nilai_sp2d', function($row) {
                         return number_format($row->nilai_sp2d);
                     })
-                    ->rawColumns(['action', 'status1', 'nilai_potongan', 'nilai_sp2d'])
+                    ->rawColumns(['action', 'status1', 'nilai_pajak', 'nilai_sp2d'])
                     ->make(true);
                     
         }  

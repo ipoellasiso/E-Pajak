@@ -28,8 +28,8 @@
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
             {data: 'nilai_sp2d', name: 'nilai_sp2d'},
             {data: 'akun_potongan', name: 'akun_potongan'},
-            {data: 'jenis_potongan', name: 'jenis_potongan'},
-            {data: 'nilai_potongan', name: 'nilai_potongan'},
+            {{-- {data: 'jenis_potongan', name: 'jenis_potongan'}, --}}
+            {data: 'nilai_pajak', name: 'nilai_pajak'},
             {data: 'ebilling', name: 'ebilling'},
             {data: 'ntpn', name: 'ntpn'},
             {data: 'status1', name: 'status1'},
