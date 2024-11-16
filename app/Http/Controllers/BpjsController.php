@@ -268,8 +268,9 @@ class BpjsController extends Controller
                     $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
                     $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
                     $files->move($destinationPath, $profileImage);
-                    $detailspotonganbpjs['bukti_pemby'] = "$profileImage";
+                    $detailspotonganbpjs['bukti_pemby'] = $profileImage;
                 }
+                
 
                 BpjsModel::create([
                     'id_bpjs'           => $items['id'],
@@ -285,7 +286,8 @@ class BpjsController extends Controller
                     // 'bukti_pemby'       => $items->$detailspotonganbpjs,
                 ]);
 
-                BpjsModel::updateOrCreate($detailspotonganbpjs);
+                // $items[$detailspotonganbpjs]->save();
+                // BpjsModel::updateOrCreate($detailspotonganbpjs);
             }
 
             
