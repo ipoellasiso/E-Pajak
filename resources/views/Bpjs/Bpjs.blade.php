@@ -107,6 +107,8 @@
         
         @include('Bpjs.Modal.Tambah')
         @include('Bpjs.Modal.Databpjs')
+        @include('Bpjs.Modal.Terima')
+        @include('Bpjs.Modal.Tolak')
 
         {{-- ############################## Batas Modal ################################ --}}
 

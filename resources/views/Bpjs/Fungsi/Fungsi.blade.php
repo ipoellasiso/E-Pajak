@@ -47,6 +47,104 @@
 
     });
 
+    $('body').on('click', '.tolakBpjs', function()  {
+        var iduser = $(this).data('id');
+        $.get("/dtbpjs/tolakbpjs/"+iduser, function (data) {
+            // $('#saveBtn').val("edit-pajakls");
+            $('#editbpjstolak_modal').modal('show');
+            $('#id').val(data.id);
+            $('#ntpn').val(data.ntpn);
+            $('#ebilling').val(data.ebilling);
+        })
+    });
+
+    $('body').on('submit', '#userFormtolak', function(e){
+        e.preventDefault();
+
+        var id = $(this).data("id");
+        var actionType = $('#saveBtntolak').val();
+        $('#saveBtntolak').html('Sabar Ya Gaes.....');
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: "/dtbpjs/tolakbpjsupdate/"+id,
+            data: formData,
+            cacha: false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+
+                $('#userFormtolak').trigger("reset");
+                $('#editbpjstolak_modal').modal('hide');
+                $('#saveBtntolak').html('Tolak');
+                // $('.bd-example-modal-xl').modal('hide');
+
+                Swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text: "Data Berhasil diTolak"
+                })
+
+                tabelbpjs.draw();
+            },
+            error: function(data){
+                console.log('Error:', data);
+                $('saveBtntolak').html('Tolak');
+            }
+        });
+    });
+
+    $('body').on('click', '.terimaBpjs', function()  {
+        var iduser = $(this).data('id');
+        $.get("/dtbpjs/terimabpjs/"+iduser, function (data) {
+            // $('#saveBtn').val("edit-pajakls");
+            $('#editbpjsterima_modal').modal('show');
+            $('#id1').val(data.id);
+            $('#ntpn1').val(data.ntpn);
+            $('#ebilling1').val(data.ebilling);
+        })
+    });
+
+    $('body').on('submit', '#userFormterima', function(e){
+        e.preventDefault();
+
+        var id = $(this).data("id");
+        var actionType = $('#saveBtnterima').val();
+        $('#saveBtnterima').html('Sabar Ya.....');
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type:'POST',
+            url: "/dtbpjs/terimabpjsupdate/"+id,
+            data: formData,
+            cacha: false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+
+                $('#userFormterima').trigger("reset");
+                $('#editbpjsterima_modal').modal('hide');
+                $('#saveBtnterima').html('Terima');
+                // $('.bd-example-modal-xl').modal('hide');
+
+                Swal.fire({
+                    icon: "success",
+                    title: "success",
+                    text: "Data Berhasil diTerima"
+                })
+
+                tabelbpjs.draw();
+            },
+            error: function(data){
+                console.log('Error:', data);
+                $('saveBtnterima').html('Terima');
+            }
+        });
+    });
+
 });
 
 function readURL(input, id) {

@@ -147,8 +147,12 @@ Route::get('/tampilbpjs', [BpjsController::class, 'index'])->middleware('auth:we
 Route::get('/tampilbpjssipd', [BpjsController::class, 'pilihbpjssipd'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/store', [BpjsController::class, 'store'])->middleware('auth:web','checkRole:Admin');
 
-
 Route::get('/dtbpjs/load_cart', [BpjsController::class, 'load_cart'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/addToCart', [BpjsController::class, 'addToCart'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/deleteCart/{id}', [BpjsController::class, 'deleteCart'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/editpotcart/{id}', [BpjsController::class, 'editpotcartsipd'])->middleware('auth:web','checkRole:Admin');
+
+Route::get('/dtbpjs/tolakbpjs/{id}', [BpjsController::class, 'tolakbpjs'])->middleware('auth:web','checkRole:Admin');
+Route::post('/dtbpjs/tolakbpjsupdate/{id}', [BpjsController::class, 'tolakbpjsupdate'])->middleware('auth:web','checkRole:Admin');
+Route::get('/dtbpjs/terimabpjs/{id}', [BpjsController::class, 'terimabpjs'])->middleware('auth:web','checkRole:Admin');
+Route::post('/dtbpjs/terimabpjsupdate/{id}', [BpjsController::class, 'terimabpjsupdate'])->middleware('auth:web','checkRole:Admin');
