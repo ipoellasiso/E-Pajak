@@ -218,16 +218,13 @@ class BpjsController extends Controller
     public function store(Request $request)
     {
         $cart = session()->get('cart');
-        
-        $nomorsp2d     = $request->nomor_sp2d;
-        $potonganId = $request->id;
-        // $nomorsp2d = BpjsModel::where('id', $id)->first();
 
         foreach($cart as $g){
 
             $id_bpjs = $g['id'];
 
         }
+        // $savepotongan = BpjsModel::where('id', $g)->first();
 
         $noid_bpjs = BpjsModel::where('id_bpjs', $id_bpjs)->where('id', '!=', $id_bpjs)->first();
         // $noid_bpjs = BpjsModel::select('id_bpjs')
@@ -250,47 +247,33 @@ class BpjsController extends Controller
                                 // 'ebilling' => $request->ebilling,
                             ]);
             }
-
-            // foreach($cart as $rows1){
-            //     if ($files = $request->file('bukti_pemby')){
-            //         $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
-            //         $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
-            //         $files->move($destinationPath, $profileImage);
-            //         $detailspotonganbpjs['bukti_pemby'] = "$profileImage";
-            //     }
-
-            //     BpjsModel::save($rows1[$detailspotonganbpjs])
-            // }
-
+                
             foreach($cart as $items){
 
-                if ($files = $request->file('bukti_pemby')){
-                    $destinationPath = 'app/assets/images/bukti_pemby_pajak/';
-                    $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
-                    $files->move($destinationPath, $profileImage);
-                    $detailspotonganbpjs['bukti_pemby'] = $profileImage;
-                }
+                // if ($files = $request->file('bukti_pemby')){
+                //     foreach($files as $file){
+                //         $destinationPath = 'app/assets/images/bukti_pemby_potongan/';
+                //         $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$file->getClientOriginalName();
+                //         $file->move($destinationPath, $profileImage);
+                //         // $detailspajakls['bukti_pemby'] = "$profileImage";
+                //     }
+                // }
                 
 
                 BpjsModel::create([
                     'id_bpjs'           => $items['id'],
                     'ebilling'          => $request->ebilling,
-                    // 'jenis_potongan'    => $request->jenis_pajak,
                     'akun_potongan'     => $request->akun_potongan,
-                    // 'nilai_potongan'    => $request->nilai_pajak,
                     'nama_npwp'         => $request->nama_npwp,
                     'nomor_npwp'        => $request->nomor_npwp,
                     'ntpn'              => $request->ntpn,
-                    // 'id_potonganls'     => $request->id_potonganls,
                     'rek_belanja'       => $request->rek_belanja,
-                    // 'bukti_pemby'       => $items->$detailspotonganbpjs,
-                ]);
+                    // 'bukti_pemby'       => $profileImage,
 
-                // $items[$detailspotonganbpjs]->save();
-                // BpjsModel::updateOrCreate($detailspotonganbpjs);
+                ]);
             }
 
-            
+            // BpjsModel::create($imageData);
             session()->forget('cart');
             return redirect('/tampilbpjs')->with('success', 'Data Disimpan');
         }
