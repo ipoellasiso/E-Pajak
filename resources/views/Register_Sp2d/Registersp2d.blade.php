@@ -22,6 +22,120 @@
                             <a class="breadcrumb-item" href="#">{{ $breadcumd1 }}</a>
                             <span class="breadcrumb-item active">{{ $breadcumd2 }}</span>
                         </nav>
+
+                        <div class="row">
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak LS</h5>
+                                        <h2></h2>
+                                        <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak LS</h5>
+                                        <h2></h2>
+                                        <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak LS</h5>
+                                        <h2></h2>
+                                        <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak LS</h5>
+                                        <h2></h2>
+                                        <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card stat-widget">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Total Pajak GU</h5>
+                                            <h2></h2>
+                                            <p>Rp.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         
                         <div class="col">
                             <div class="card">
@@ -49,6 +163,8 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+
                             <div class="row invoice-last">
                                 <div class="col-9">
                                   <!-- {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut ante id elit molestie<br>dapibus id sollicitudin vel, luctus sit amet justo</p> --}} -->
@@ -56,19 +172,19 @@
                                 <div class="col-3">
                                     <div class="invoice-info">
                                         {{-- @foreach ($total as $d) --}}
-                                            <p>Total SP2D Januari ( {{ $totalcount1 }} ) <span>Senilai  Rp. {{ number_format($total_1,2) }}</span></p>
-                                            <p>Total SP2D Februari ( {{ $totalcount2 }} ) <span>Senilai  Rp.{{ number_format($total_2,2) }}</span></p>
-                                            <p>Total SP2D Maret ( {{ $totalcount3 }} ) <span>Senilai  Rp. {{ number_format($total_3,2) }}</span></p>
-                                            <p>Total SP2D April ( {{ $totalcount4 }} ) <span>Senilai  Rp. {{ number_format($total_4,2) }}</span></p>
-                                            <p>Total SP2D Mei ( {{ $totalcount5 }} ) <span>Senilai  Rp. {{ number_format($total_5,2) }}</span></p>
-                                            <p>Total SP2D Juni ( {{ $totalcount6 }} ) <span>Senilai  Rp. {{ number_format($total_6,2) }}</span></p>
-                                            <p>Total SP2D Juli ( {{ $totalcount7 }} ) <span>Senilai  Rp. {{ number_format($total_7,2) }}</span></p>
-                                            <p>Total SP2D Agustus ( {{ $totalcount8 }} ) <span>Senilai  Rp. {{ number_format($total_8,2) }}</span></p>
-                                            <p>Total SP2D September ( {{ $totalcount9 }} ) <span>Senilai  Rp. {{ number_format($total_9,2) }}</span></p>
-                                            <p>Total SP2D Oktober ( {{ $totalcount10 }} ) <span>Senilai  Rp. {{ number_format($total_10,2) }}</span></p>
-                                            <p>Total SP2D November ( {{ $totalcount11 }} ) <span>Senilai  Rp. {{ number_format($total_11,2) }}</span></p>
-                                            <p>Total SP2D Desember ( {{ $totalcount12 }} ) <span>Senilai  Rp. {{ number_format($total_12,2) }}</span></p>
-                                            <p class="bold">TOTAL SP2D ( {{ $totalcount13 }} ) <span>Senilai  Rp. {{ number_format($totalsp2d,2) }}</span></p>
+                                            <p>Total SP2D Januari ( {{ $totalcount1 }} ) <span>Rp.  {{ number_format($total_1,2) }}</span></p>
+                                            <p>Total SP2D Februari ( {{ $totalcount2 }} ) <span>Rp. {{ number_format($total_2,2) }}</span></p>
+                                            <p>Total SP2D Maret ( {{ $totalcount3 }} ) <span>Rp.  {{ number_format($total_3,2) }}</span></p>
+                                            <p>Total SP2D April ( {{ $totalcount4 }} ) <span>Rp.  {{ number_format($total_4,2) }}</span></p>
+                                            <p>Total SP2D Mei ( {{ $totalcount5 }} ) <span>Rp.  {{ number_format($total_5,2) }}</span></p>
+                                            <p>Total SP2D Juni ( {{ $totalcount6 }} ) <span>Rp.  {{ number_format($total_6,2) }}</span></p>
+                                            <p>Total SP2D Juli ( {{ $totalcount7 }} ) <span>Rp.  {{ number_format($total_7,2) }}</span></p>
+                                            <p>Total SP2D Agustus ( {{ $totalcount8 }} ) <span>Rp.  {{ number_format($total_8,2) }}</span></p>
+                                            <p>Total SP2D September ( {{ $totalcount9 }} ) <span>Rp.  {{ number_format($total_9,2) }}</span></p>
+                                            <p>Total SP2D Oktober ( {{ $totalcount10 }} ) <span>Rp.  {{ number_format($total_10,2) }}</span></p>
+                                            <p>Total SP2D November ( {{ $totalcount11 }} ) <span>Rp.  {{ number_format($total_11,2) }}</span></p>
+                                            <p>Total SP2D Desember ( {{ $totalcount12 }} ) <span>Rp.  {{ number_format($total_12,2) }}</span></p>
+                                            <p class="bold">TOTAL SP2D ( {{ $totalcount13 }} ) <span>Rp.  {{ number_format($totalsp2d,2) }}</span></p>
                                         {{-- @endforeach --}}
                                         <div class="d-grid gap-2">
                                           {{-- <button class="btn btn-danger m-t-xs" type="button">Print Invoice</button> --}}
