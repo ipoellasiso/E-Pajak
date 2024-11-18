@@ -10,6 +10,7 @@ use App\Http\Controllers\OpdController;
 use App\Http\Controllers\PajakguController;
 use App\Http\Controllers\PajaklsController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\Registersp2dController;
 use App\Http\Controllers\TarikdataController;
 use App\Http\Controllers\UseradminController;
 use App\Http\Controllers\UserController;
@@ -156,3 +157,6 @@ Route::get('/dtbpjs/tolakbpjs/{id}', [BpjsController::class, 'tolakbpjs'])->midd
 Route::post('/dtbpjs/tolakbpjsupdate/{id}', [BpjsController::class, 'tolakbpjsupdate'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/terimabpjs/{id}', [BpjsController::class, 'terimabpjs'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/terimabpjsupdate/{id}', [BpjsController::class, 'terimabpjsupdate'])->middleware('auth:web','checkRole:Admin');
+
+// ======= REGISTER SP2D =======
+Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');

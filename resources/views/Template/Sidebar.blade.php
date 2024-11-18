@@ -47,6 +47,14 @@
       @endif
       @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
       <li>
+        <a href="index.html"><i data-feather="git-pull-request"></i>Register<i class="fas fa-chevron-right dropdown-icon"></i></a>
+        <ul class="">
+          <li><a href="/tampilregsp2d"><i class="far fa-circle"></i>SP2D</a></li>
+        </ul>
+      </li>
+      @endif
+      @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
+      <li>
         <a href="index.html"><i data-feather="git-pull-request"></i>Tarik Pajak SIPD RI<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
           <li><a href="/tarikpajaksipdri"><i class="far fa-circle"></i>LS</a></li>
