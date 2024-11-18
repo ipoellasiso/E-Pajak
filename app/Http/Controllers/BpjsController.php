@@ -48,7 +48,7 @@ class BpjsController extends Controller
         if ($request->ajax()) {
 
             $databpjs = DB::table('tb_bpjs')
-                        ->select('tb_bpjs.id_bpjs', 'tb_bpjs.ebilling', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'tb_bpjs.nomor_npwp', 'tb_bpjs.akun_potongan', 'tb_bpjs.ntpn', 'tb_bpjs.jenis_potongan', 'potongan2.nilai_pajak','tb_bpjs.rek_belanja','tb_bpjs.nama_npwp', 'tb_bpjs.id_potonganls', 'tb_bpjs.id', 'tb_bpjs.status1', 'tb_bpjs.status2', 'tb_bpjs.created_at', 'tb_bpjs.bukti_pemby', 'sp2d.nilai_sp2d', 'tb_bpjs.nilai_potongan', 'potongan2.id_pajakkpp')
+                        ->select('tb_bpjs.id_bpjs', 'tb_bpjs.ebilling', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'tb_bpjs.nomor_npwp', 'tb_bpjs.akun_potongan', 'tb_bpjs.ntpn', 'tb_bpjs.jenis_potongan', 'potongan2.nilai_pajak','tb_bpjs.rek_belanja','tb_bpjs.nama_npwp', 'tb_bpjs.id_bpjs', 'tb_bpjs.id', 'tb_bpjs.status1', 'tb_bpjs.status2', 'tb_bpjs.created_at', 'tb_bpjs.bukti_pemby', 'sp2d.nilai_sp2d', 'tb_bpjs.nilai_potongan', 'potongan2.id_pajakkpp')
                         // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                         // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
                         ->join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')
