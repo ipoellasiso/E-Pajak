@@ -38,16 +38,20 @@
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
-                                            {{-- <tfoot>
+                                            {{-- @php $total = ['nilai_sp2d']; @endphp --}}
+
+                                            <tfoot>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-center">Tottal SP2d</th>
+                                                    <th></th>
+                                                    <th class="text-center">Total Potongan</th>
+                                                    <th></th>
+                                                    <th></th>
                                                 </tr>
-                                            </tfoot> --}}
+                                            </tfoot>
+
                                         </table>
                                     </div>
                                 </div>

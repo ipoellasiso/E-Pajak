@@ -138,7 +138,7 @@ class BpjsController extends Controller
                                     data-nomor_sp2d="'.$row->nomor_sp2d.'" 
                                     data-nilai_sp2d="'.$row->nilai_sp2d.'" 
                                     data-jenis_pajak="'.$row->jenis_pajak.'" 
-                                    data-nilai_pajak5="'.$row->nilai_pajak.'" 
+                                    data-nilai_pajak="'.$row->nilai_pajak.'" 
                                     
                                     class="editpotcartsipd btn btn-outline-info m-b-xs btn-sm">Pilih
                                     </button>
@@ -171,6 +171,7 @@ class BpjsController extends Controller
             "jenis_pajak"       => $request->jenis_pajak,
             "nilai_pajak"       => number_format($request->nilai_pajak),
         ];
+        // dd($cart);
 
         session()->put('cart', $cart);
         echo $this->load_cart($request);

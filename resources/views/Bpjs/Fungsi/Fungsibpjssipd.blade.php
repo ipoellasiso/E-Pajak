@@ -42,7 +42,7 @@
             $('#saveBtn').val("edit-potbpjscart");
             $('#tambahbpjs').modal('show');
             // $('#id5').val(data.id);
-            $('#nilai_pajak5').val(data.nilai_pajak);
+            {{-- $('#nilai_pajak5').val(data.nilai_pajak); --}}
             // $('#no_rek_pihak_ketiga5').val(data.no_rek_pihak_ketiga);
             // $('#jenis_pajak5').val(data.jenis_pajak);
             // $('#npwp_pihak_ketiga5').val(data.npwp_pihak_ketiga);
