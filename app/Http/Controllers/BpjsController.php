@@ -7,6 +7,7 @@ use App\Models\BpjsModel;
 use App\Models\PajaklsModel;
 use App\Models\Potongan2Model;
 use App\Models\PotonganModel;
+use App\Models\RincianBpjsModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -40,19 +41,19 @@ class BpjsController extends Controller
                                     // ->select('fullname','nama_opd')
                                     ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
-            'total_4'              => BpjsModel::join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')->where('tb_bpjs.akun_potongan', '800001')->sum('potongan2.nilai_pajak'),
-            'total_1'              => BpjsModel::join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')->where('tb_bpjs.akun_potongan', '800002')->sum('potongan2.nilai_pajak'),
-            'total_potongan'       => BpjsModel::join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')->sum('potongan2.nilai_pajak'),
+            'total_4'              => RincianBpjsModel::join('potongan2',  'potongan2.id_rincianbpjs', 'tb_rincianbpjs.id_rincianbpjs')->where('tb_rincianbpjs.akun_potongan', '800001')->sum('potongan2.nilai_pajak'),
+            'total_1'              => RincianBpjsModel::join('potongan2',  'potongan2.id_rincianbpjs', 'tb_rincianbpjs.id_rincianbpjs')->where('tb_rincianbpjs.akun_potongan', '800002')->sum('potongan2.nilai_pajak'),
+            'total_potongan'       => RincianBpjsModel::join('potongan2',  'potongan2.id_rincianbpjs', 'tb_rincianbpjs.id_rincianbpjs')->sum('potongan2.nilai_pajak'),
         );
 
         if ($request->ajax()) {
 
-            $databpjs = DB::table('tb_bpjs')
-                        ->select('tb_bpjs.id_bpjs', 'tb_bpjs.ebilling', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'tb_bpjs.nomor_npwp', 'tb_bpjs.akun_potongan', 'tb_bpjs.ntpn', 'tb_bpjs.jenis_potongan', 'potongan2.nilai_pajak','tb_bpjs.rek_belanja','tb_bpjs.nama_npwp', 'tb_bpjs.id_bpjs', 'tb_bpjs.id', 'tb_bpjs.status1', 'tb_bpjs.status2', 'tb_bpjs.created_at', 'tb_bpjs.bukti_pemby', 'sp2d.nilai_sp2d', 'tb_bpjs.nilai_potongan', 'potongan2.id_pajakkpp')
+            $databpjs = DB::table('tb_rincianbpjs')
+                        ->select('tb_rincianbpjs.id_rincianbpjs', 'tb_rincianbpjs.ebilling', 'tb_rincianbpjs.nomor_npwp', 'tb_rincianbpjs.akun_potongan', 'tb_rincianbpjs.ntpn', 'tb_rincianbpjs.jenis_potongan', 'tb_rincianbpjs.rek_belanja','tb_rincianbpjs.nama_npwp', 'tb_rincianbpjs.id', 'tb_rincianbpjs.status1', 'tb_rincianbpjs.status2', 'tb_rincianbpjs.created_at', 'tb_rincianbpjs.bukti_pemby', 'tb_rincianbpjs.nilai_potongan')
                         // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                         // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
-                        ->join('potongan2',  'potongan2.id', 'tb_bpjs.id_bpjs')
-                        ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                        // ->join('potongan2',  'potongan2.id_rincianbpjs', 'tb_rincianbpjs.id_rincianbpjs')
+                        // ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                         // ->where('pajakkpp.status2', ['Terima'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-12-31'])
                         ->get();
@@ -103,13 +104,10 @@ class BpjsController extends Controller
                         }
                         return $btn1;
                     })
-                    ->addColumn('nilai_pajak', function($row) {
-                        return number_format($row->nilai_pajak);
+                    ->addColumn('nilai_potongan', function($row) {
+                        return number_format($row->nilai_potongan);
                     })
-                    ->addColumn('nilai_sp2d', function($row) {
-                        return number_format($row->nilai_sp2d);
-                    })
-                    ->rawColumns(['action', 'status1', 'nilai_pajak', 'nilai_sp2d'])
+                    ->rawColumns(['action', 'status1', 'nilai_potongan'])
                     ->make(true);
                     
         }  
@@ -140,7 +138,7 @@ class BpjsController extends Controller
                                     data-nomor_sp2d="'.$row->nomor_sp2d.'" 
                                     data-nilai_sp2d="'.$row->nilai_sp2d.'" 
                                     data-jenis_pajak="'.$row->jenis_pajak.'" 
-                                    data-nilai_pajak="'.$row->nilai_pajak.'" 
+                                    data-nilai_pajak5="'.$row->nilai_pajak.'" 
                                     
                                     class="editpotcartsipd btn btn-outline-info m-b-xs btn-sm">Pilih
                                     </button>
@@ -217,6 +215,8 @@ class BpjsController extends Controller
 
     public function store(Request $request)
     {
+        $nomoracak = Str::random(10);
+
         $cart = session()->get('cart');
 
         foreach($cart as $g){
@@ -243,22 +243,13 @@ class BpjsController extends Controller
                 PotonganModel::where('id', $rows)
                             ->update([
                                 'status1' => '1',
+                                'id_rincianbpjs'    => $nomoracak,
                                 // 'id_pajakkpp' => $request->id_potonganls,
                                 // 'ebilling' => $request->ebilling,
                             ]);
             }
                 
             foreach($cart as $items){
-
-                // if ($files = $request->file('bukti_pemby')){
-                //     foreach($files as $file){
-                //         $destinationPath = 'app/assets/images/bukti_pemby_potongan/';
-                //         $profileImage = "Simelajang" . "-" .date('YmdHis')."-" .$file->getClientOriginalName();
-                //         $file->move($destinationPath, $profileImage);
-                //         // $detailspajakls['bukti_pemby'] = "$profileImage";
-                //     }
-                // }
-                
 
                 BpjsModel::create([
                     'id_bpjs'           => $items['id'],
@@ -270,11 +261,24 @@ class BpjsController extends Controller
                     'rek_belanja'       => $request->rek_belanja,
                     // 'bukti_pemby'       => $profileImage,
                     'status1'           => 'Terima',
+                    'id_rincianbpjs'    => $nomoracak,
 
                 ]);
             }
 
-            // BpjsModel::create($imageData);
+                RincianBpjsModel::create([
+                    'id_rincianbpjs'    => $nomoracak,
+                    'ebilling'          => $request->ebilling,
+                    'akun_potongan'     => $request->akun_potongan,
+                    'nama_npwp'         => $request->nama_npwp,
+                    'nomor_npwp'        => $request->nomor_npwp,
+                    'ntpn'              => $request->ntpn,
+                    'rek_belanja'       => $request->rek_belanja,
+                    // 'bukti_pemby'       => $profileImage,
+                    'status1'           => 'Terima',
+
+                ]);
+
             session()->forget('cart');
             return redirect('/tampilbpjs')->with('success', 'Data Disimpan');
         }

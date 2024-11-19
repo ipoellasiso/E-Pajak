@@ -12,7 +12,7 @@
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id5">
                             <input type="hidden" name="id_potongan" id="id_potongan5">
-                            <input type="hidden" class="amount" name="nilai_potongan" id="nilai_potongan5">
+                            <input type="text" class="amount" name="nilai_potongan" id="nilai_pajak5">
                             <div class="row">
                                 <div class="row mb-4">
                                     <div class="col">

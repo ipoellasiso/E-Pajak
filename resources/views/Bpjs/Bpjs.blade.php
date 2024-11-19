@@ -45,36 +45,22 @@
 
                                     <table id="tabelbpjs" class="display table table-hover" style="width:100%">
                                         <thead>
-                                            <tr>
+                                            <!-- <tr>
                                                 <th rowspan="2">NO</th>
                                                 <th class="text-center" colspan ="4">SP2D</th>
                                                 <th class="text-center" colspan="5">POTONGAN</th>
                                                 <th class="text-center" colspan="2">KETERANGAN</th>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
-                                                <th>Nomor SPM</th>
-                                                <th>Tanggal SP2D</th>
-                                                <th>Nomor SP2D</th>
-                                                <th>Nilai SP2D</th>
+                                                <th>NO</th>
                                                 <th>Akun Potongan</th>
-                                                {{-- <th>Jenis Potongan</th> --}}
                                                 <th>Nilai Potongan</th>
                                                 <th>E-Biling</th>
                                                 <th>NTPN</th>
-                                                <th></th>
-                                                <th class="text-center">Action</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        {{-- <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> --}}
                                     </table>
                                 </div>
                             </div>

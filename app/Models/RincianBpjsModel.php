@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BpjsModel extends Model
+class RincianBpjsModel extends Model
 {
     use HasFactory;
-    protected $table = "tb_bpjs";
+    protected $table = "tb_rincianbpjs";
     protected $primaryKey = "id";
     protected $fillable = [
         'ebilling',
@@ -25,7 +25,6 @@ class BpjsModel extends Model
         'rek_belanja',
         'created_at',
         'updated_at',
-        'id_bpjs',
-        'id_rincianbpjs'
+        'id_rincianbpjs',
     ];
 }
