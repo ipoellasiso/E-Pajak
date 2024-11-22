@@ -179,6 +179,10 @@ class BpjsController extends Controller
 
     public function load_cart(Request $request)
     {
+        $cart = session()->get('cart', []);
+        $data = $cart['nilai_pajak'];
+        return($data);
+
 		if ($request->ajax()) {
 
             $cart = session()->get('cart', []);
@@ -197,10 +201,23 @@ class BpjsController extends Controller
 
                     return $btn;
             })
+            // ->addColumn('nilai_pajak', function($row) {
+            //     return number_format($row->nilai_pajak);
+            // })  
             ->rawColumns(['action'])
             ->make(true);
         }
+        return view('Bpjs.Bpjs', $data);
     }
+
+    // public function gettotal(){;
+    //     $cart = session()->get('cart', ['nilai_pajak']);
+
+    //     return($cart);
+
+    //     return view('Bpjs.Bpjs', compact('cart'));
+    //     // return response()->json($cart);
+    // }
 
     public function deleteCart(Request $request, $id)
     {

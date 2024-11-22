@@ -160,3 +160,4 @@ Route::post('/dtbpjs/terimabpjsupdate/{id}', [BpjsController::class, 'terimabpjs
 
 // ======= REGISTER SP2D =======
 Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');
