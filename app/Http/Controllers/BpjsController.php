@@ -180,8 +180,8 @@ class BpjsController extends Controller
     public function load_cart(Request $request)
     {
         $cart = session()->get('cart', []);
-        $data = $cart['nilai_pajak'];
-        return($data);
+        // $data = $cart['nilai_pajak'];
+        // return($data);
 
 		if ($request->ajax()) {
 
@@ -207,7 +207,8 @@ class BpjsController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('Bpjs.Bpjs', $data);
+        // return view('Bpjs.Bpjs', $data);
+        echo $this->load_cart($request);
     }
 
     // public function gettotal(){;
@@ -228,6 +229,7 @@ class BpjsController extends Controller
                 session()->put('cart', $cart);
             }
             echo $this->load_cart($request);
+            
         }
     }
 
@@ -302,19 +304,33 @@ class BpjsController extends Controller
         }
     }
 
-    public function editpotcartsipd($id)
+    public function editpotcartsipd(Request $request, $id)
     {
-        
-        $where = array('id' => $id);
-        $pajaklssipd = PotonganModel::select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'potongan2.id_potongan')
-                                    ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
-                                    ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
-                                    ->where('potongan2.status1',['0'])
-                                    ->where('sp2d.jenis',['LS'])
-                                    ->where($where)
-                                    ->first();
+        if($request->id && $request->nilai_pajak){
 
-        return response()->json($pajaklssipd);
+            $cart = session()->get('cart');
+
+            $cart[$request->id]["nilai_pajak"] = $request->nilai_pajak;
+
+            session()->put('cart', $cart);
+            echo $this->load_cart($request);
+            // session()->flash('success', 'Cart updated successfully');
+
+        }
+        // $cart = session()->get('cart');
+
+        // foreach($cart as $items){
+        // $where = array('id', $items);
+        // $pajaklssipd = PotonganModel::select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'potongan2.id_potongan')
+        //                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+        //                             ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
+        //                             ->where('potongan2.status1',['0'])
+        //                             ->where('sp2d.jenis',['LS'])
+        //                             ->where($where)
+        //                             ->first();
+        // }
+
+        // return response()->json($pajaklssipd);
     }
 
     public function tolakbpjs($id)

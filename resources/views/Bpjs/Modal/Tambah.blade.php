@@ -38,20 +38,24 @@
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
-                                            <!-- @php $total = ['nilai_pajak']; @endphp -->
-
-                                            <tfoot>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th class="text-center">Tottal SP2d</th>
-                                                    <th></th>
-                                                    <th class="text-center">Total Potongan</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </tfoot>
-
+                                            @php $total = 0; @endphp
+                                            @foreach((array) session('cart') as $id => $request)
+                                                    
+                                                @php
+                                                    $total += floatval($request['nilai_sp2d']);
+                                                @endphp
+                                            @endforeach
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th class="text-center">Tottal SP2d</th>
+                                                            <th>{{ $total }}</th>
+                                                            <th class="text-center">Total Potongan</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </tfoot>
                                         </table>
                                     </div>
                                 </div>
