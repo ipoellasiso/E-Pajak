@@ -74,8 +74,7 @@
                                         <p>Iuran Jaminan Kesehatan 4 %<span>{{ number_format($total_4) }}</span></p>
                                         <p>Iuran Jaminan Kesehatan 1 %<span>{{ number_format($total_1) }}</span></p>
                                         <p class="bold">Total Pajak <span>{{ number_format($total_potongan) }}</span></p>
-                                    
-                                        <p class="bold">Total Pajak <span></span></p>
+                                        {{-- <input type="text" class="amount" id="totalnp"> --}}
                                         {{-- @endforeach --}}
                                         <div class="d-grid gap-2">
                                           {{-- <button class="btn btn-danger m-t-xs" type="button">Print Invoice</button> --}}

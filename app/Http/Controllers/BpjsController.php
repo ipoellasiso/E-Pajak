@@ -170,6 +170,7 @@ class BpjsController extends Controller
             "nilai_sp2d"        => number_format($request->nilai_sp2d),
             "jenis_pajak"       => $request->jenis_pajak,
             "nilai_pajak"       => number_format($request->nilai_pajak),
+            // "total_pajak"       => $request->sum('nilai_pajak'),
         ];
         // dd($cart);
 
@@ -179,9 +180,11 @@ class BpjsController extends Controller
 
     public function load_cart(Request $request)
     {
-        $cart = session()->get('cart', []);
-        $data = $cart['nilai_pajak'];
-        return($data);
+        $cart = session()->get('cart');
+
+        // $data = array(
+        //     'cart1'            => session()->get('cart', ['nilai_pajak']),
+        // );
 
 		if ($request->ajax()) {
 
@@ -201,22 +204,19 @@ class BpjsController extends Controller
 
                     return $btn;
             })
-            // ->addColumn('nilai_pajak', function($row) {
-            //     return number_format($row->nilai_pajak);
+            // ->addColumn('totalpajak', function($row) {
+            //     return $row['nilai_pajak'];
             // })  
             ->rawColumns(['action'])
             ->make(true);
         }
-        return view('Bpjs.Bpjs', $data);
+
+        // return view('Bpjs.Bpjs', compact('cart', $cart));
     }
 
-    // public function gettotal(){;
-    //     $cart = session()->get('cart', ['nilai_pajak']);
-
-    //     return($cart);
-
-    //     return view('Bpjs.Bpjs', compact('cart'));
-    //     // return response()->json($cart);
+    // public function gettotal(){
+    //     $dtcart = session()->get('cart');
+    //     return view("Bpjs.Bpjs")->with("cart", $dtcart);
     // }
 
     public function deleteCart(Request $request, $id)

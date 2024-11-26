@@ -12,7 +12,7 @@
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id5">
                             <input type="hidden" name="id_potongan" id="id_potongan5">
-                            <input type="hidden" class="amount" name="nilai_potongan" id="nilai_pajak5">
+                            <input type="hidden" class="amount" id="totalnp">
                             <div class="row">
                                 <div class="row mb-4">
                                     <div class="col">
@@ -38,20 +38,25 @@
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
-                                            <!-- @php $total = ['nilai_pajak']; @endphp -->
-
-                                            <tfoot>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th class="text-center">Tottal SP2d</th>
-                                                    <th></th>
-                                                    <th class="text-center">Total Potongan</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </tfoot>
-
+                                            {{-- @php $total_pajak = 0; @endphp
+                                            @if(session('cart'))
+                                                @foreach(session('cart') as $val )
+                                                        @php
+                                                            $total_pajak = $val['nilai_pajak'];
+                                                        @endphp --}}
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th class="text-center">Tottal SP2d</th>
+                                                            <th></th>
+                                                            <th class="text-center">Total Potongan</th>
+                                                            <th id="total-item"></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                {{-- @endforeach
+                                            @endif --}}
                                         </table>
                                     </div>
                                 </div>
