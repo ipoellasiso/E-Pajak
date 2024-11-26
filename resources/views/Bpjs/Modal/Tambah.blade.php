@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col">
-                                        <table id="tabelcartbpjs" class="tabelcartbpjs display table table-hover" style="width:100%">
+                                        <table id="tabelcartbpjs" class="display table table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -34,29 +34,25 @@
                                                     <th>Nilai SP2D</th>
                                                     <th>Jenis Potongan</th>
                                                     <th>Nilai Potongan</th>
-                                                    {{-- <th>E-Biling</th> --}}
+                                                    <th>qty</th>
+                                                    <th>Jumlah</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
-                                            {{-- @php $total_pajak = 0; @endphp
-                                            @if(session('cart'))
-                                                @foreach(session('cart') as $val )
-                                                        @php
-                                                            $total_pajak = $val['nilai_pajak'];
-                                                        @endphp --}}
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th class="text-center">Tottal SP2d</th>
-                                                            <th></th>
-                                                            <th class="text-center">Total Potongan</th>
-                                                            <th id="total-item"></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </tfoot>
-                                                {{-- @endforeach
-                                            @endif --}}
+                                            <!-- @php $total = ['nilai_pajak']; @endphp -->
+
+                                            <tfoot>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-center">Tottal SP2d</th>
+                                                    <th></th>
+                                                    <th class="text-center">Total Potongan</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+
                                         </table>
                                     </div>
                                 </div>

@@ -62,18 +62,17 @@
             {data: 'nilai_sp2d', name: 'nilai_sp2d'},
             {data: 'jenis_pajak', name: 'jenis_pajak'},
             {data: 'nilai_pajak', name: 'nilai_pajak'},
-            // {data: 'total_pajak', name: 'total_pajak'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
             // {data: 'ebilling', name: 'ebilling'},
             
-        ]
-    });
+    //     ]
+    // });
 
-    /*------------------------------------------
-      --------------------------------------------
-      Click Button to Add 
-      --------------------------------------------
-      --------------------------------------------*/
+    // /*------------------------------------------
+    //   --------------------------------------------
+    //   Click Button to Add 
+    //   --------------------------------------------
+    //   --------------------------------------------*/
 
       $('body').on('click', '#add_cart', function () {
         var id    	        = $(this).data("id");
@@ -82,7 +81,6 @@
         var nilai_sp2d      = $(this).data("nilai_sp2d");
         var jenis_pajak     = $(this).data("jenis_pajak");
         var nilai_pajak     = $(this).data("nilai_pajak");
-        
 
         $.ajax({
             url : "/dtbpjs/addToCart",
@@ -90,14 +88,8 @@
             data : {id: id, tanggal_sp2d: tanggal_sp2d, nomor_sp2d: nomor_sp2d, nilai_sp2d: nilai_sp2d, jenis_pajak: jenis_pajak, nilai_pajak: nilai_pajak},
             success: function(data){
                 tabelcartbpjs.draw();
-                // $.each(data, function(id, cart){
-                //     totalItem += '<p>${cart.nilai_pajak}</p>';
-                // });
-                // $('#total-item').html(totalItem);
             }
         });
-        // var subtotal        = parseInt(nilai_pajak) * parseInt(2);
-        // $("#totalnp").val(subtotal);
     });
 
     /*------------------------------------------
