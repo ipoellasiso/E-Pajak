@@ -26,6 +26,7 @@ class BpjsModel extends Model
         'created_at',
         'updated_at',
         'id_bpjs',
-        'id_rincianbpjs'
+        'id_rincianbpjs',
+        'qty'
     ];
 }

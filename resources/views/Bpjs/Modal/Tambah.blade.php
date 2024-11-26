@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col">
-                                        <table id="tabelcartbpjs" class="tabelcartbpjs display table table-hover" style="width:100%">
+                                        <table id="tabelcartbpjs" class="display table table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -34,28 +34,14 @@
                                                     <th>Nilai SP2D</th>
                                                     <th>Jenis Potongan</th>
                                                     <th>Nilai Potongan</th>
-                                                    {{-- <th>E-Biling</th> --}}
+                                                    <th>qty</th>
+                                                    <th>Jumlah</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
-                                            @php $total = 0; @endphp
-                                            @foreach((array) session('cart') as $id => $request)
-                                                    
-                                                @php
-                                                    $total += floatval($request['nilai_sp2d']);
-                                                @endphp
-                                            @endforeach
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th class="text-center">Tottal SP2d</th>
-                                                            <th>{{ $total }}</th>
-                                                            <th class="text-center">Total Potongan</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </tfoot>
+                                            <tbody id="detail_cart">
+
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>

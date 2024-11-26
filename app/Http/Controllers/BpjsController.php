@@ -162,62 +162,110 @@ class BpjsController extends Controller
     public function addToCart(Request $request)
     {
         $cart = session()->get('cart', []);
+        // $userId = Auth::user()->id;
 
         $cart[$request->id] = [
             "id"                => $request->id,
+            // "id_admin"          => $userId,
             "tanggal_sp2d"      => $request->tanggal_sp2d,
             "nomor_sp2d"        => $request->nomor_sp2d,
             "nilai_sp2d"        => number_format($request->nilai_sp2d),
             "jenis_pajak"       => $request->jenis_pajak,
             "nilai_pajak"       => number_format($request->nilai_pajak),
+            "qty"               => 1,
         ];
         // dd($cart);
 
         session()->put('cart', $cart);
-        echo $this->load_cart($request);
+        echo $this->show_cart();
     }
 
-    public function load_cart(Request $request)
+    public function show_cart()
     {
-        $cart = session()->get('cart', []);
-        // $data = $cart['nilai_pajak'];
-        // return($data);
+		$output    = '';
+		$no        = 0;
+        $total     = 0;
+        // $userId    = Auth::user()->id;
+        // $id_admin  = null;
+        $cart      = session()->get('cart', []);
 
-		if ($request->ajax()) {
-
-            $cart = session()->get('cart', []);
-            
-            return Datatables::of($cart)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-
-                   $btn = '
-                            <center>
-                                <button type="button" id="'.$row['id'].'" class="hapus_cart btn btn-outline-danger m-b-xs">
+		foreach ($cart as $id => $items) {
+            // if($items['id_admin'] == $userId) {
+                // $id_admin = $items['id_admin'];
+                $total += $items['nilai_pajak'] * $items['qty'];
+                $no++;
+                $output .='
+                    <tr data-id="'.$id.'">
+                        <td>'.$no.'</td>
+                        <td>'.$items['tanggal_sp2d'].'</td>
+                        <td>'.$items['nomor_sp2d'].'</td>
+                        <td>Rp. '.number_format($items['nilai_sp2d']).'</td>
+                        <td>'.$items['jenis_pajak'].'</td>
+                        <td>Rp. '.number_format($items['nilai_pajak']).'</td>
+                        <td style="width: 13%;">
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control qty update-cart" value="'.$items['qty'].'">
+                                <div class="input-group-append">
+                                    <button class="btn btn-sm btn-primary" type="button">
+                                        Tes
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Rp. '.number_format($items['nilai_pajak'] * $items['qty']).'</td>
+                        <td>
+                            <button type="button" id="'.$items['id'].'" class="hapus_cart btn btn-danger btn-sm">
                                 <i class="fa fa-trash"></i> Hapus
-                                </button>
-                            </center>
-                          ';
+                            </button>
+                        </td>
+                    </tr>
+                ';
+            // }
+		}
 
-                    return $btn;
-            })
-            // ->addColumn('nilai_pajak', function($row) {
-            //     return number_format($row->nilai_pajak);
-            // })  
-            ->rawColumns(['action'])
-            ->make(true);
-        }
-        // return view('Bpjs.Bpjs', $data);
-        echo $this->load_cart($request);
-    }
+            $output .= '
+                    <tr>
+                        <td colspan="6" align="right"><strong>Total</strong></td>
+                        <td colspan="2"><strong>Rp. '.number_format($total).'</strong></td>
+                    </tr>';
+        return $output;
 
-    // public function gettotal(){;
-    //     $cart = session()->get('cart', ['nilai_pajak']);
+	}
 
-    //     return($cart);
+	public function load_cart()
+    {
+		echo $this->show_cart();
+	}
 
-    //     return view('Bpjs.Bpjs', compact('cart'));
-    //     // return response()->json($cart);
+    // public function load_cart(Request $request)
+    // {
+    //     $cart = session()->get('cart', []);
+    //     // $data = $cart['nilai_pajak'];
+    //     // return($data);
+
+	// 	if ($request->ajax()) {
+
+    //         $cart = session()->get('cart', []);
+            
+    //         return Datatables::of($cart)
+    //         ->addIndexColumn()
+    //         ->addColumn('action', function($row){
+
+    //                $btn = '
+    //                         <center>
+    //                             <button type="button" id="'.$row['id'].'" class="hapus_cart btn btn-outline-danger m-b-xs">
+    //                             <i class="fa fa-trash"></i> Hapus
+    //                             </button>
+    //                         </center>
+    //                       ';
+
+    //                 return $btn;
+    //         })
+    //         ->rawColumns(['action'])
+    //         ->make(true);
+    //     }
+    //     // return view('Bpjs.Bpjs', $data);
+    //     echo $this->load_cart($request);
     // }
 
     public function deleteCart(Request $request, $id)

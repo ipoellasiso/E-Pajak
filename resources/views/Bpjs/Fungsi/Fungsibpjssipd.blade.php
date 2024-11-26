@@ -49,48 +49,50 @@
         })
     });
 
-    var tabelcartbpjs = $('#tabelcartbpjs').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "/dtbpjs/load_cart",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            // {data: 'status1', name: 'status1'},
-            // {data: 'nomor_spm', name: 'nomor_spm'},
-            {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
-            {data: 'nomor_sp2d', name: 'nomor_sp2d'},
-            {data: 'nilai_sp2d', name: 'nilai_sp2d'},
-            {data: 'jenis_pajak', name: 'jenis_pajak'},
-            {data: 'nilai_pajak', name: 'nilai_pajak'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-            // {data: 'ebilling', name: 'ebilling'},
+    $('#detail_cart').load("/barangmasuk/load_cart");
+
+    // var tabelcartbpjs = $('#tabelcartbpjs').DataTable({
+    //     processing: true,
+    //     serverSide: true,
+    //     ajax: "/dtbpjs/load_cart",
+    //     columns: [
+    //         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+    //         // {data: 'status1', name: 'status1'},
+    //         // {data: 'nomor_spm', name: 'nomor_spm'},
+    //         {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
+    //         {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+    //         {data: 'nilai_sp2d', name: 'nilai_sp2d'},
+    //         {data: 'jenis_pajak', name: 'jenis_pajak'},
+    //         {data: 'nilai_pajak', name: 'nilai_pajak'},
+    //         {data: 'action', name: 'action', orderable: false, searchable: false},
+    //         // {data: 'ebilling', name: 'ebilling'},
             
-        ]
-    });
+    //     ]
+    // });
 
-    /*------------------------------------------
-      --------------------------------------------
-      Click Button to Add 
-      --------------------------------------------
-      --------------------------------------------*/
+    // /*------------------------------------------
+    //   --------------------------------------------
+    //   Click Button to Add 
+    //   --------------------------------------------
+    //   --------------------------------------------*/
 
-      $('body').on('click', '#add_cart', function () {
-        var id    	        = $(this).data("id");
-        var tanggal_sp2d    = $(this).data("tanggal_sp2d");
-        var nomor_sp2d      = $(this).data("nomor_sp2d");
-        var nilai_sp2d      = $(this).data("nilai_sp2d");
-        var jenis_pajak     = $(this).data("jenis_pajak");
-        var nilai_pajak     = $(this).data("nilai_pajak");
+    //   $('body').on('click', '#add_cart', function () {
+    //     var id    	        = $(this).data("id");
+    //     var tanggal_sp2d    = $(this).data("tanggal_sp2d");
+    //     var nomor_sp2d      = $(this).data("nomor_sp2d");
+    //     var nilai_sp2d      = $(this).data("nilai_sp2d");
+    //     var jenis_pajak     = $(this).data("jenis_pajak");
+    //     var nilai_pajak     = $(this).data("nilai_pajak");
 
-        $.ajax({
-            url : "/dtbpjs/addToCart",
-            method : "POST",
-            data : {id: id, tanggal_sp2d: tanggal_sp2d, nomor_sp2d: nomor_sp2d, nilai_sp2d: nilai_sp2d, jenis_pajak: jenis_pajak, nilai_pajak: nilai_pajak},
-            success: function(data){
-                tabelcartbpjs.draw();
-            }
-        });
-    });
+    //     $.ajax({
+    //         url : "/dtbpjs/addToCart",
+    //         method : "POST",
+    //         data : {id: id, tanggal_sp2d: tanggal_sp2d, nomor_sp2d: nomor_sp2d, nilai_sp2d: nilai_sp2d, jenis_pajak: jenis_pajak, nilai_pajak: nilai_pajak},
+    //         success: function(data){
+    //             tabelcartbpjs.draw();
+    //         }
+    //     });
+    // });
 
     /*------------------------------------------
       --------------------------------------------
