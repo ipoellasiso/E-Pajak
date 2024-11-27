@@ -68,7 +68,7 @@ class BpjsController extends Controller
                                             Aksi
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="lihatBpjs dropdown-item" data-id="'.$row->id.'" href="/bpjs/lihat/'.$row->id.'">Lihat</a></li>
+                                                <li><a class="lihatBpjs dropdown-item" data-id="'.$row->id_rincianbpjs.'" href="/dtbpjs/detail/'.$row->id_rincianbpjs.'">Lihat</a></li>
                                             </ul>
                                         </div>
                                 ';
@@ -158,6 +158,40 @@ class BpjsController extends Controller
         }
 
         return view('Bpjs.Bpjs');
+    }
+
+    public function detail($id)
+    {
+
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                => 'Detail Potongan BPJS',
+            'active_side_potbpjs'  => 'active',
+            'active_potbpjs'       => 'active',
+            'page_title'           => 'Penatausahaan',
+            'breadcumd1'           => 'Detail Potongan',
+            'breadcumd2'           => 'BPJS',
+            'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+
+            'dtbpjs'               => DB::table('tb_bpjs')
+                                        ->select('tb_bpjs.akun_potongan', 'tb_bpjs.nilai_potongan', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'potongan2.jenis_pajak')
+                                        ->join('potongan2', 'potongan2.id', 'tb_bpjs.id_bpjs')
+                                        ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                        ->where('tb_bpjs.id_rincianbpjs', $id)
+                                        ->get(),
+            'dtrincianbpjs'        => DB::table('tb_rincianbpjs AS a')
+                                        ->select('a.ebilling', 'a.ntpn', 'a.akun_potongan', 'a.nilai_potongan')
+                                        ->where('a.id_rincianbpjs', $id)
+                                        ->first(),
+        );
+        // dd($data);
+
+        return view('Bpjs.DetailBpjs', $data);
     }
 
     public function addToCart(Request $request)
@@ -287,7 +321,7 @@ class BpjsController extends Controller
     public function store(Request $request)
     {
         $nomoracak = Str::random(10);
-
+        $total = 0;
         $cart = session()->get('cart');
 
         foreach($cart as $g){
@@ -319,11 +353,37 @@ class BpjsController extends Controller
                                 // 'ebilling' => $request->ebilling,
                             ]);
             }
+
+            $rincianbpjs = new RincianBpjsModel();
+            $rincianbpjs->id_rincianbpjs    = $nomoracak;
+            $rincianbpjs->ebilling          = $request->ebilling;
+            $rincianbpjs->akun_potongan     = $request->akun_potongan;
+            $rincianbpjs->nama_npwp         = $request->nama_npwp;
+            $rincianbpjs->nomor_npwp        = $request->nomor_npwp;
+            $rincianbpjs->ntpn              = $request->ntpn;
+            $rincianbpjs->rek_belanja       = $request->rek_belanja;
+            $rincianbpjs->status1           = 'Terima';
+
+            $rincianbpjs->save();
                 
             foreach($cart as $items){
 
+                $total += $items['nilai_pajak'];
+
+                $tanggal_sp2d   = $items['tanggal_sp2d'];
+                $nomor_sp2d     = $items['nomor_sp2d'];
+                $nilai_sp2d     = $items['nilai_sp2d'];
+                $jenis_pajak    = $items['jenis_pajak'];
+                $nilai_pajak    = $items['nilai_pajak'];
+
                 BpjsModel::create([
                     'id_bpjs'           => $items['id'],
+                    'tanggal_sp2d'      => $tanggal_sp2d,
+                    'nomor_sp2d'        => $nomor_sp2d,
+                    'nilai_sp2d'        => $nilai_sp2d,
+                    'jenis_potongan'    => $jenis_pajak,
+                    'nilai_potongan'    => $nilai_pajak,
+
                     'ebilling'          => $request->ebilling,
                     'akun_potongan'     => $request->akun_potongan,
                     'nama_npwp'         => $request->nama_npwp,
@@ -337,19 +397,20 @@ class BpjsController extends Controller
                 ]);
             }
 
-                RincianBpjsModel::create([
-                    'id_rincianbpjs'    => $nomoracak,
-                    'ebilling'          => $request->ebilling,
-                    'akun_potongan'     => $request->akun_potongan,
-                    'nama_npwp'         => $request->nama_npwp,
-                    'nomor_npwp'        => $request->nomor_npwp,
-                    'ntpn'              => $request->ntpn,
-                    'rek_belanja'       => $request->rek_belanja,
-                    // 'bukti_pemby'       => $profileImage,
-                    'status1'           => 'Terima',
+                // RincianBpjsModel::create([
+                //     'id_rincianbpjs'    => $nomoracak,
+                //     'ebilling'          => $request->ebilling,
+                //     'akun_potongan'     => $request->akun_potongan,
+                //     'nama_npwp'         => $request->nama_npwp,
+                //     'nomor_npwp'        => $request->nomor_npwp,
+                //     'ntpn'              => $request->ntpn,
+                //     'rek_belanja'       => $request->rek_belanja,
+                //     // 'bukti_pemby'       => $profileImage,
+                //     'status1'           => 'Terima',
 
-                ]);
+                // ]);
 
+            RincianBpjsModel::where('id', $rincianbpjs->id)->update(['nilai_potongan' => $total]);
             session()->forget('cart');
             return redirect('/tampilbpjs')->with('success', 'Data Disimpan');
         }
