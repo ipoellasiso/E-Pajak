@@ -12,7 +12,7 @@
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id5">
                             <input type="hidden" name="id_potongan" id="id_potongan5">
-                            <input type="hidden" class="amount" id="totalnp">
+                            {{-- <input type="text" class="amount" id="detail_cart"> --}}
                             <div class="row">
                                 <div class="row mb-4">
                                     <div class="col">
@@ -34,24 +34,25 @@
                                                     <th>Nilai SP2D</th>
                                                     <th>Jenis Potongan</th>
                                                     <th>Nilai Potongan</th>
-                                                    <th>qty</th>
-                                                    <th>Jumlah</th>
+                                                    {{-- <th>qty</th>
+                                                    <th>Jumlah</th> --}}
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
-                                            <!-- @php $total = ['nilai_pajak']; @endphp -->
-
-                                            <tfoot>
+                                            {{-- <tfoot>
                                                 <tr>
                                                     <th></th>
                                                     <th></th>
-                                                    <th class="text-center">Tottal SP2d</th>
-                                                    <th></th>
-                                                    <th class="text-center">Total Potongan</th>
                                                     <th></th>
                                                     <th></th>
+                                                    <th></th>
+                                                    <th>Total Potongan</th>
+                                                    <th id="detail_cart"></th>
                                                 </tr>
-                                            </tfoot>
+                                            </tfoot> --}}
+                                            <tbody id="detail_cart">
+                                                
+                                            </tbody>
 
                                         </table>
                                     </div>
@@ -101,14 +102,14 @@
                             </div>
                         </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-danger m-b-xs" data-bs-dismiss="modal">
-                    <i class="fas fa-times-circle"></i> Close
-                </button>
-                <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
-                    <i class="fa fa-save"></i>  Simpan
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger m-b-xs" data-bs-dismiss="modal">
+                        <i class="fas fa-times-circle"></i> Close
+                    </button>
+                    <button type="submit" id="saveBtn" value="create" class="btn btn-outline-primary m-b-xs">
+                        <i class="fa fa-save"></i>  Simpan
+                    </button>
+                </div>
               </div>
             </form>
             </div>

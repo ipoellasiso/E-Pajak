@@ -121,7 +121,7 @@ class BpjsController extends Controller
         if ($request->ajax()) {
 
             $databpjssipd = DB::table('potongan2')
-                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak')
+                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'qty')
                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                             ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
                             ->where('potongan2.status1',['0'])
@@ -134,6 +134,7 @@ class BpjsController extends Controller
                         $btn1 = '
                                     <button href="javascript:void(0)" id="add_cart" 
                                     data-id="'.$row->id.'" 
+                                    data-qty="'.$row->qty.'"
                                     data-tanggal_sp2d="'.$row->tanggal_sp2d.'" 
                                     data-nomor_sp2d="'.$row->nomor_sp2d.'" 
                                     data-nilai_sp2d="'.$row->nilai_sp2d.'" 
@@ -162,64 +163,113 @@ class BpjsController extends Controller
     public function addToCart(Request $request)
     {
         $cart = session()->get('cart', []);
-        // $userId = Auth::user()->id;
 
         $cart[$request->id] = [
             "id"                => $request->id,
-            // "id_admin"          => $userId,
             "tanggal_sp2d"      => $request->tanggal_sp2d,
             "nomor_sp2d"        => $request->nomor_sp2d,
-            "nilai_sp2d"        => number_format($request->nilai_sp2d),
+            "nilai_sp2d"        => $request->nilai_sp2d,
             "jenis_pajak"       => $request->jenis_pajak,
-            "nilai_pajak"       => number_format($request->nilai_pajak),
+            "nilai_pajak"       => $request->nilai_pajak,
         ];
         // dd($cart);
 
         session()->put('cart', $cart);
+        // echo $this->load_cart();
         echo $this->show_cart();
     }
 
-    public function load_cart(Request $request)
+    public function show_cart()
     {
-        $cart = session()->get('cart', []);
-        $data = $cart['nilai_pajak'];
-        return($data);
+        $output    = '';
+		$no        = 0;
+        $total     = 0;
+        $cart      = session()->get('cart', []);
 
-		if ($request->ajax()) {
-
-            $cart = session()->get('cart', []);
-            
-            return Datatables::of($cart)
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-
-                   $btn = '
+		foreach ($cart as $id => $items) {
+                $total += $items['nilai_pajak'];
+                $no++;
+                $output .='
+                    <tr data-id="'.$id.'">
+                        <td>'.$no.'</td>
+                        <td>'.$items['tanggal_sp2d'].'</td>
+                        <td>'.$items['nomor_sp2d'].'</td>
+                        <td>'.number_format($items['nilai_sp2d']).'</td>
+                        <td>'.$items['jenis_pajak'].'</td>
+                        <td>'.number_format($items['nilai_pajak']).'</td>
+                        <td>
                             <center>
-                                <button type="button" id="'.$row['id'].'" class="hapus_cart btn btn-outline-danger m-b-xs">
-                                <i class="fa fa-trash"></i> Hapus
-                                </button>
-                            </center>
-                          ';
+                                 <button type="button" id="'.$items['id'].'" class="hapus_cart btn btn-outline-danger m-b-xs">
+                                 <i class="fa fa-trash"></i> Hapus
+                                 </button>
+                             </center>
+                        </td>
+                    </tr>
+                ';
+		}
 
-                    return $btn;
-            })
-            // ->addColumn('nilai_pajak', function($row) {
-            //     return number_format($row->nilai_pajak);
-            // })  
-            ->rawColumns(['action'])
-            ->make(true);
-        }
-        return view('Bpjs.Bpjs', $data);
+        
+            $output .= '
+                    <tr>
+                        <td colspan="5" align="right"><strong>Total Potongan</strong></td>
+                        <td colspan="2"><strong>'.number_format($total).'</strong></td>
+                    </tr>';
+
+            return $output;
+
+
+        // $cart = session()->get('cart', []);
+
+		// if ($request->ajax()) {
+
+        //     $cart = session()->get('cart', []);
+            
+        //     return Datatables::of($cart)
+        //     ->addIndexColumn()
+        //     ->addColumn('action', function($row){
+
+        //            $btn = '
+        //                     <center>
+        //                         <button type="button" id="'.$row['id'].'" class="hapus_cart btn btn-outline-danger m-b-xs">
+        //                         <i class="fa fa-trash"></i> Hapus
+        //                         </button>
+        //                     </center>
+        //                   ';
+
+        //             return $btn;
+        //     })
+        //     // ->addColumn('cart'['nilai_pajak'], function($row) {
+        //     //     return number_format($row->nilai_pajak);
+        //     // })  
+        //     ->rawColumns(['action'])
+        //     ->make(true);
+        // }
+
     }
 
-    // public function gettotal(){;
-    //     $cart = session()->get('cart', ['nilai_pajak']);
+    public function load_cart()
+    {
+        echo $this->show_cart();
 
-    //     return($cart);
 
-    //     return view('Bpjs.Bpjs', compact('cart'));
-    //     // return response()->json($cart);
-    // }
+        // $output    = '';
+        // $total     = 0;
+        // $cart      = session()->get('cart', []);
+
+		// foreach ($cart as $id => $items) {
+        //         $total += $items['qty'];
+		// }
+
+        //     $output .= '
+        //             <tr>
+        //                 <td><button>'.number_format($total).'</button></td>
+        //             </tr>';
+
+        //     return $output;
+        //     echo $this->load_cart($request);
+        //     echo $this->addToCart($request);
+    }
+
 
     public function deleteCart(Request $request, $id)
     {
@@ -307,17 +357,17 @@ class BpjsController extends Controller
 
     public function editpotcartsipd(Request $request, $id)
     {
-        if($request->id && $request->nilai_pajak){
+        // if($request->id && $request->nilai_pajak){
 
-            $cart = session()->get('cart');
+        //     $cart = session()->get('cart');
 
-            $cart[$request->id]["nilai_pajak"] = $request->nilai_pajak;
+        //     $cart[$request->id]["nilai_pajak"] = $request->nilai_pajak;
 
-            session()->put('cart', $cart);
-            echo $this->load_cart($request);
-            // session()->flash('success', 'Cart updated successfully');
+        //     session()->put('cart', $cart);
+        //     echo $this->load_cart($request);
+        //     // session()->flash('success', 'Cart updated successfully');
 
-        }
+        // }
         // $cart = session()->get('cart');
 
         // foreach($cart as $items){

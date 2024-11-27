@@ -49,21 +49,25 @@
         })
     });
 
-    var tabelcartbpjs = $('#tabelcartbpjs').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "/dtbpjs/load_cart",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            // {data: 'status1', name: 'status1'},
-            // {data: 'nomor_spm', name: 'nomor_spm'},
-            {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
-            {data: 'nomor_sp2d', name: 'nomor_sp2d'},
-            {data: 'nilai_sp2d', name: 'nilai_sp2d'},
-            {data: 'jenis_pajak', name: 'jenis_pajak'},
-            {data: 'nilai_pajak', name: 'nilai_pajak'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-            // {data: 'ebilling', name: 'ebilling'},
+    $('#detail_cart').load("/dtbpjs/load_cart")
+                // tabelcartbpjs.draw();
+    
+
+    // var tabelcartbpjs = $('#tabelcartbpjs').DataTable({
+    //     processing: true,
+    //     serverSide: true,
+    //     ajax: "/dtbpjs/load_cart",
+    //     columns: [
+    //         {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+    //         {data: 'qty', name: 'qty'},
+    //         // {data: 'nomor_spm', name: 'nomor_spm'},
+    //         {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
+    //         {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+    //         {data: 'nilai_sp2d', name: 'nilai_sp2d'},
+    //         {data: 'jenis_pajak', name: 'jenis_pajak'},
+    //         {data: 'nilai_pajak', name: 'nilai_pajak'},
+    //         {data: 'action', name: 'action', orderable: false, searchable: false},
+    //         // {data: 'ebilling', name: 'ebilling'},
             
     //     ]
     // });
@@ -86,8 +90,8 @@
             url : "/dtbpjs/addToCart",
             method : "POST",
             data : {id: id, tanggal_sp2d: tanggal_sp2d, nomor_sp2d: nomor_sp2d, nilai_sp2d: nilai_sp2d, jenis_pajak: jenis_pajak, nilai_pajak: nilai_pajak},
-            success: function(data){
-                tabelcartbpjs.draw();
+            success: function (response) {
+                $('#detail_cart').html(response);
             }
         });
     });
@@ -116,13 +120,14 @@
                     url : "/dtbpjs/deleteCart/"+id,
                     method : "POST",
                     data : {id : id},
-                    success :function(data){
+                    success :function(response){
                         Swal.fire({
                             icon: "success",
                             title: "Success",
                             text: "Data Berhasil Dihapus"
                         })
-                        tabelcartbpjs.draw();
+                        // tabelcartbpjs.draw();
+                        $('#detail_cart').html(response);
                     },
                 });
             }else {

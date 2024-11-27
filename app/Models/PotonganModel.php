@@ -19,5 +19,6 @@ class PotonganModel extends Model
         'ebilling',
         'created_at',
         'updated_at',
+        'qty'
     ];
 }
