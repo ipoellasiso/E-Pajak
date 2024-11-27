@@ -148,6 +148,7 @@ Route::get('/tampilbpjs', [BpjsController::class, 'index'])->middleware('auth:we
 Route::get('/tampilbpjssipd', [BpjsController::class, 'pilihbpjssipd'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/store', [BpjsController::class, 'store'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/detail/{id}', [BpjsController::class, 'detail'])->middleware('auth','checkRole:Admin');
+Route::get('/dtbpjs/cetak/{id}', [BpjsController::class, 'cetak'])->middleware('auth','checkRole:Admin');
 
 Route::get('/dtbpjs/load_cart', [BpjsController::class, 'load_cart'])->middleware('auth','checkRole:Admin');
 // Route::post('/barangmasuk/addToCart/{id}', [BpjsController::class, 'addToCart'])->middleware('auth','checkRole:Admin');

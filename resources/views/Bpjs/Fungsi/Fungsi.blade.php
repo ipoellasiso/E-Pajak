@@ -47,9 +47,9 @@
         $.get("/dtbpjs/tolakbpjs/"+iduser, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#editbpjstolak_modal').modal('show');
-            $('#id').val(data.id);
-            $('#ntpn').val(data.ntpn);
-            $('#ebilling').val(data.ebilling);
+            $('#id2').val(data.id);
+            $('#ntpn2').val(data.ntpn);
+            $('#ebilling2').val(data.ebilling);
         })
     });
 

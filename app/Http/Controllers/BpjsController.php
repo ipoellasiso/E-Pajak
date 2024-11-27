@@ -69,6 +69,7 @@ class BpjsController extends Controller
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <li><a class="lihatBpjs dropdown-item" data-id="'.$row->id_rincianbpjs.'" href="/dtbpjs/detail/'.$row->id_rincianbpjs.'">Lihat</a></li>
+                                                <li><a class="cetakBpjs dropdown-item" data-id="'.$row->id_rincianbpjs.'" href="/dtbpjs/cetak/'.$row->id_rincianbpjs.'">Cetak</a></li>
                                             </ul>
                                         </div>
                                 ';
@@ -185,13 +186,42 @@ class BpjsController extends Controller
                                         ->where('tb_bpjs.id_rincianbpjs', $id)
                                         ->get(),
             'dtrincianbpjs'        => DB::table('tb_rincianbpjs AS a')
-                                        ->select('a.ebilling', 'a.ntpn', 'a.akun_potongan', 'a.nilai_potongan')
+                                        ->select('a.ebilling', 'a.ntpn', 'a.akun_potongan', 'a.nilai_potongan', 'a.bukti_pemby')
                                         ->where('a.id_rincianbpjs', $id)
                                         ->first(),
         );
         // dd($data);
 
         return view('Bpjs.DetailBpjs', $data);
+    }
+
+    public function cetak($id)
+    {
+
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                => 'Cetak Data Potongan BPJS',
+            'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+
+            'dtbpjs'               => DB::table('tb_bpjs')
+                                        ->select('tb_bpjs.akun_potongan', 'tb_bpjs.nilai_potongan', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'potongan2.jenis_pajak', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                                        ->join('potongan2', 'potongan2.id', 'tb_bpjs.id_bpjs')
+                                        ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                        ->where('tb_bpjs.id_rincianbpjs', $id)
+                                        ->get(),
+            'dtrincianbpjs'        => DB::table('tb_rincianbpjs AS a')
+                                        ->select('a.ebilling', 'a.ntpn', 'a.akun_potongan', 'a.nilai_potongan')
+                                        ->where('a.id_rincianbpjs', $id)
+                                        ->first(),
+        );
+        // dd($data);
+
+        return view('Bpjs.Cetak', $data);
     }
 
     public function addToCart(Request $request)
@@ -364,6 +394,13 @@ class BpjsController extends Controller
             $rincianbpjs->rek_belanja       = $request->rek_belanja;
             $rincianbpjs->status1           = 'Terima';
 
+            if ($files = $request->file('bukti_pemby')){
+                $destinationPath = 'app/assets/images/bukti_pemby_potongan/';
+                $profileImage = "Simelajangpotongan" . "-" .date('YmdHis')."-" .$files->getClientOriginalName();
+                $files->move($destinationPath, $profileImage);
+                $rincianbpjs['bukti_pemby'] = "$profileImage";
+            }
+
             $rincianbpjs->save();
                 
             foreach($cart as $items){
@@ -448,7 +485,7 @@ class BpjsController extends Controller
     public function tolakbpjs($id)
     {
         $where = array('id' => $id);
-        $potbpjs = BpjsModel::where($where)->first();
+        $potbpjs = RincianBpjsModel::where($where)->first();
 
         return response()->json($potbpjs);
     }
@@ -461,23 +498,23 @@ class BpjsController extends Controller
             'status1' => '0',
         ]);
 
-        PajaklsModel::where('ebilling',$request->get('ebilling'))
+        RincianBpjsModel::where('id',$request->get('id'))
         ->update([
-            'status2' => 'Tolak',
+            'status1' => 'Tolak',
         ]);
 
-            return redirect('tampilpajakls')->with('success','Data Berhasil Ditolak');
+            return redirect('tampilbpjs')->with('success','Data Berhasil Ditolak');
     }
 
-    public function terimals($id)
+    public function terimabpjs($id)
     {
         $where = array('id' => $id);
-        $pajaklssipd = PajaklsModel::where($where)->first();
+        $potbpjs = RincianBpjsModel::where($where)->first();
 
-        return response()->json($pajaklssipd);
+        return response()->json($potbpjs);
     }
 
-    public function terimalsupdate(Request $request, string $id)
+    public function terimabpjsupdate(Request $request, string $id)
     {
 
         PotonganModel::where('ebilling',$request->get('ebilling'))
@@ -485,12 +522,12 @@ class BpjsController extends Controller
             'status1' => '1',
         ]);
 
-        PajaklsModel::where('ebilling',$request->get('ebilling'))
+        RincianBpjsModel::where('id',$request->get('id'))
         ->update([
-            'status2' => 'Terima',
+            'status1' => 'Terima',
         ]);
 
-            return redirect('tampilpajakls')->with('success','Data Berhasil Ditolak');
+            return redirect('tampilbpjs')->with('success','Data Berhasil Ditolak');
     }
 
 }

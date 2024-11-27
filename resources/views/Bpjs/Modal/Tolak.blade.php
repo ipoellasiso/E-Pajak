@@ -13,17 +13,17 @@
                     @csrf
                           <div class="input-area">
                               <label class="form-label">id</label>
-                              <input name="id" type="text" class="form-control" id="id" readonly>
+                              <input name="id" type="text" class="form-control" id="id2" readonly>
                           </div>
     
                           <div class="input-area">
                               <label class="form-label">E-Billing</label>
-                              <input name="ebilling" type="text" class="form-control" id="ebilling" readonly>
+                              <input name="ebilling" type="text" class="form-control" id="ebilling2" readonly>
                           </div>
     
                           <div class="input-area">
                               <label class="form-label">NTPN</label>
-                              <input name="ntpn" type="text" class="form-control" id="ntpn" readonly>
+                              <input name="ntpn" type="text" class="form-control" id="ntpn2" readonly>
                           </div>
                   
               <!-- Modal footer -->

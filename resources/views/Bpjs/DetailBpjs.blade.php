@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
 
-                                    <hr/>
+                                    
                                     <div class="row">
                                         <div class="col-md-6 col-12">
                                             <div class="table-responsive">
@@ -70,8 +70,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
+                                    <br>
                                     <hr/>
-
+                                        <font style="font-size: 11pt;font-weight: ;"><center>Rincian Potongan</center></font>
+                                    <hr/>
                                     <table class="display table table-hover" style="width:100%">
                                         <thead>
                                             <tr>
@@ -108,15 +111,18 @@
                                         </thead>
                                     </table>
 
-                                    <hr/>
+                                    
                                     <div class="row">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img class="card-img-top" src="/app/assets/images/bukti_pemby_pajak/Simelajang  - 20241104034130 - 52_big.jpg" width="100" height="600" alt="">
+                                                <hr/>
+                                                <font style="font-size: 11pt;font-weight: ;"><center>Bukti Pembayaran</center></font>
+                                                <hr/>
+                                                <img class="card-img-top" src="/app/assets/images/bukti_pemby_potongan/{{ $dtrincianbpjs->bukti_pemby }}" width="100" height="600" alt="">
                                             </div>
                                         </div>
                                     </div>
-                                    <hr/>
+                                    
 
                                 </div>
                             </div>
