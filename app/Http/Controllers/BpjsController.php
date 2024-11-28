@@ -80,7 +80,7 @@ class BpjsController extends Controller
                                             Aksi
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="dropdown-item" data-id="'.$row->id.'" href="/bpjs/edit/'.$row->id.'">Ubah</a></li>
+                                                <li><a class="ubahBpjs dropdown-item" data-id="'.$row->id.'" href="javascript:void(0)">Ubah</a></li>
                                                 <li><a class="deleteBbpjs dropdown-item" data-id="'.$row->id.'" href="javascript:void(0)">Delete</a></li>
                                             </ul>
                                         </div>
@@ -114,6 +114,14 @@ class BpjsController extends Controller
         }  
 
         return view('Bpjs.Bpjs', $data);
+    }
+
+    public function ubahbpjs($id)
+    {
+        $where = array('id' => $id);
+        $potbpjs = RincianBpjsModel::where($where)->first();
+
+        return response()->json($potbpjs);
     }
 
     public function pilihbpjssipd(Request $request)

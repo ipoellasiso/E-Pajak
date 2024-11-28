@@ -157,6 +157,7 @@ Route::post('/dtbpjs/addToCart', [BpjsController::class, 'addToCart'])->middlewa
 Route::post('/dtbpjs/deleteCart/{id}', [BpjsController::class, 'deleteCart'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/editpotcart/{id}', [BpjsController::class, 'editpotcartsipd'])->middleware('auth:web','checkRole:Admin');
 
+Route::get('/dtbpjs/ubah/{id}', [BpjsController::class, 'ubahbpjs'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/tolakbpjs/{id}', [BpjsController::class, 'tolakbpjs'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/tolakbpjsupdate/{id}', [BpjsController::class, 'tolakbpjsupdate'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/terimabpjs/{id}', [BpjsController::class, 'terimabpjs'])->middleware('auth:web','checkRole:Admin');

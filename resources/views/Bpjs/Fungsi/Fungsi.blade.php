@@ -42,6 +42,18 @@
 
     });
 
+    // ubah data
+    $('body').on('click', '.ubahBpjs', function()  {
+        var iduser = $(this).data('id');
+        $.get("/dtbpjs/ubah/"+iduser, function (data) {
+            // $('#saveBtn').val("edit-pajakls");
+            $('#ubahbpjs').modal('show');
+            // $('#id2').val(data.id);
+            // $('#ntpn2').val(data.ntpn);
+            // $('#ebilling2').val(data.ebilling);
+        })
+    });
+
     $('body').on('click', '.tolakBpjs', function()  {
         var iduser = $(this).data('id');
         $.get("/dtbpjs/tolakbpjs/"+iduser, function (data) {
