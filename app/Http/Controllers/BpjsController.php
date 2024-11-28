@@ -122,7 +122,7 @@ class BpjsController extends Controller
         if ($request->ajax()) {
 
             $databpjssipd = DB::table('potongan2')
-                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'qty')
+                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak')
                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                             ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
                             ->where('potongan2.status1',['0'])
@@ -134,8 +134,7 @@ class BpjsController extends Controller
                     ->addColumn('status1', function($row){
                         $btn1 = '
                                     <button href="javascript:void(0)" id="add_cart" 
-                                    data-id="'.$row->id.'" 
-                                    data-qty="'.$row->qty.'"
+                                    data-id="'.$row->id.'"
                                     data-tanggal_sp2d="'.$row->tanggal_sp2d.'" 
                                     data-nomor_sp2d="'.$row->nomor_sp2d.'" 
                                     data-nilai_sp2d="'.$row->nilai_sp2d.'" 
