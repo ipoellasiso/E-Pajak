@@ -152,6 +152,89 @@
         });
     });
 
+    $('body').on('click', '.hapus_editrinci', function () {
+
+        var id = $(this).attr("id");
+
+        Swal.fire({
+            title: 'Warning ?',
+            text: "Hapus Data Ini ?"+id,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url : "/dtbpjs/destroyDetail/"+id,
+                    method : "GET",
+                    data : {id : id},
+                    success :function(response){
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Data Berhasil Dihapus"
+                        })
+                        // tabelcartbpjs.draw();
+                        // $('#detail_cart').html(response);
+                    },
+                });
+            }else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Data Gagal Dihapus"
+                })
+            }
+        })
+    });
+
+    // hapus data
+    $('body').on('click', '.deleteBbpjs', function () {
+
+        var id = $(this).data("id");
+
+        Swal.fire({
+            title: 'Warning ?',
+            text: "Hapus Data Ini ?"  +id,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/dtbpjs/destroy/"+id,
+                    dataType: "JSON",
+                    success: function(data)
+                    {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: data.success
+                        })
+                        table.draw();
+                    },
+                });
+            }else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Data Gagal Dihapus"
+                })
+            }
+        })
+    });
+
+    $(document).ready(function() {
+        $('.amount').on('keyup', function(e) {
+            $(this).val(formatRupiah($(this).val(), ' '));
+        });
+    });
+
 });
 
 function readURL(input, id) {

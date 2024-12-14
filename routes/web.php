@@ -146,9 +146,14 @@ Route::get('/pajakgu/totalnilai', [PajakguController::class, 'totalpajakgu'])->m
 // ======= DATA PAJAKLS =======
 Route::get('/tampilbpjs', [BpjsController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 Route::get('/tampilbpjssipd', [BpjsController::class, 'pilihbpjssipd'])->middleware('auth:web','checkRole:Admin');
+Route::get('/tampilbpjssipdedit', [BpjsController::class, 'pilihbpjssipdedit'])->middleware('auth:web','checkRole:Admin');
 Route::post('/dtbpjs/store', [BpjsController::class, 'store'])->middleware('auth:web','checkRole:Admin');
 Route::get('/dtbpjs/detail/{id}', [BpjsController::class, 'detail'])->middleware('auth','checkRole:Admin');
 Route::get('/dtbpjs/cetak/{id}', [BpjsController::class, 'cetak'])->middleware('auth','checkRole:Admin');
+Route::get('/dtbpjs/edit/{id}', [BpjsController::class, 'edit'])->middleware('auth','checkRole:Admin');
+Route::get('/dtbpjs/destroyDetail/{id}', [BpjsController::class, 'destroyDetail'])->middleware('auth:web','checkRole:Admin');
+Route::delete('/dtbpjs/destroy/{id}', [BpjsController::class, 'destroy'])->middleware('auth:web','checkRole:Admin');
+Route::post('/dtbpjs/update/{id}', [BpjsController::class, 'update'])->middleware('auth:web','checkRole:Admin');
 
 Route::get('/dtbpjs/load_cart', [BpjsController::class, 'load_cart'])->middleware('auth','checkRole:Admin');
 // Route::post('/barangmasuk/addToCart/{id}', [BpjsController::class, 'addToCart'])->middleware('auth','checkRole:Admin');

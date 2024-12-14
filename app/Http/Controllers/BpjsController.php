@@ -80,7 +80,7 @@ class BpjsController extends Controller
                                             Aksi
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="ubahBpjs dropdown-item" data-id="'.$row->id.'" href="javascript:void(0)">Ubah</a></li>
+                                                <li><a class="dropdown-item" data-id="'.$row->id.'" href="/dtbpjs/edit/'.$row->id_rincianbpjs.'">Edit</a></li>
                                                 <li><a class="deleteBbpjs dropdown-item" data-id="'.$row->id.'" href="javascript:void(0)">Delete</a></li>
                                             </ul>
                                         </div>
@@ -130,7 +130,7 @@ class BpjsController extends Controller
         if ($request->ajax()) {
 
             $databpjssipd = DB::table('potongan2')
-                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak')
+                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'potongan2.kode_pot')
                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
                             ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
                             ->where('potongan2.status1',['0'])
@@ -147,7 +147,51 @@ class BpjsController extends Controller
                                     data-nomor_sp2d="'.$row->nomor_sp2d.'" 
                                     data-nilai_sp2d="'.$row->nilai_sp2d.'" 
                                     data-jenis_pajak="'.$row->jenis_pajak.'" 
-                                    data-nilai_pajak="'.$row->nilai_pajak.'" 
+                                    data-nilai_pajak="'.$row->nilai_pajak.'"
+                                    
+                                    class="editpotcartsipd btn btn-outline-info m-b-xs btn-sm">Pilih
+                                    </button>
+                                ';
+
+                        return $btn1;
+                    })
+                    ->addColumn('nilai_pajak1', function($row) {
+                        return number_format($row->nilai_pajak);
+                    })
+                    ->addColumn('nilai_sp2d1', function($row1) {
+                        return number_format($row1->nilai_sp2d);
+                    })
+                    ->rawColumns(['status1', 'nilai_pajak1', 'nilai_sp2d1'])
+                    ->make(true);
+        }
+
+        return view('Bpjs.Bpjs');
+    }
+
+    public function pilihbpjssipdedit(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $databpjssipd = DB::table('potongan2')
+                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak')
+                            ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                            ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
+                            ->where('potongan2.status1',['0'])
+                            ->where('sp2d.jenis',['LS'])
+                            ->get();
+
+            return Datatables::of($databpjssipd)
+                    ->addIndexColumn()
+                    ->addColumn('status1', function($row){
+                        $btn1 = '
+                                    <button href="javascript:void(0)" id="add_cart" 
+                                    data-id1="'.$row->id.'"
+                                    data-tanggal_sp2d1="'.$row->tanggal_sp2d.'" 
+                                    data-nomor_sp2d1="'.$row->nomor_sp2d.'" 
+                                    data-nilai_sp2d1="'.$row->nilai_sp2d.'" 
+                                    data-jenis_pajak1="'.$row->jenis_pajak.'" 
+                                    data-nilai_pajak1="'.$row->nilai_pajak.'" 
                                     
                                     class="editpotcartsipd btn btn-outline-info m-b-xs btn-sm">Pilih
                                     </button>
@@ -399,6 +443,7 @@ class BpjsController extends Controller
             $rincianbpjs->nomor_npwp        = $request->nomor_npwp;
             $rincianbpjs->ntpn              = $request->ntpn;
             $rincianbpjs->rek_belanja       = $request->rek_belanja;
+            $rincianbpjs->kode_pot          = $request->kode_pot;
             $rincianbpjs->status1           = 'Terima';
 
             if ($files = $request->file('bukti_pemby')){
@@ -437,6 +482,7 @@ class BpjsController extends Controller
                     // 'bukti_pemby'       => $profileImage,
                     'status1'           => 'Terima',
                     'id_rincianbpjs'    => $nomoracak,
+                    'kode_pot'          => $request->kode_pot,
 
                 ]);
             }
@@ -462,31 +508,16 @@ class BpjsController extends Controller
 
     public function editpotcartsipd(Request $request, $id)
     {
-        // if($request->id && $request->nilai_pajak){
-
-        //     $cart = session()->get('cart');
-
-        //     $cart[$request->id]["nilai_pajak"] = $request->nilai_pajak;
-
-        //     session()->put('cart', $cart);
-        //     echo $this->load_cart($request);
-        //     // session()->flash('success', 'Cart updated successfully');
-
-        // }
-        // $cart = session()->get('cart');
-
-        // foreach($cart as $items){
-        // $where = array('id', $items);
-        // $pajaklssipd = PotonganModel::select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'potongan2.id_potongan')
-        //                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
-        //                             ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
-        //                             ->where('potongan2.status1',['0'])
-        //                             ->where('sp2d.jenis',['LS'])
-        //                             ->where($where)
-        //                             ->first();
+        $pajaklssipd = PotonganModel::select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak', 'potongan2.id_potongan', 'potongan2.kode_pot')
+                                    ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                    ->whereIn('potongan2.jenis_pajak', ['Askes', 'Iuran Jaminan Kesehatan 4%', 'Belanja Iuran Jaminan Kesehatan PPPK', 'Belanja Iuran Jaminan Kesehatan PNS', 'Iuran Wajib Pegawai 1%'])
+                                    ->where('potongan2.status1',['0'])
+                                    ->where('sp2d.jenis',['LS'])
+                                    ->where('id', $id)
+                                    ->first();
         // }
 
-        // return response()->json($pajaklssipd);
+        return response()->json($pajaklssipd);
     }
 
     public function tolakbpjs($id)
@@ -535,6 +566,98 @@ class BpjsController extends Controller
         ]);
 
             return redirect('tampilbpjs')->with('success','Data Berhasil Ditolak');
+    }
+
+    public function edit($id)
+    {
+
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                => 'Edit Potongan BPJS',
+            'active_side_potbpjs'  => 'active',
+            'active_potbpjs'       => 'active',
+            'page_title'           => 'Penatausahaan',
+            'breadcumd1'           => 'edit Potongan',
+            'breadcumd2'           => 'BPJS',
+            'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+
+            'dtbpjs'               => DB::table('tb_bpjs')
+                                        ->select('tb_bpjs.akun_potongan', 'tb_bpjs.nilai_potongan', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'potongan2.jenis_pajak', 'tb_bpjs.id')
+                                        ->join('potongan2', 'potongan2.id', 'tb_bpjs.id_bpjs')
+                                        ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                                        ->where('tb_bpjs.id_rincianbpjs', $id)
+                                        ->get(),
+            'dtrincianbpjs'        => DB::table('tb_rincianbpjs AS a')
+                                        ->select('a.ebilling', 'a.ntpn', 'a.akun_potongan', 'a.nilai_potongan', 'a.bukti_pemby', 'a.id', 'a.id_rincianbpjs')
+                                        ->where('a.id_rincianbpjs', $id)
+                                        ->first(),
+        );
+        // dd($data);
+
+        return view('Bpjs.Modal.EditBpjs', $data);
+    }
+
+    public function storedetailedit(Request $request)
+    {
+        
+    }
+
+    public function update(Request $request, $id)
+    {
+        $cek       = RincianBpjsModel::where('id_rincianbpjs', $request->id_rincianbpjs)->where('id', '!=', $id)->first();
+        $rincianbpjs = RincianBpjsModel::findOrFail($id);
+
+        if($cek)
+        {
+            return redirect()->back()->with('error', 'Data Potongan BPJS Sudah Ada');
+        }
+        else 
+        {
+            $rincianbpjs->update([
+                'ebilling'          => $request->ebilling,
+                'akun_potongan'     => $request->akun_potongan,
+                'nama_npwp'         => $request->nama_npwp,
+                'nomor_npwp'        => $request->nomor_npwp,
+                'ntpn'              => $request->ntpn,
+                'rek_belanja'       => $request->rek_belanja,
+                'status1'           => 'Terima',
+            ]);
+
+            if ($request->file('bukti_pemby')) {
+                if ($rincianbpjs->bukti_pemby){
+                    File::delete('app/assets/images/bukti_pemby_potongan/'.$rincianbpjs->bukti_pemby);
+                }
+                $file = $request->file('bukti_pemby');
+                $nama_file = "Simelajang" . "-" .date('YmdHis')."-" .$file->getClientOriginalName();
+                $file->move('app/assets/images/bukti_pemby_potongan/', $nama_file);
+                $rincianbpjs->bukti_pemby = $nama_file;
+            }
+            
+            $rincianbpjs->save();
+            return redirect('/tampilbpjs')->with('success', 'Data Berhasil Di Ubah');   
+        }
+    }
+
+    public function destroyDetail($id) 
+    {
+        BpjsModel::where('id', $id)->delete();
+      
+        return redirect()->back()->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function destroy($id) 
+    {
+        $dtbpjs = RincianBpjsModel::where('id', $id)->first();
+
+        RincianBpjsModel::where('id', $dtbpjs->id)->delete();
+        BpjsModel::where('id_rincianbpjs', $dtbpjs->id_rincianbpjs)->delete();
+      
+        return response()->json(['success'=>'Data Berhasil Dihapus']);
     }
 
 }
