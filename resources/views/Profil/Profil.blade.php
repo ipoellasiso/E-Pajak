@@ -43,7 +43,7 @@
                   <div class="col-md-12 col-lg-3">
                     <div class="card">
                       <div class="card-body">
-                          <h5 class="card-title">About</h5>
+                          <h5 class="card-title">Profil</h5>
                           <p>Quisque vel tellus sit amet quam efficitur sagittis. Fusce aliquam pulvinar suscipit.</p>
                           <ul class="list-unstyled profile-about-list">
                               <li><i class="far fa-edit m-r-xxs"></i><span>Studied at <a href="#">San Diego University</a></span></li>
