@@ -11,6 +11,7 @@ class OpdModel extends Model
     protected $table = "opd";
     protected $primaryKey = "id";
     protected $fillable = [
+        'id',
         'nama_opd',
         'nama_bendahara',
         'alamat'

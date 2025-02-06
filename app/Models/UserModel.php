@@ -23,7 +23,11 @@ class UserModel extends Model
         'role',
         'gambar',
         'is_active',
-        'nama_opd'
+        'nama_opd',
+        'nip',
+        'alamat',
+        'no_hp',
+        'hobi',
     ];
 
     protected $hidden = [

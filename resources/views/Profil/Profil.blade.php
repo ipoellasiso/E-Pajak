@@ -17,8 +17,9 @@
                 <div class="main-wrapper">
                   <div class="row">
                     <div class="col-xl-12">
-                    <!-- <img src="app\assets\images\palu.jpg" alt="" height="500px" width="1360px"> -->
-                        <div class="profile-cover"></div>
+                    <img src="app\assets\images\palu.jpg" alt="" height="500px" width="1805px">
+                        <div></div>
+                        <!-- <div class="profile-cover"></div> -->
                         <div class="profile-header">
                             <div class="profile-img">
                                 <img src="app\assets\images\user\{{ $userx->gambar }}" alt="">
@@ -44,15 +45,15 @@
                     <div class="card">
                       <div class="card-body">
                           <h5 class="card-title">Profil</h5>
-                          <p>Hai <a href="#"> {{ $profilx->fullname }}</a> Ternyata kamu punya Hobi {{ $profilx->hobi }} Ya...</p>
+                          <p>Hai <a href="#"> {{ $opd->fullname }}</a> Ternyata kamu punya Hobi {{ $opd->hobi }} Ya...</p>
                           <ul class="list-unstyled profile-about-list">
-                              <li><i class="far fa-edit m-r-xxs"></i><span>Nama Lengkap :<a href="#"> {{ $profilx->fullname }}</a></span></li>
-                              <li><i class="far fa-building m-r-xxs"></i><span>NIP : <a href="#"> {{ $profilx->nip }}</a></span></li>
-                              <li><i class="far fa-compass m-r-xxs"></i><span>Instansi : <a href="#"> {{ $profilx->instansi }}</a></span></li>
-                              <li><i class="far fa-compass m-r-xxs"></i><span>Satuan Kerja : <a href="#"> {{ $profilx->opd }}</a></span></li>
-                              <li><i class="far fa-compass m-r-xxs"></i><span>Alamat : <a href="#"> {{ $profilx->alamat }}</a></span></li>
+                              <li><i class="far fa-edit m-r-xxs"></i><span>Nama Lengkap :<a href="#"> {{ $opd->fullname }}</a></span></li>
+                              <li><i class="far fa-building m-r-xxs"></i><span>NIP : <a href="#"> {{ $opd->nip }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Instansi : <a href="#"> Pemerintah Kota Palu</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Satuan Kerja : <a href="#"> {{ $opd->nama_opd }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Alamat : <a href="#"> {{ $opd->alamat }}</a></span></li>
                               <li><i class="far fa-compass m-r-xxs"></i><span>Email : <a href="#"> {{ $opd->email }}</a></span></li>
-                              <li><i class="far fa-compass m-r-xxs"></i><span>Nomor HP : <a href="#"> {{ $profilx->no_hp }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Nomor HP : <a href="#"> {{ $opd->no_hp }}</a></span></li>
                               <li><i class="far fa-compass m-r-xxs"></i><span>Role : <a href="#"> {{ $opd->role }}</a></span></li>
                               <li class="profile-about-list-buttons">
                                   <button class="btn btn-block btn-warning m-t-md">{{ $opd->is_active }}</button>
@@ -77,17 +78,17 @@
                       <div class="card-body">
                           <div class="post">
                               <div class="post-header">
-                                  <img src="../../assets/images/avatars/profile-image.png" alt="">
+                                  <img src="app\assets\images\user\{{ $userx->gambar }}" alt="">
                                   <div class="post-info">
-                                      <span class="post-author">John Doe</span><br>
-                                      <span class="post-date">3hrs</span>
+                                      <span class="post-author">{{ $opd->fullname }}</span><br>
+                                      <span class="post-date">{{ $opd->role }}</span>
                                   </div>
                                   <div class="post-header-actions">
                                       <a href="#"><i class="fas fa-ellipsis-h"></i></a>
                                   </div>
                               </div>
                               <div class="post-body">
-                                  <p>Proin eu fringilla dui. Pellentesque mattis lobortis mauris eu tincidunt. Maecenas hendrerit faucibus dolor, in commodo lectus mattis ac.</p>
+                                  <p>Silahkan Like, Koment, Subscribe, dan jangan Lupa Share ke Orang-Orang Terdekat Anda.</p>
                                   <img src="../../assets/images/card-image.png" class="post-image" alt="">
                               </div>
                               <div class="post-actions">
@@ -105,7 +106,7 @@
                               </div>
                               <div class="post-comments">
                                   <div class="post-comm">
-                                      <img src="../../assets/images/avatars/profile-image.png" class="comment-img" alt="">
+                                      <img src="app\assets\images\im1.jpg" class="comment-img" alt="">
                                       <div class="comment-container">
                                           <span class="comment-author">
                                               Sonny Rosas
@@ -117,7 +118,7 @@
                                       </span>
                                   </div>
                                   <div class="post-comm">
-                                      <img src="../../assets/images/avatars/profile-image.png" class="comment-img" alt="">
+                                      <img src="app\assets\images\im2.jpg" class="comment-img" alt="">
                                       <div class="comment-container">
                                           <span class="comment-author">
                                               Jacob Lee
@@ -145,28 +146,28 @@
                           <h5 class="card-title">Stories</h5>
                           <div class="story-list">
                               <div class="story">
-                                  <a href="#"><img src="../../assets/images/avatars/profile-image.png" alt=""></a>
+                                  <a href="#"><img src="app\assets\images\im3.jpg" alt=""></a>
                                   <div class="story-info">
                                       <a href="#"><span class="story-author">Johan Doe</span></a>
                                       <span class="story-time">17min</span>
                                   </div>
                               </div>
                               <div class="story">
-                                  <a href="#"><img src="../../assets/images/avatars/profile-image.png" alt=""></a>
+                                  <a href="#"><img src="app\assets\images\im4.png" alt=""></a>
                                   <div class="story-info">
                                       <a href="#"><span class="story-author">Nina Doe</span></a>
                                       <span class="story-time">54min</span>
                                   </div>
                               </div>
                               <div class="story">
-                                  <a href="#"><img src="../../assets/images/avatars/profile-image.png" alt=""></a>
+                                  <a href="#"><img src="app\assets\images\im5.png" alt=""></a>
                                   <div class="story-info">
                                       <a href="#"><span class="story-author">John Doe</span></a>
                                       <span class="story-time">2hrs</span>
                                   </div>
                               </div>
                               <div class="story">
-                                  <a href="#"><img src="../../assets/images/avatars/profile-image.png" alt=""></a>
+                                  <a href="#"><img src="app\assets\images\im6.png" alt=""></a>
                                   <div class="story-info">
                                       <a href="#"><span class="story-author">Nina Doe</span></a>
                                       <span class="story-time">7hrs</span>
