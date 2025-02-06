@@ -97,6 +97,7 @@
         @include('Bpjs.Modal.Terima')
         @include('Bpjs.Modal.Tolak')
         @include('Bpjs.Modal.Ubah')
+        @include('Bpjs.Modal.Databpjsedit')
 
         {{-- ############################## Batas Modal ################################ --}}
 
@@ -104,6 +105,7 @@
 
         @include('Bpjs.Fungsi.Fungsi')
         @include('Bpjs.Fungsi.Fungsibpjssipd')
+        @include('Bpjs.Fungsi.Fungsibpjssipdedit')
 
         {{-- ############################## Batas Fungsi ################################ --}}
         

@@ -27,6 +27,7 @@ class BpjsModel extends Model
         'updated_at',
         'id_bpjs',
         'id_rincianbpjs',
-        'qty'
+        'qty',
+        'kode_pot'
     ];
 }

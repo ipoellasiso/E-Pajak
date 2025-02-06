@@ -26,5 +26,6 @@ class RincianBpjsModel extends Model
         'created_at',
         'updated_at',
         'id_rincianbpjs',
+        'kode_pot'
     ];
 }

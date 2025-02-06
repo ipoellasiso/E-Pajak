@@ -41,7 +41,7 @@
         $.get("/dtbpjs/editpotcart/"+iduser, function (data) {
             $('#saveBtn').val("edit-potbpjscart");
             $('#tambahbpjs').modal('show');
-            // $('#id5').val(data.id);
+            $('#kode_pot5').val(data.kode_pot);
             // $('#no_rek_pihak_ketiga5').val(data.no_rek_pihak_ketiga);
             // $('#jenis_pajak5').val(data.jenis_pajak);
             // $('#npwp_pihak_ketiga5').val(data.npwp_pihak_ketiga);
@@ -85,6 +85,8 @@
         var nilai_sp2d      = $(this).data("nilai_sp2d");
         var jenis_pajak     = $(this).data("jenis_pajak");
         var nilai_pajak     = $(this).data("nilai_pajak");
+        // var kode_pot        = $(this).data("kode_pot5");
+        
 
         $.ajax({
             url : "/dtbpjs/addToCart",
