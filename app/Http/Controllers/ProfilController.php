@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PajakguModel;
 use App\Models\PajaklsModel;
+use App\Models\ProfilModel;
 use App\Models\Sp2dModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
@@ -31,6 +32,8 @@ class ProfilController extends Controller
             'breadcumd2'           => 'Dashboard',
             'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
             'opd'                  => DB::table('users')
+                                    // ->select('users.fullname','users.role','users.gambar','profil.nip','profil.instansi','profil.alamat','profil.no_hp','profil.hobi')
+                                    // ->join('profil',  'profil.fullname', 'users.fullname')
                                     // ->join('opd',  'opd.id', 'users.id_opd')
                                     // ->select('fullname','nama_opd')
                                     ->where('nama_opd', auth()->user()->nama_opd)
@@ -47,6 +50,13 @@ class ProfilController extends Controller
             'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
             'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->sum('nilai_pajak'),
             'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->sum('nilai_pajak'),
+            'profilx'               => DB::table('profil')
+            //                         ->select('users.fullname','users.role','users.gambar','profil.nip','profil.instansi','profil.alamat','profil.no_hp','profil.hobi')
+            //                         ->join('profil',  'profil.fullname', 'users.fullname')
+            //                         ->where('nama_opd', auth()->user()->nama_opd)->first(),
+                                    ->where('fullname', auth()->user()->fullname)
+                                    ->first(),
+                                    
         );
 
         // $dtidopd = DB::table('pajakkpp')->where('jenis_pajak', ['Pajak Pertambahan Nilai'])->sum('nilai_pajak')->first();

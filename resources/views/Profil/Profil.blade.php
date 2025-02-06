@@ -44,20 +44,24 @@
                     <div class="card">
                       <div class="card-body">
                           <h5 class="card-title">Profil</h5>
-                          <p>Quisque vel tellus sit amet quam efficitur sagittis. Fusce aliquam pulvinar suscipit.</p>
+                          <p>Hai <a href="#"> {{ $profilx->fullname }}</a> Ternyata kamu punya Hobi {{ $profilx->hobi }} Ya...</p>
                           <ul class="list-unstyled profile-about-list">
-                              <li><i class="far fa-edit m-r-xxs"></i><span>Studied at <a href="#">San Diego University</a></span></li>
-                              <li><i class="far fa-building m-r-xxs"></i><span>Manager at <a href="#">Stacks</a></span></li>
-                              <li><i class="far fa-compass m-r-xxs"></i><span>From <a href="#">New York</a></span></li>
-                              <li><i class="far fa-user m-r-xxs"></i><span>Followed by 320 people</span></li>
+                              <li><i class="far fa-edit m-r-xxs"></i><span>Nama Lengkap :<a href="#"> {{ $profilx->fullname }}</a></span></li>
+                              <li><i class="far fa-building m-r-xxs"></i><span>NIP : <a href="#"> {{ $profilx->nip }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Instansi : <a href="#"> {{ $profilx->instansi }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Satuan Kerja : <a href="#"> {{ $profilx->opd }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Alamat : <a href="#"> {{ $profilx->alamat }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Email : <a href="#"> {{ $opd->email }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Nomor HP : <a href="#"> {{ $profilx->no_hp }}</a></span></li>
+                              <li><i class="far fa-compass m-r-xxs"></i><span>Role : <a href="#"> {{ $opd->role }}</a></span></li>
                               <li class="profile-about-list-buttons">
-                                  <button class="btn btn-block btn-primary m-t-md">Follow</button>
-                                  <button class="btn btn-block btn-success m-t-md">Message</button>
+                                  <button class="btn btn-block btn-warning m-t-md">{{ $opd->is_active }}</button>
+                                  <!-- <button class="btn btn-block btn-success m-t-md">Message</button> -->
                               </li>
                           </ul>
                       </div>
                   </div>
-                  <div class="card">
+                  <!-- <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Contact Info</h5>
                         <ul class="list-unstyled profile-about-list">
@@ -66,7 +70,7 @@
                             <li><i class="far fa-address-book m-r-xxs"></i><span>+1 (678) 290 1680</span></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                   </div>
                   <div class="col-md-12 col-lg-6">
                     <div class="card">
