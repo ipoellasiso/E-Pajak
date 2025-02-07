@@ -168,6 +168,7 @@ class VerifikasitbpController extends Controller
         ->update([
             'status1' => 'Terima',
             'status4' => 'Belum',
+            'status3' => 0,
         ]);
 
             return redirect()->back()->with('success','Data Berhasil Ditolak');
