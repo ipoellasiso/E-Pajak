@@ -87,7 +87,7 @@
         <ul class="">
           @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
           <li @if(isset($active_pajakls)){{ $active_pajakls }} @endif><a href="/tampilpajakls"><i class="far fa-circle"></i>LS</a></li>
-          <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="#"><i class="far fa-circle"></i>GU</a></li>
+          <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilpajakguadmin"><i class="far fa-circle"></i>GU</a></li>
           @endif
           @if(Auth::user()->role == 'User')
           <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilpajakgu"><i class="far fa-circle"></i>GU</a></li>

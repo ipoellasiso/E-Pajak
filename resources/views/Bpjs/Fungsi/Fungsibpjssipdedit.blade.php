@@ -35,7 +35,7 @@
         ]
     });
 
-    edit data
+    // edit data
     $('body').on('click', '.editpotcartsipd', function()  {
         var iduser = $(this).data('id');
         $.get("/dtbpjs/editpotcart/"+iduser, function (data) {

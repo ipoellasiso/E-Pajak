@@ -28,6 +28,6 @@ class BpjsModel extends Model
         'id_bpjs',
         'id_rincianbpjs',
         'qty',
-        'kode_pot'
+        // 'kode_pot'
     ];
 }

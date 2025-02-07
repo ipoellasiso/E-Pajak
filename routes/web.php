@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\JenispajakController;
 use App\Http\Controllers\OpdController;
+use App\Http\Controllers\PajakguadminController;
 use App\Http\Controllers\PajakguController;
 use App\Http\Controllers\PajaklsController;
 use App\Http\Controllers\ProfilController;
@@ -171,3 +172,6 @@ Route::post('/dtbpjs/terimabpjsupdate/{id}', [BpjsController::class, 'terimabpjs
 // ======= REGISTER SP2D =======
 Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+
+// ======= DATA PAJAKGU =======
+Route::get('/tampilpajakguadmin', [PajakguadminController::class, 'index'])->middleware('auth:web','checkRole:User,Admin');

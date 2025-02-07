@@ -11,7 +11,7 @@
                         @csrf
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id5">
-                            <input type="text" name="kode_pot" id="kode_pot5">
+                            <input type="hidden" name="kode_pot" id="kode_pot5">
                             {{-- <input type="text" class="amount" id="detail_cart"> --}}
                             <div class="row">
                                 <div class="row mb-4">

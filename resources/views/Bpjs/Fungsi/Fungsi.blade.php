@@ -216,7 +216,7 @@
                             title: "Success",
                             text: data.success
                         })
-                        table.draw();
+                        tabelbpjs.draw();
                     },
                 });
             }else {
