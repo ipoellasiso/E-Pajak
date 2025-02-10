@@ -36,7 +36,7 @@
                                 <div class="col-md-6 col-xl-2">
                                     <div class="card stat-widget">
                                         <div class="card-body">
-                                        <h5 class="card-title">Total Pajak Februari</h5>
+                                        <h5 class="card-title">Total Pajak Februari <p></p>{{ $totalcount2 }}</h5>
                                         <h2></h2>
                                         <p>Rp. {{ number_format($total_2,2) }}</p>
                                         </div>
