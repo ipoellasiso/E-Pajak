@@ -23,6 +23,7 @@
         ajax: "/tampilpajakls",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'nama_skpd', name: 'nama_skpd'},
             {data: 'nomor_spm', name: 'nomor_spm'},
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},

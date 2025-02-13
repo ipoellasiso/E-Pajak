@@ -52,6 +52,7 @@
                                                 <th class="text-center" colspan="2">KETERANGAN</th>
                                             </tr>
                                             <tr>
+                                                <th>Nama OPD</th>
                                                 <th>Nomor SPM</th>
                                                 <th>Tanggal SP2D</th>
                                                 <th>Nomor SP2D</th>
