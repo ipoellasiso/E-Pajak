@@ -177,6 +177,63 @@ class PajaklsController extends Controller
         return view('Pajak_LS.Tampilpajakls');
     }
 
+    public function tampilpajaklssipdbeluminput(Request $request)
+    {
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                => 'Data Pajak LS Belum Diinput',
+            'active_side_pajakls'    => 'active',
+            'active_pajakls'       => 'active',
+            'page_title'           => 'Penatausahaan',
+            'breadcumd1'           => 'Data Pajak Belum Diinput',
+            'breadcumd2'           => 'LS',
+            'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+            'total_ppn'            => PajaklsModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph21'          => PajaklsModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph22'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph23'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pajakls'          => PajaklsModel::where('status2', 'Terima')->sum('nilai_pajak'),
+        );
+
+        if ($request->ajax()) {
+
+            $datapajaklssipd1 = DB::table('potongan2')
+                            ->select('potongan2.ebilling', 'potongan2.id', 'potongan2.status1', 'sp2d.tanggal_sp2d', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'sp2d.npwp_pihak_ketiga', 'sp2d.no_rek_pihak_ketiga', 'potongan2.jenis_pajak', 'potongan2.nilai_pajak')
+                            ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                            ->whereIn('potongan2.jenis_pajak', ['Pajak Pertambahan Nilai','Pajak Penghasilan Ps 22','Pajak Penghasilan Ps 23','PPh 21','Pajak Penghasilan Ps 4 (2)', 'Pajak Penghasilan PS 24'])
+                            ->where('potongan2.status1',['0'])
+                            ->where('sp2d.jenis',['LS'])
+                            ->get();
+
+            return Datatables::of($datapajaklssipd1)
+                    ->addIndexColumn()
+                    ->addColumn('status2', function($row){
+                        $btn1 = '
+                                    <a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" class="editPajaklssipd btn btn-outline-info m-b-xs btn-sm">Pilih
+                                    </a>
+                                ';
+
+                        return $btn1;
+                    })
+                    ->addColumn('nilai_pajak', function($row) {
+                        return number_format($row->nilai_pajak);
+                    })
+                    ->addColumn('nilai_sp2d', function($row) {
+                        return number_format($row->nilai_sp2d);
+                    })
+                    ->rawColumns(['status2','nilai_pajak','nilai_pajak'])
+                    ->make(true);
+        }
+
+        return view('Pajak_LS.Tampilpajaklsbeluminputadmin', $data);
+    }
+
     public function store(Request $request)
     {
         request()->validate([

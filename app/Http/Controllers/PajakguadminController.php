@@ -156,6 +156,28 @@ class PajakguadminController extends Controller
     public function pilihspmsp2dgusipd(Request $request)
     {
 
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                => 'Data Pajak GU Belum Diinput',
+            'active_side_pajakls'    => 'active',
+            'active_pajakgu'       => 'active',
+            'page_title'           => 'Penatausahaan',
+            'breadcumd1'           => 'Data Pajak Belum Diinput',
+            'breadcumd2'           => 'GU',
+            'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+            'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph22gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),                        
+        );
+
         if ($request->ajax()) {
 
             $datapajaklssipdgu = DB::table('tb_potongangu')
@@ -166,7 +188,7 @@ class PajakguadminController extends Controller
                                 // ->where('tb_potongangu.statuspil',['0'])
                                 ->where('tb_potongangu.status1',['Terima'])
                                 ->where('tb_potongangu.status3',['0'])
-                                ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
+                                // ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                                 ->get();
 
             return Datatables::of($datapajaklssipdgu)
@@ -189,7 +211,7 @@ class PajakguadminController extends Controller
                     ->make(true);
         }
 
-        return view('Pajak_GUadmin.Tampilpajakguadmin');
+        return view('Pajak_GUadmin.Tampilpajakgubeluminputadmin', $data);
     }
 
     public function store(Request $request)

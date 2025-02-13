@@ -83,6 +83,13 @@
       </li>
       @endif
       <li @if(isset($active_side_pajakls)){{ $active_side_pajakls }} @endif>
+      <a href="index.html"><i data-feather="hard-drive"></i>Pajak Belum Diinput<i class="fas fa-chevron-right dropdown-icon"></i></a>
+        <ul class="">
+          @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
+          <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilpajakguadminbeluminput"><i class="far fa-circle"></i>GU BELUM INPUT</a></li>
+          <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilpajaklsadminbeluminput"><i class="far fa-circle"></i>LS BELUM INPUT</a></li>
+          @endif
+        </ul>
         <a href="index.html"><i data-feather="hard-drive"></i>Data Pajak<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
           @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
