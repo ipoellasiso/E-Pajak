@@ -25,6 +25,7 @@ class PajakguModel extends Model
         'updated_at',
         'id_potonganls',
         'id_opd',
-        'no_spm'
+        'no_spm',
+        'periode',
     ];
 }

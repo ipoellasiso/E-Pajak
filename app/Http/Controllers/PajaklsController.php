@@ -43,7 +43,7 @@ class PajaklsController extends Controller
             'total_pph21'          => PajaklsModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->sum('nilai_pajak'),
             'total_pph22'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
             'total_pph23'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->sum('nilai_pajak'),
-            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->sum('nilai_pajak'),
+            'total_pph24'          => PajaklsModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->sum('nilai_pajak'),
             'total_pajakls'          => PajaklsModel::where('status2', 'Terima')->sum('nilai_pajak'),
         );
 
@@ -275,6 +275,7 @@ class PajaklsController extends Controller
                 'rek_belanja' => $request->rek_belanja,
                 'nama_npwp' => $request->nama_npwp,
                 'nomor_npwp' => $request->nomor_npwp,
+                'periode' => $request->periode,
                 // 'bukti_pemby' => $request->bukti_pemby,
                 'status2' => 'Terima',
                 // 'id_potonganls' => $request->id_potonganls,
@@ -335,6 +336,7 @@ class PajaklsController extends Controller
             $updatepajakls->jenis_pajak = $request->get('jenis_pajak');
             $updatepajakls->rek_belanja = $request->get('rek_belanja');
             $updatepajakls->nilai_pajak = str_replace('.','', $request->get('nilai_pajak'));
+            $updatepajakls->periode = $request->get('periode');
             $updatepajakls->status2 = 'Terima';
 
             if ($request->file('bukti_pemby')) {
@@ -375,7 +377,7 @@ class PajaklsController extends Controller
                                     ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
             'dtpajakls'            => DB::table('pajakkpp')
-                                    ->select('pajakkpp.ebilling', 'sp2d.tanggal_sp2d', 'pajakkpp.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkpp.nomor_npwp', 'pajakkpp.akun_pajak', 'pajakkpp.ntpn', 'pajakkpp.jenis_pajak', 'potongan2.nilai_pajak','pajakkpp.rek_belanja','pajakkpp.nama_npwp', 'pajakkpp.id_potonganls', 'pajakkpp.id', 'potongan2.status1', 'pajakkpp.status2', 'pajakkpp.created_at', 'pajakkpp.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkpp.nilai_pajak', 'potongan2.id_pajakkpp')
+                                    ->select('pajakkpp.ebilling', 'sp2d.tanggal_sp2d', 'pajakkpp.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkpp.nomor_npwp', 'pajakkpp.akun_pajak', 'pajakkpp.ntpn', 'pajakkpp.jenis_pajak', 'potongan2.nilai_pajak','pajakkpp.rek_belanja','pajakkpp.nama_npwp', 'pajakkpp.id_potonganls', 'pajakkpp.id', 'potongan2.status1', 'pajakkpp.status2', 'pajakkpp.created_at', 'pajakkpp.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkpp.nilai_pajak', 'potongan2.id_pajakkpp', 'pajakkpp.periode')
                                     // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                                     // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
                                     ->join('potongan2',  'potongan2.id', 'pajakkpp.id_potonganls')

@@ -64,6 +64,7 @@
             $('#ebillingg').val(data.ebilling);
             $('#jenis_pajak').val(data.jenis_pajak);
             $('#nilai_pajak').val(data.nilai_pajak);
+            $('#periode').val(data.periode);
             $('.bd-example-modal-xl').modal('hide');
         })
     });
