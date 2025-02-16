@@ -18,7 +18,7 @@ class AuthController extends Controller
             'title'  => 'Halaman Login',
         );
 
-        return view('Auth.loginnew', $data);
+        return view('Auth.login', $data);
     }
 
     public function cek_login(Request $request)

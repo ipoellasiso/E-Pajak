@@ -17,7 +17,7 @@
                 <div class="main-wrapper">
                   <div class="row">
                     <div class="col-xl-12">
-                    <img src="app\assets\images\palu.jpg" alt="" height="500px" width="1805px">
+                    <img src="app\assets\images\palu.jpg" alt="" height="400px" width="1880px">
                         <div></div>
                         <!-- <div class="profile-cover"></div> -->
                         <div class="profile-header">
