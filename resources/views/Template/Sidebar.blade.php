@@ -117,7 +117,7 @@
         <a href="index.html"><i data-feather="printer"></i>Laporan Pajak<i class="fas fa-chevron-right dropdown-icon"></i></a>
         <ul class="">
           @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Verifikasi')
-          <li @if(isset($active_pajakls)){{ $active_pajakls }} @endif><a href="#"><i class="far fa-circle"></i>LS</a></li>
+          <li @if(isset($active_pajakls)){{ $active_pajakls }} @endif><a href="/tampillaporanls"><i class="far fa-circle"></i>LS</a></li>
           <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="#"><i class="far fa-circle"></i>GU</a></li>
           @endif
           @if(Auth::user()->role == 'User')

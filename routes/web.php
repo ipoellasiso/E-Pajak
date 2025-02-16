@@ -6,6 +6,7 @@ use App\Http\Controllers\BpjsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\JenispajakController;
+use App\Http\Controllers\LaporanlsController;
 use App\Http\Controllers\OpdController;
 use App\Http\Controllers\PajakguadminController;
 use App\Http\Controllers\PajakguController;
@@ -180,3 +181,7 @@ Route::get('/tampilpajaklsadminbeluminput', [PajaklsController::class, 'tampilpa
 
 // ======= Export Data  Pajakls =======
 Route::get('/datapajak/export', [PajaklsController::class, 'export'])->middleware('auth:web','checkRole:User,Admin');
+
+//======== Laporan LS =========
+Route::get('/tampillaporanls', [LaporanlsController::class, 'index'])->middleware('auth:web','checkRole:Admin');
+Route::get('/cetaklaporanls', [LaporanlsController::class, 'laporanls'])->name('cetaklaporanls')->middleware('auth:web','checkRole:Admin');
