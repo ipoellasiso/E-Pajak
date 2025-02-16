@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DataExport;
+use App\Imports\DataImport;
+use Maatwebsite\Excel\Row;
 
 class PajaklsController extends Controller
 {
@@ -552,6 +556,12 @@ class PajaklsController extends Controller
         PajaklsModel::where('id', $id)->delete();
 
         return response()->json(['success'=>'Data Berhasil Dihapus']);
+    }
+
+    public function export()
+    {
+        $nama_file = 'Data Pajak-'.date('Y-m-d_H-i-s').'.xlsx';
+        return Excel::download(new DataExport, $nama_file);
     }
 
 }
