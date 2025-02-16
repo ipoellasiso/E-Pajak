@@ -91,25 +91,30 @@
                                                         </select>
                                                     </div>
                                                     <div class="col">
-                                                        <label>Jenis Pajak</label>
-                                                        <select class="form-select" name="jenis_akun" id="jenis_akun" value="">
+                                                        {{-- <label>Jenis Pajak</label>
+                                                        <select class="form-select" name="jenis_pajak" id="jenis_pajak" value="">
                                                             <option value=""></option>
                                                             <option value="Pajak Pertambahan Nilai">Pajak Pertambahan Nilai</option>
                                                             <option value="PPh 21">PPh 21</option>
                                                             <option value="Pajak Penghasilan PS 22">Pajak Penghasilan PS 22</option>
                                                             <option value="Pajak Penghasilan PS 23">Pajak Penghasilan PS 23</option>
                                                             <option value="Pajak Penghasilan PS 24">Pajak Penghasilan PS 24</option>
-                                                        </select>
+                                                        </select> --}}
                                                     </div>
+                                                    
                                                 </div>
 
                                                 <div class="row mb-4">
                                                     <div class="col">
                                                         <button type="submit" class="btn btn-outline-primary m-b-xs">
-                                                            <i class="fa fa-enter"></i>Tampilkan
+                                                            <i class="fa fa-enter"></i>Cetak PDF
+                                                        </button>
+                                                        <button type="submit" class="btn btn-outline-success m-b-xs">
+                                                            <i class="fa fa-enter"></i>Export Excel
                                                         </button>
                                                     </div>
                                                     <div class="col">
+                                                        
                                                     </div>
                                                     <div class="col">
                                                     </div>
