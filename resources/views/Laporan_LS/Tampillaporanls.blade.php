@@ -107,7 +107,7 @@
                                                 <div class="row mb-4">
                                                     <div class="col">
                                                         <button type="submit" class="btn btn-outline-primary m-b-xs">
-                                                            <i class="fa fa-enter"></i>Cetak PDF
+                                                            <i class="fa fa-enter"></i>Tampilkan
                                                         </button>
                                                         <button type="submit" class="btn btn-outline-success m-b-xs">
                                                             <i class="fa fa-enter"></i>Export Excel
