@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
             </div>
               <div class="modal-body">
-                    <form method="post" action="" enctype="multipart/form-data">
+                    <form id="userForm" name="userForm" enctype="multipart/form-data">
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id5">
                             <input type="hidden" name="id_potonganls" id="id_potonganls5">
