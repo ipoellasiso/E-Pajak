@@ -1,0 +1,1 @@
+<div class="p-3 mb-2 rounded-pill bg-dark text-white">Silakan Pilih</div>
