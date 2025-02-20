@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         @include('Template.Head')
+        
     </head>
     <body>
         {{-- <div class='loader'> --}}
@@ -314,6 +315,36 @@
                     }
                 });
             });
+
+            // var getLastMonths = function(n) {
+            // var arr = new Array();
+
+            // arr.push(moment().format('DD-MM-YYYY'));
+
+            // for(var i=1; i< 2; i++){
+            //     arr.push(moment().add(1, 'M').format('DD-MM-YYYY'));
+            // }
+
+            // return arr;
+            // }
+            // var appendOptions = function(arr) {
+            // var html = '';
+            // for(var i=0; i<arr.length; i++) {
+            //     html += '<option value="' + arr[i] + '">' + arr[i] + '</option>'
+            // }
+
+            // document.getElementById('periode').innerHTML = html;
+
+            // }
+            // var months = getLastMonths(4);
+            // appendOptions(months);
+
+            // window.onload = function() {
+            // var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];;
+            // var date = new Date();
+
+            // document.getElementById('periode').innerHTML = months[date.getMonth()] + ' ' + date.getFullYear();
+            // };
         </script>
 
         <script>

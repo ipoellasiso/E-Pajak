@@ -279,12 +279,13 @@ class PajaklsController extends Controller
                 'rek_belanja' => $request->rek_belanja,
                 'nama_npwp' => $request->nama_npwp,
                 'nomor_npwp' => $request->nomor_npwp,
-                'periode' => $request->periode,
+                // 'periode' => $request->periode,
                 // 'bukti_pemby' => $request->bukti_pemby,
                 'status2' => 'Terima',
                 // 'id_potonganls' => $request->id_potonganls,
                 // 'id_potonganls' => $request->id,
                 'id_potonganls' => $request->id,
+                'periode' => date(now())
             ];
 
             if ($files = $request->file('bukti_pemby')){
