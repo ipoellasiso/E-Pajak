@@ -191,3 +191,4 @@ Route::get('/tampilindekslaporanls', [LaporanlsController::class, 'index'])->nam
 Route::get('/tampilindekslaporanls/{id}/tampilawal', [LaporanlsController::class, 'laporanls'])->name('laporan.laporanls.tampil')->middleware('auth:web','checkRole:Admin');;
 Route::get('/tampilindekslaporanls/{id}/tampil', [LaporanlsController::class, 'laporanls'])->name('laporan.laporanls.tampil')->middleware('auth:web','checkRole:Admin');;
 Route::get('/laporanpajakls/opd', [LaporanlsController::class, 'getDataopd'])->middleware('auth:web','checkRole:Admin');
+Route::get('/laporanpajakls/cetak/{id}', [LaporanlsController::class, 'cetak'])->middleware('auth:web','checkRole:Admin');
