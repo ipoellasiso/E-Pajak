@@ -31,15 +31,15 @@
             <br>
 
             <div class="row">
-                <div class="col-2 text-center">
+                <div class="col-1 text-center">
                     <img src="{{ URL::asset('app/assets/images/Palu.png')}}" style="margin-top: 15px; text-align: center; width: 70px; right: 50px;" alt="" />
                 </div>
-                <div class="col-8 align-middle fw-bold text-center text-uppercase" style=" margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
+                <div class="col-10 align-middle fw-bold text-center text-uppercase" style=" margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                     PEMERINTAH KOTA PALU <br>
                     REKAPITULASI PENYETORAN PAJAK <br>
                     TAHUN ANGGARAN 2025<br>
                 </div>
-                <div class="col-2">
+                <div class="col-1">
                 </div>
             </div>
 
@@ -104,9 +104,9 @@
                                         </div>
                                         <div class="col-4 align-middle fw-bold text-center" style=" margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                                             Palu, {{ now()->format('d M Y') }}<br>
-                                            {{-- {{ $bulan->jabatan_bud_kbud }}<br><br><br><br><br><br> --}}
-                                            {{-- {{ $bulan->nama_bud_kbud }}<br> --}}
-                                            {{-- {{ $bulan->nip_bud_kbud }} --}}
+                                            {{ $bulan->jabatan_bud_kbud }}<br><br><br><br><br><br>
+                                            {{ $bulan->nama_bud_kbud }}<br>
+                                            {{ $bulan->nip_bud_kbud }}
                                         </div>
                                     </div>
 

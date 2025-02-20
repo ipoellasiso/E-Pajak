@@ -1,1 +1,2 @@
-<div class="p-3 mb-2 rounded-pill bg-dark text-white">Silakan Pilih</div>
+<div class="p-3 mb-2 bg-dark text-white">Silakan Pilih</div>
+<!-- rounded-pill -->

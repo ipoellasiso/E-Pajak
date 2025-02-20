@@ -31,15 +31,6 @@
                                             <h5 class="card-title">{{ $title }}</h5>
                                         </div>
                                         <div class="col-4">
-                                            {{-- <div class="float-end">
-                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="javascript:void(0)" id="createPajakls" data-toggle="tooltip" data-placement="top" title="klik"> Tambah Data </a>
-                                                    <a class="dropdown-item" href="/datapajak/export" data-toggle="tooltip" data-placement="top" title="klik"> Download Data </a>
-                                                </ul>
-                                            </div> --}}
                                         </div>
                                     </div>
 
@@ -50,7 +41,7 @@
                                         @csrf
                                             <div class="row">
                                                 <div class="row mb-4" id="formcheck">
-                                                    <div class="col">
+                                                    <div class="col-4">
                                                         <label>Filter Berdasarkan</label>
                                                         
                                                             <div class="form-check">
@@ -68,7 +59,7 @@
                                                                 </label>
                                                             </div>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-6">
                                                         <div class="text-center" id="forminput1a">
                                                             <label>Cari Berdasarkan Rincian Penyetoran Pajak</label>
                                                         </div>
@@ -79,16 +70,13 @@
                                                         <br>
                                                         <div id="forminput1d">
                                                             <label>Pilih OPD</label>
-                                                            <select class="form-select" name="status2" id="status2">
-                                                                <option value=""></option> 
-                                                                <option value="">Pilih Semua</option>
-                                                                <option value="Terima">Terima</option>
-                                                                <option value="Tolak">Tolak</option>
+                                                            <select class="form-select" name="nama_skpd" id="nama_skpd" value="" required>
+                                                                <option value=""></option>
                                                             </select>
                                                         </div>
-                                                        {{-- <div id="forminput2d">
+                                                        <div id="forminput2d">
                                                             <label>Pilih OPD2</label>
-                                                            <select class="form-select" name="nama_skpd" id="nama_skpd2" value="" required>
+                                                            <select class="form-select" name="nama_skpd4" id="nama_skpd24" value="" required>
                                                                 <option value=""></option>
                                                                 <option value="">Pilih Semua</option>
                                                                 <option value="411211">411211</option>
@@ -97,7 +85,7 @@
                                                                 <option value="411124">411124</option>
                                                                 <option value="411128">411128</option>
                                                             </select>
-                                                        </div> --}}
+                                                        </div>
                                                         <br>
                                                         <div id="forminput1b">
                                                             <label>Pilih Bulan</label>
@@ -162,17 +150,36 @@
                                                                 <option value="411128">411128</option>
                                                             </select>
                                                         </div>
+                                                        <br>
+                                                        <div id="forminput1e">
+                                                            <label>Pilih Status</label>
+                                                            <select class="form-select" name="status2" id="status2" value="" required>
+                                                                <option value=""></option>
+                                                                <option value="">Pilih Semua</option>
+                                                                <option value="Terima">Terima</option>
+                                                                <option value="Tolak">Tolak</option>
+                                                            </select>
+                                                        </div>
+                                                        <div id="forminput2e">
+                                                            <label>Pilih Status</label>
+                                                            <select class="form-select" name="status2" id="status22" value="" required>
+                                                                <option value=""></option>
+                                                                <option value="">Pilih Semua</option>
+                                                                <option value="Terima">Terima</option>
+                                                                <option value="Tolak">Tolak</option>
+                                                            </select>
+                                                        </div>
 
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-2">
                                                     </div>
                                                     
                                                 </div>
 
                                                 <div class="row mb-4" id="formbutton">
-                                                    <div class="col">
+                                                    <div class="col-4">
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-6 text-right">
                                                         <button type="submit" id="tcari1" class="btn btn-outline-primary m-b-xs caribaru">
                                                             <i class="fa fa-enter"></i>Cari
                                                         </button>
@@ -186,7 +193,7 @@
                                                             <i class="fa fa-enter"></i>Reset 2
                                                         </button>
                                                     </div>
-                                                    <div class="col">
+                                                    <div class="col-2">
                                                     </div>
                                                 </div>
 
@@ -219,37 +226,7 @@
         {{-- ############################## Batas Modal ################################ --}}
 
         {{-- ################################# Fungsi ################################### --}}
-    {{-- <script type="text/javascript">
-        $(document).ready(function(){
-            $(document).ready(function () {
-                var tampilawal = '1';
-                $.ajax({
-                    url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
-                    type: "GET",
-                    data: 'tampilawal=' + tampilawal,
-                    success: function (data) {
-                        $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
-                    }
-                });
-            });
-        });
-
-        $('body').on('click', '.caribaru', function (e) {
-            e.preventDefault();
-            var periode = $('#periode').val();
-            var akun_pajak = $("#akun_pajak").val();
-            var tampilawal = '1';
-            $.ajax({
-                url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampil',
-                type: "GET",
-                data: 'periode=' + periode + '&akun_pajak=' + akun_pajak,
-                success: function (data) {
-                    $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
-                }
-            });
-        });
-
-    </script> --}}
+    
 
         {{-- ############################## Batas Fungsi ################################ --}}
         
@@ -276,15 +253,17 @@
                 e.preventDefault();
                 var periode = $('#periode').val();
                 var akun_pajak = $("#akun_pajak").val();
+                var status2 = $("#status2").val();
+                var nama_skpd = $("#nama_skpd").val();
                 var tampilawal = '1';
                 $.ajax({
                     url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampil',
                     type: "GET",
-                    data: 'periode=' + periode + '&status2=' + status2,
-                    success: function (data) {
-                        $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
-                    }
-                });
+                    data: 'nama_skpd=' + nama_skpd + '&periode=' + periode + '&akun_pajak=' + akun_pajak + '&status2=' + status2,
+                        success: function (data) {
+                            $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
+                        }
+                    });
             });
 
             $('body').on('click', '.resetbaru', function () {
@@ -292,10 +271,12 @@
                 $('#forminput1b').hide(); 
                 $('#forminput1c').hide(); 
                 $('#forminput1d').hide();
+                $('#forminput1e').hide();
                 $('#forminput2a').hide(); 
                 $('#forminput2b').hide(); 
                 $('#forminput2c').hide(); 
                 $('#forminput2d').hide(); 
+                $('#forminput2e').hide();
                 $('#tcari1').hide(); 
                 $('#treset1').hide(); 
                 $('#tcari2').hide(); 
@@ -304,6 +285,10 @@
                 $('#akun_pajak').val('').trigger('change');
                 $('#periode2').val('').trigger('change');
                 $('#akun_pajak2').val('').trigger('change');
+                $('#nama_skpd').val('').trigger('change');
+                $('#status2').val('').trigger('change');
+                $('#nama_skpd2').val('').trigger('change');
+                $('#status22').val('').trigger('change');
                 var tampilawal = '1';
                 $.ajax({
                         url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
@@ -337,10 +322,12 @@
             $('#forminput1b').hide(); 
             $('#forminput1c').hide(); 
             $('#forminput1d').hide();
+            $('#forminput1e').hide();
             $('#forminput2a').hide(); 
             $('#forminput2b').hide(); 
             $('#forminput2c').hide(); 
             $('#forminput2d').hide(); 
+            $('#forminput2e').hide();
             $('#tcari1').hide(); 
             $('#treset1').hide(); 
             $('#tcari2').hide(); 
@@ -351,12 +338,14 @@
                     $('#forminput1b').show(); 
                     $('#forminput1c').show();
                     $('#forminput1d').show();
+                    $('#forminput1e').show();
                     $('#tcari1').show(); 
                     $('#treset1').show();
                     $('#forminput2a').hide();
                     $('#forminput2b').hide(); 
                     $('#forminput2c').hide();
                     $('#forminput2d').hide();
+                    $('#forminput2e').hide();
                     $('#tcari2').hide(); 
                     $('#treset2').hide();                    
                 } 
@@ -365,12 +354,14 @@
                     $('#forminput2b').show(); 
                     $('#forminput2c').show();
                     $('#forminput2d').show();
+                    $('#forminput2e').show();
                     $('#tcari2').show(); 
                     $('#treset2').show();
                     $('#forminput1a').hide();
                     $('#forminput1b').hide(); 
                     $('#forminput1c').hide();
                     $('#forminput1d').hide();
+                    $('#forminput1e').hide();
                     $('#tcari1').hide(); 
                     $('#treset1').hide();
                 }
