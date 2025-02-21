@@ -207,7 +207,7 @@ class PajakguController extends Controller
             foreach ($dtidopd as $row1){
                 $id_opd = $row1->nama_opd;
             }
-
+            // dd($id_opd);
         request()->validate([
             'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
         ]);

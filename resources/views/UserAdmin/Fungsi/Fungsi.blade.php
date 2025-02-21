@@ -236,7 +236,7 @@
             method: 'GET',
             success: function(data) {
                 $.each(data, function(index, opd) {
-                    $('#opd').append(new Option(opd.nama_opd, opd.nama_opd)); // Ganti 'nama' dengan kolom yang sesuai
+                    $('#opd').append(new Option(opd.nama_opd, opd.id)); // Ganti 'nama' dengan kolom yang sesuai
                 });
             },
             error: function(xhr) {
