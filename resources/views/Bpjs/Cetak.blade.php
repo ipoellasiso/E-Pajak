@@ -41,7 +41,7 @@
                                     <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
                                     <font style="font-size: 13pt;font-weight: bold;"><center>BADAN PENGELOLA KEUANGAN DAN ASET DAERAH KOTA PALU</center></font>
                                     {{-- <font style="font-size: 13pt;font-weight: bold;"><center>KOTA PALU</center></font> --}}
-                                    <font style="font-size: 11pt;font-weight: ;"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font>
+                                    <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font>
                                 </td>
                                 {{-- <td colspan="1" style="border: 0px;width: 25%;"> --}}
                                     {{-- <font style="font-size: 12pt;font-weight: bold;">No Barang Masuk :  </font> <br/>

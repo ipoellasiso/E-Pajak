@@ -243,7 +243,22 @@
                 console.error(xhr);
             }
         });
-    });
+        });
+
+        $(document).ready(function() {
+        $.ajax({
+            url: '/user/opd',
+            method: 'GET',
+            success: function(data) {
+                $.each(data, function(index, opd) {
+                    $('#namaopd2').append(new Option(opd.nama_opd, opd.nama_opd)); // Ganti 'nama' dengan kolom yang sesuai
+                });
+            },
+            error: function(xhr) {
+                console.error(xhr);
+            }
+        });
+        });
 
 });
 

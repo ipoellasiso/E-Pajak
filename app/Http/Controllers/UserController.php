@@ -130,7 +130,7 @@ class UserController extends Controller
                 'password'  => $hashPassword,
                 'role'  => $request->role,
                 'is_active' => 'Nonaktif',
-                'nama_opd'  => $request->id_opd,
+                'nama_opd'  => $request->nama_opd1,
             ];
 
             if ($files = $request->file('gambar')){

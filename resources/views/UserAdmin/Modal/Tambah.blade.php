@@ -13,8 +13,17 @@
                             <!-- <div class="row"> -->
                                 <!-- <div class="row"> -->
                                     <div class="col mb-4">
-                                        <label>OPD</label>
+                                        <label>Pilih OPD</label>
                                         <select class="form-select" name="id_opd" id="opd" value="">
+                                            <option value=""></option>
+                                            <!-- <option value="1">Dinas Pendidikan dan Kebudayaan</option>
+                                            <option value="2">Dinas Kesehatan</option>
+                                            <option value="3">Dinas Pekerjaan Umum</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <label>Konfirmasi OPD</label>
+                                        <select class="form-select" name="nama_opd1" id="namaopd2" value="">
                                             <option value=""></option>
                                             <!-- <option value="1">Dinas Pendidikan dan Kebudayaan</option>
                                             <option value="2">Dinas Kesehatan</option>

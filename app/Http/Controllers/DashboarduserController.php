@@ -26,10 +26,11 @@ class DashboarduserController extends Controller
             'breadcumd1'           => 'Dashboard',
             'breadcumd2'           => 'Dashboard',
             'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
-            'opd'                  => DB::table('users')
+            'opd'                  => DB::table('opd')
                                     // ->join('opd',  'opd.id', 'users.id_opd')
                                     // ->select('fullname','nama_opd')
                                     ->where('nama_opd', auth()->user()->nama_opd)
+                                    // ->join('opd', 'users.id_opd', 'opd.id',)
                                     ->first(),
             'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
             'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),

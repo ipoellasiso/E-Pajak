@@ -42,8 +42,8 @@ class UseradminController extends Controller
             //             ->get();
 
             $datauser = DB::table('users')
-                        ->select('users.fullname', 'users.email', 'users.id_opd', 'users.role', 'users.gambar', 'is_active', 'users.id', 'users.nama_opd')
-                        // ->join('opd', 'users.id_opd', 'opd.id',)
+                        ->select('users.fullname', 'users.email', 'users.id_opd', 'users.role', 'users.gambar', 'is_active', 'users.id', 'opd.nama_opd')
+                        ->join('opd', 'users.id_opd', 'opd.id',)
                         // ->where('nama_opd', auth()->user()->nama_opd)
                         ->get();
 
@@ -130,7 +130,7 @@ class UseradminController extends Controller
                 'password'  => $hashPassword,
                 'role'  => $request->role,
                 'is_active' => 'Nonaktif',
-                'nama_opd'  => $request->id_opd,
+                'nama_opd'  => $request->nama_opd1,
             ];
 
             if ($files = $request->file('gambar')){
