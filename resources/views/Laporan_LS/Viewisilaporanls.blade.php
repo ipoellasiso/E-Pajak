@@ -15,9 +15,9 @@
                     <div class="col-8">
                     </div>
                     <div class="col-2">
-                        <a target="blank" href="laporanpajakls/cetak" type="submit" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
+                        <button id="cetakpdfls" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
-                        </a>
+                        </button>
                         <button type="submit" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
                         </button>
@@ -48,7 +48,7 @@
                                     <div class="card">
                                         <div class="card-body table-responsive">
                                             <table id="" class="display table table-bordered" style="width:100%">
-                                                <thead>
+                                                <thead class="table-dark">
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama OPD</th>
@@ -121,7 +121,19 @@
         {{-- ############################## Batas Modal ################################ --}}
 
         {{-- ################################# Fungsi ################################### --}}
-
+        <script>
+        $(document).ready(function(){
+                $("#cetakpdfls").click(function(e){
+                    var periode = $('#periode').val();
+                    var akun_pajak = $("#akun_pajak").val();
+                    var status2 = $("#status2").val();
+                    var nama_skpd = $("#nama_skpd").val();
+                    // alert( nama_skpd + "" + periode + "" + akun_pajak + "" + status2);
+                    params = "?page=laporan&nama_skpd=" + nama_skpd + "&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
+                    window.open("/laporanpajakls-cetak"+params,"_blank");
+                });
+            });
+        </script>
         {{-- ############################## Batas Fungsi ################################ --}}
         
         

@@ -267,6 +267,12 @@
                     });
             });
 
+            $(document).ready(function(){
+                $("#cetakpdfls").click(function(e){
+                    alert('a');
+                });
+            });
+
             $('body').on('click', '.resetbaru', function () {
                 $('#forminput1a').hide();
                 $('#forminput1b').hide(); 

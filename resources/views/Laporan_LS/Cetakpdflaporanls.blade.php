@@ -9,8 +9,8 @@
         {{-- </div> --}}
 
         <div class="page-container">
-            {{-- @include('Template.Navbar') --}}
-            {{-- @include('Template.Sidebar') --}}
+            @include('Template.Navbar')
+            @include('Template.Sidebar')
             
             {{-- ######################### Isi Tampil Pajak LS ########################## --}}
             <div class="">
