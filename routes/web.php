@@ -193,4 +193,4 @@ Route::get('/tampilindekslaporanls/{id}/tampil', [LaporanlsController::class, 'l
 Route::get('/laporanpajakls/opd', [LaporanlsController::class, 'getDataopd'])->middleware('auth:web','checkRole:Admin');
 Route::get('/laporanpajakls-cetak', [LaporanlsController::class, 'cetak'])->name('laporanpajakls-cetak')->middleware('auth:web','checkRole:Admin');
 
-// Route::get('/downloadlaporanpdf', [LaporanlsController::class, 'downloadpdf'])->name('laporan.downloadlaporanpdf')->middleware('auth:web','checkRole:Admin');
+Route::get('/downloadlaporanexcel', [LaporanlsController::class, 'Exportexcells'])->name('laporan.downloadlaporanexcel')->middleware('auth:web','checkRole:Admin');

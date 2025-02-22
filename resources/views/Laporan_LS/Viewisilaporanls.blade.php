@@ -18,9 +18,9 @@
                         <button id="cetakpdfls" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
                         </button>
-                        <button type="submit" class="btn btn-outline-info m-b-xs">
+                        <a href="{{ Route('laporan.downloadlaporanexcel') }}" type="submit" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
-                        </button>
+                        </a>
                     </div>
                 </div>
             
