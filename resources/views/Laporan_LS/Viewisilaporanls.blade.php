@@ -18,9 +18,9 @@
                         <button id="cetakpdfls" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
                         </button>
-                        <a href="{{ Route('laporan.downloadlaporanexcel') }}" type="submit" class="btn btn-outline-info m-b-xs">
+                        <button id="cetakexcells" target="blank" type="button" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
-                        </a>
+                        </button>
                     </div>
                 </div>
             
@@ -133,6 +133,18 @@
                     window.open("/laporanpajakls-cetak"+params,"_blank");
                 });
             });
+
+        $(document).ready(function(){
+            $("#cetakexcells").click(function(e){
+                var periode = $('#periode').val();
+                var akun_pajak = $("#akun_pajak").val();
+                var status2 = $("#status2").val();
+                var nama_skpd = $("#nama_skpd").val();
+                // alert( nama_skpd + "" + periode + "" + akun_pajak + "" + status2);
+                params = "?page=downloadexcel&nama_skpd=" + nama_skpd + "&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
+                window.open("/laporan.downloadlaporanexcel"+params,"_blank");
+            });
+        });
         </script>
         {{-- ############################## Batas Fungsi ################################ --}}
         
