@@ -188,9 +188,13 @@ Route::get('/cetaklaporanls', [LaporanlsController::class, 'laporanls'])->name('
 
 Route::get('/tampilindekslaporanls', [LaporanlsController::class, 'index'])->name('laporan.pajakls.index')->middleware('auth:web','checkRole:Admin');
 // Route::get('/tampilindekslaporanls', [LaporanlsController::class, 'index'])->name('laporan.pajakls.index')->middleware('auth:web','checkRole:Admin');
-Route::get('/tampilindekslaporanls/{id}/tampilawal', [LaporanlsController::class, 'laporanls'])->name('laporan.laporanls.tampil')->middleware('auth:web','checkRole:Admin');;
-Route::get('/tampilindekslaporanls/{id}/tampil', [LaporanlsController::class, 'laporanls'])->name('laporan.laporanls.tampil')->middleware('auth:web','checkRole:Admin');;
+Route::get('/tampilindekslaporanls/{id}/tampilawal', [LaporanlsController::class, 'laporanls'])->name('laporan.laporanls.tampil')->middleware('auth:web','checkRole:Admin');
+Route::get('/tampilindekslaporanls/{id}/tampil', [LaporanlsController::class, 'laporanls'])->name('laporan.laporanls.tampil')->middleware('auth:web','checkRole:Admin');
 Route::get('/laporanpajakls/opd', [LaporanlsController::class, 'getDataopd'])->middleware('auth:web','checkRole:Admin');
 Route::get('/laporanpajakls-cetak', [LaporanlsController::class, 'cetak'])->name('laporanpajakls-cetak')->middleware('auth:web','checkRole:Admin');
 
 Route::get('/downloadlaporanexcel', [LaporanlsController::class, 'Exportexcells'])->name('laporan.downloadlaporanexcel')->middleware('auth:web','checkRole:Admin');
+
+// Laporan Ls Rekap 
+Route::get('/tampilindekslaporanls/{id}/tampilawalrekap', [LaporanlsController::class, 'laporanlsrekap'])->name('laporan.laporanlsrekap.tampilrekap')->middleware('auth:web','checkRole:Admin');
+Route::get('/tampilindekslaporanls/{id}/tampilrekap', [LaporanlsController::class, 'laporanlsrekap'])->name('laporan.laporanlsrekap.tampilrekap')->middleware('auth:web','checkRole:Admin');

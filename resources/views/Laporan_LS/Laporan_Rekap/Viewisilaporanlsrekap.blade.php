@@ -52,33 +52,33 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama OPD</th>
-                                                        <th>Nomor SPM</th>
+                                                        {{-- <th>Nomor SPM</th>
                                                         <th>Tanggal SP2D</th>
                                                         <th>Nomor SP2D</th>
                                                         <th>Nilai SP2D</th>
                                                         <th>Akun Pajak</th>
-                                                        <th>Jenis Pajak</th>
-                                                        <th>Nilai Pajak</th>
+                                                        <th>Jenis Pajak</th> --}}
+                                                        {{-- <th>Nilai Pajak</th>
                                                         <th>E-Biling</th>
-                                                        <th>NTPN</th>
+                                                        <th>NTPN</th> --}}
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @php $total = 0; @endphp
                                                     @php $no = 1; @endphp
-                                                    @foreach ($datapajakls as $d )
+                                                    @foreach ($datapajaklsrekap as $d )
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
                                                             <td>{{ $d->nama_skpd }}</td>
-                                                            <td>{{ $d->nomor_spm }}</td>
+                                                            {{-- <td>{{ $d->nomor_spm }}</td>
                                                             <td>{{ $d->tanggal_sp2d }}</td>
                                                             <td>{{ $d->nomor_sp2d }}</td>
                                                             <td>{{ number_format($d->nilai_sp2d) }}</td>
                                                             <td>{{ $d->akun_pajak }}</td>
-                                                            <td>{{ $d->jenis_pajak }}</td>
-                                                            <td>{{ number_format($d->nilai_pajak) }}</td>
+                                                            <td>{{ $d->jenis_pajak }}</td> --}}
+                                                            {{-- <td>{{ number_format($d->nilai_pajak) }}</td>
                                                             <td>{{ $d->ebilling }}</td>
-                                                            <td>{{ $d->ntpn }}</td>
+                                                            <td>{{ $d->ntpn }}</td> --}}
                                                         </tr>
                                                         
                                                     @endforeach
@@ -87,7 +87,7 @@
                                                     <tr>
                                                         <th colspan="8" style="text-align: right">Total Pajak</th>
                                             
-                                                        <td style="text-align: right"> {{ number_format($total = $datapajakls->sum('nilai_pajak'), 0) }}</td>
+                                                        <td style="text-align: right"> {{ number_format($total = $datapajaklsrekap->sum('nilai_pajak'), 0) }}</td>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -100,9 +100,9 @@
                                                 </div>
                                                 <div class="col-4 align-middle fw-bold text-center" style=" margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                                                     Palu, {{ now()->format('d M Y') }}<br>
-                                                    {{ $bulan->jabatan_bud_kbud }}<br><br><br><br><br><br>
-                                                    {{ $bulan->nama_bud_kbud }}<br>
-                                                    NIP. {{ $bulan->nip_bud_kbud }}
+                                                    {{ $bulanrekap->jabatan_bud_kbud }}<br><br><br><br><br><br>
+                                                    {{ $bulanrekap->nama_bud_kbud }}<br>
+                                                    NIP. {{ $bulanrekap->nip_bud_kbud }}
                                                 </div>
                                             </div>
 
