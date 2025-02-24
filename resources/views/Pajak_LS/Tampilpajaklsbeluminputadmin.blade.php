@@ -44,18 +44,18 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table id="data-table" class="tabelpajaklssipdribeluminput1 table table-hover">
+                                        <table id="zero-conf" class="tabelpajaklssipdribeluminput1 table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">No</th>
+                                                    <th style="width: 1%;" class="text-center">No</th>
                                                     <!-- <th></th> -->
                                                     {{-- <th>Nomor SPM</th> --}}
-                                                    <th>Tanggal SP2D</th>
-                                                    <th>Nomor SP2D</th>
-                                                    <th>Nilai SP2D</th>
-                                                    <th>Jenis Pajak</th>
-                                                    <th>Nilai Pajak</th>
-                                                    <th>E-Biling</th>
+                                                    <th style="width: 5%;">Tanggal SP2D</th>
+                                                    <th style="width: 28%;">Nomor SP2D</th>
+                                                    <th style="width: 10%;">Nilai SP2D</th>
+                                                    <th style="width: 15%;">Jenis Pajak</th>
+                                                    <th style="width: 10%;">Nilai Pajak</th>
+                                                    <th style="width: 13%;">E-Biling</th>
                                                     
                                                 </tr>
                                             </thead>
