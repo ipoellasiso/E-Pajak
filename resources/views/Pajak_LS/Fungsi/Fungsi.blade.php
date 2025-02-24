@@ -35,6 +35,8 @@
             {data: 'ntpn', name: 'ntpn'},
             {data: 'status2', name: 'status2'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'keterangan', name: 'keterangan'},
+
         ]
     });
 

@@ -64,6 +64,8 @@
                                                 <th>NTPN</th>
                                                 <th></th>
                                                 <th class="text-center">Action</th>
+                                                <th></th>
+                                                
                                             </tr>
                                         </thead>
                                         {{-- <tfoot>

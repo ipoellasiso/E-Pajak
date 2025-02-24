@@ -93,18 +93,18 @@
                                                             <select class="form-select" name="periode" id="periode" value="" required>
                                                                 <option value=""></option>
                                                                 <option value="">Pilih Semua</option>
-                                                                <option value="Januari">Januari</option>
-                                                                <option value="Februari">Februari</option>
-                                                                <option value="Maret">Maret</option>
-                                                                <option value="April">April</option>
+                                                                <option value="Jan">Jan</option>
+                                                                <option value="Feb">Feb</option>
+                                                                <option value="Mar">Mar</option>
+                                                                <option value="Apr">Apr</option>
                                                                 <option value="Mei">Mei</option>
-                                                                <option value="Juni">Juni</option>
-                                                                <option value="Juli">Juli</option>
-                                                                <option value="Agustus">Agustus</option>
-                                                                <option value="September">September</option>
-                                                                <option value="Oktober">Oktober</option>
-                                                                <option value="November">November</option>
-                                                                <option value="Desember">Desember</option>
+                                                                <option value="Jun">Jun</option>
+                                                                <option value="Jul">Jul</option>
+                                                                <option value="Agu">Agu</option>
+                                                                <option value="Sep">Sep</option>
+                                                                <option value="Okt">Okt</option>
+                                                                <option value="Nov">Nov</option>
+                                                                <option value="Des">Des</option>
                                                             </select>
                                                         </div>
                                                         <div id="forminput2b">
@@ -112,18 +112,18 @@
                                                             <select class="form-select" name="periode" id="periode2" value="" required>
                                                                 <option value=""></option>
                                                                 <option value="">Pilih Semua</option>
-                                                                <option value="Januari">Januari</option>
-                                                                <option value="Februari">Februari</option>
-                                                                <option value="Maret">Maret</option>
-                                                                <option value="April">April</option>
+                                                                <option value="Jan">Jan</option>
+                                                                <option value="Feb">Feb</option>
+                                                                <option value="Mar">Mar</option>
+                                                                <option value="Apr">Apr</option>
                                                                 <option value="Mei">Mei</option>
-                                                                <option value="Juni">Juni</option>
-                                                                <option value="Juli">Juli</option>
-                                                                <option value="Agustus">Agustus</option>
-                                                                <option value="September">September</option>
-                                                                <option value="Oktober">Oktober</option>
-                                                                <option value="November">November</option>
-                                                                <option value="Desember">Desember</option>
+                                                                <option value="Jun">Jun</option>
+                                                                <option value="Jul">Jul</option>
+                                                                <option value="Agu">Agu</option>
+                                                                <option value="Sep">Sep</option>
+                                                                <option value="Okt">Okt</option>
+                                                                <option value="Nov">Nov</option>
+                                                                <option value="Des">Des</option>
                                                             </select>
                                                         </div>
                                                         <br>

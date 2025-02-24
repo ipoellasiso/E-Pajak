@@ -69,7 +69,7 @@
                                 <div class="row mb-4">
                                     <div class="col">
                                         <label>Upload Foto</label>
-                                        <input type="file" class="form-control" name="bukti_pemby" id="bukti_pemby" accept="image/*" onchange="readURL(this);">
+                                        <input type="file" class="form-control" name="bukti_pemby" id="bukti_pemby" onchange="readURL(this);">
                                         <input type="hidden" name="hidden_image" id="hidden_image">
                                         <small>Upload Foto Harus Format JPG,JPEG / PNS dan Max File 5MB </small>
                                     </div>

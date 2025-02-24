@@ -25,6 +25,7 @@ class PajaklsModel extends Model
         'updated_at',
         'id_potonganls',
         'periode',
+        'no_penguji',
     ];
 
     public function ppnls($id_opd)

@@ -538,8 +538,8 @@ class PajakguController extends Controller
 
     public function destroy($id)
     {
-        $data = PajakguModel::where('id',$id)->first(['bukti_pemby']);
-        unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
+        // $data = PajakguModel::where('id',$id)->first(['bukti_pemby']);
+        // unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
 
         PajakguModel::where('id', $id)->delete();
 
