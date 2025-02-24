@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PajakguModel;
 use App\Models\PotonganguModel;
 use App\Models\Sp2dModel;
 use App\Models\TbpModel;
@@ -310,6 +311,10 @@ class TarikdataController extends Controller
                         ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
                         ->get();
 
+                        // Tombol Hapus yg ada dibawah dipindahkan sementara
+                        // <a href="javascript:void(0)" data-id="'.$row->id.'" class="deletepengajuantbplist btn btn-outline-danger m-b-xs"> <i class="fa fa-trash"></i> Hapus
+                        //  </a>
+
             return DataTables::of($dt1)
                     ->addIndexColumn()
                     ->addColumn('nilai_tbp', function($row) {
@@ -317,7 +322,7 @@ class TarikdataController extends Controller
                     })
                     ->addColumn('status', function($row){
                             $btn1 = '
-                                    <a href="javascript:void(0)" data-id="'.$row->id.'" class="deletepengajuantbplist btn btn-outline-danger m-b-xs"> <i class="fa fa-trash"></i> Hapus
+                                    <a href="javascript:void(0)" data-id="'.$row->id.'" class="btn btn-outline-danger m-b-xs"> <i class="fa fa-trash"></i> Hapus
                                     </a>
                                   ';
                             return $btn1;
@@ -578,6 +583,11 @@ class TarikdataController extends Controller
         PotonganguModel::where('id',$request->get('id'))
         ->update([
             'status4' => 'Belum',
+        ]);
+
+        PajakguModel::where('ebilling',$request->get('ebilling'))
+        ->update([
+            'status1' => 'Tolak',
         ]);
 
         return redirect('/tarikpajaksipdritbp')->with('success','Data Berhasil Dirubah');
