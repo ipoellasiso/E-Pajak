@@ -58,6 +58,8 @@
                                                 <th>NTPN</th>
                                                 <th class="text-center">Status</th>
                                                 <th class="text-center">Action</th>
+                                                <th>Ket</th>
+
                                             </tr>
                                         </thead>
                                         {{-- <tfoot>

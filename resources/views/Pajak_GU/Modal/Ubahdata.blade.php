@@ -103,6 +103,24 @@
                                                         <label>Nilai Pajak</label>
                                                         <input type="text" class="form-control amount" name="nilai_pajak" id="nilai_pajak" value="{{ $dtpajakgu->nilai_pajak }}" placeholder="" required>
                                                     </div>
+                                                    <div class="col">
+                                                        <label>Bulan</label>
+                                                        <select class="form-select" name="periode" id="periode" value="">
+                                                            <option value="{{ $dtpajakgu->periode }}">{{ $dtpajakgu->periode }}</option>
+                                                            <option value="Jan">Jan</option>
+                                                            <option value="Feb">Feb</option>
+                                                            <option value="Mar">Mar</option>
+                                                            <option value="Apr">Apr</option>
+                                                            <option value="Mei">Mei</option>
+                                                            <option value="Jun">Jun</option>
+                                                            <option value="Jul">Jul</option>
+                                                            <option value="Agu">Agu</option>
+                                                            <option value="Sep">Sep</option>
+                                                            <option value="Okt">Okt</option>
+                                                            <option value="Nov">Nov</option>
+                                                            <option value="Des">Des</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="row">
