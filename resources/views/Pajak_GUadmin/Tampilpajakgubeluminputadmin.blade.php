@@ -47,8 +47,8 @@
                                         <table id="zero-confa" class="tabelspmsp2dgusipdri display table table-hover" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <!-- <th class="text-center">No</th> -->
-                                                    <th>Aksi</th>
+                                                    <th class="text-center">No</th>
+                                                    {{-- <th>Aksi</th> --}}
                                                     <th>Nomor SPM</th>
                                                     <th>Tanggal SP2D</th>
                                                     <th>Nomor SP2D</th>
@@ -66,26 +66,6 @@
                                         </table>
                                     </div>
                             </div>
-                            <!-- <div class="row invoice-last">
-                                <div class="col-9">
-                                  {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut ante id elit molestie<br>dapibus id sollicitudin vel, luctus sit amet justo</p> --}}
-                                </div>
-                                <div class="col-3">
-                                    <div class="invoice-info">
-                                        {{-- @foreach ($total as $d) --}}
-                                        <p>Pajak Pertambahan Nilai <span>{{ number_format($total_ppngu) }}</span></p>
-                                            <p>PPH 21<span>{{ number_format($total_pph21gu) }}</span></p>
-                                            <p>Pajak Penghasilan Ps 22<span>{{ number_format($total_pph22gu) }}</span></p>
-                                            <p>Pajak Penghasilan Ps 23<span>{{ number_format($total_pph23gu) }}</span></p>
-                                            <p>Pajak Penghasilan Ps 24<span>{{ number_format($total_pph24gu) }}</span></p>
-                                            <p class="bold">Total Pajak <span>{{ number_format($total_pajakgu) }}</span></p>
-                                        {{-- @endforeach --}}
-                                        <div class="d-grid gap-2">
-                                          {{-- <button class="btn btn-danger m-t-xs" type="button">Print Invoice</button> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>

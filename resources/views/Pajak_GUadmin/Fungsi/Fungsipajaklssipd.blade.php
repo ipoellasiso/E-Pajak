@@ -20,10 +20,10 @@
     var table = $('.tabelspmsp2dgusipdri').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "/tampilspmsp2dgusipd",
+        ajax: "/tampilpajakguadminbeluminput",
         columns: [
-            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'status2', name: 'status2'},
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            // {data: 'status2', name: 'status2'},
             {data: 'nomor_spm', name: 'nomor_spm'},
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},

@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
 
-                                    <table id="zero-conf" class="tabelpajakgu display table table-hover" style="width:100%">
+                                    <table id="zero-conf" class="tabelpajakgu1 display table table-hover" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
@@ -52,12 +52,15 @@
                                                 <th>Tanggal SP2D</th>
                                                 <th>Nomor SP2D</th>
                                                 <th>Nilai SP2D</th>
+                                                <th>Rek. Belanja</th>
+                                                <th>Akun Pajak</th>
                                                 <th>Jenis Pajak</th>
                                                 <th>Nilai Pajak</th>
                                                 <th>E-Biling</th>
                                                 <th>NTPN</th>
                                                 <th class="text-center">Status</th>
                                                 <th class="text-center">Action</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         {{-- <tfoot>

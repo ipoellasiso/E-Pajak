@@ -17,10 +17,10 @@
       Render DataTable
       --------------------------------------------
       --------------------------------------------*/
-    var table = $('.tabelpajakgu').DataTable({
+    var table = $('.tabelpajakgu1').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "/tampilpajakgu",
+        ajax: "/tampilpajakguadmin",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'id_opd', name: 'id_opd'},
@@ -28,12 +28,16 @@
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
             {data: 'nilai_sp2d', name: 'nilai_sp2d'},
+            {data: 'rek_belanja', name: 'rek_belanja'},
+            {data: 'akun_pajak', name: 'akun_pajak'},
             {data: 'jenis_pajak', name: 'jenis_pajak'},
             {data: 'nilai_pajak', name: 'nilai_pajak'},
             {data: 'ebilling', name: 'ebilling'},
             {data: 'ntpn', name: 'ntpn'},
             {data: 'status2', name: 'status2'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'periode', name: 'periode'},
+
         ]
     });
 
