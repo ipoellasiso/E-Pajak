@@ -151,6 +151,7 @@ class LaporanlsController extends Controller
                             ->select('pajakkpp.ebilling', 'sp2d.tanggal_sp2d', 'pajakkpp.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkpp.nomor_npwp', 'pajakkpp.akun_pajak', 'pajakkpp.ntpn', 'pajakkpp.jenis_pajak', 'potongan2.nilai_pajak','pajakkpp.rek_belanja','pajakkpp.nama_npwp', 'pajakkpp.id_potonganls', 'pajakkpp.id', 'potongan2.status1', 'pajakkpp.status2', 'pajakkpp.created_at', 'pajakkpp.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkpp.nilai_pajak', 'potongan2.id_pajakkpp','sp2d.nama_skpd', 'pajakkpp.periode')
                             ->join('potongan2',  'potongan2.id', 'pajakkpp.id_potonganls')
                             ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
+                            // ->where('pajakkpp.akun_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->sum('nilai_pajak')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkpp.periode','like',"%".$request->periode2."%")
                             ->where('pajakkpp.status2','like', "%".$request->status22."%")
