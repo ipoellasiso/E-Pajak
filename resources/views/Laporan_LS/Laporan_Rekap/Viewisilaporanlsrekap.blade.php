@@ -39,86 +39,97 @@
             
                 <br>
             
+                <div class="row" border="0" align="center" style="width: 200%">
+                    <div class="col-1 text-center" align="center" style="width: 15%">
+                        <td colspan="0" style="width: 5%;"><center><img src="/theme/assets/images/13.png" width="100" height="100"></center></td>
+                    </div>
+                    <div class="col-4 align-middle fw-bold text-center" style="width: 20%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
+                        <td colspan="6" style="width: 55%;">
+                            <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
+                            <font style="font-size: 13pt;font-weight: bold;"><center>BADAN PENGELOLA KEUANGAN DAN ASET DAERAH KOTA PALU</center></font>
+                            {{-- <font style="font-size: 13pt;font-weight: bold;"><center>KOTA PALU</center></font> --}}
+                            <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font>
+                        </td>
+                    </div>
+                    <div class="col-5">
+
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table-bordered" border="1" cellpadding="10" align="center" cellspacing="20" style="width: 80%">
-                                        <tr>
-                                            <td colspan="" style="width: 5%;"><center><img src="/theme/assets/images/13.png" width="100" height="100"></center></td>
-                                            <td colspan="6" style="width: 55%;">
-                                                <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
-                                                <font style="font-size: 13pt;font-weight: bold;"><center>BADAN PENGELOLA KEUANGAN DAN ASET DAERAH KOTA PALU</center></font>
-                                                {{-- <font style="font-size: 13pt;font-weight: bold;"><center>KOTA PALU</center></font> --}}
-                                                <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font>
-                                            </td>
-                                            {{-- <td colspan="1" style="border: 0px;width: 25%;"> --}}
-                                                {{-- <font style="font-size: 12pt;font-weight: bold;">No Barang Masuk :  </font> <br/>
-                                                <font style="font-size: 12pt;font-weight: bold;">Tanggal Masuk  </font> --}}
-                                            {{-- </td> --}}
-                                        </tr>
+                                        
+                                    <table class="table-bordered" border="0" cellpadding="10" align="center" cellspacing="20" style="width: 80%">
+                                        
             
                                         <!-- DATA SUPPLIER -->
-                                        <tr style="border: 10;">
+                                        <!-- <tr style="border: 10;">
                                             <td colspan="6"></td>
-                                        </tr>
+                                        </tr> -->
             
                                         <!-- DATA BARANG -->
             
-                                        <tr style="border: 10;">
+                                        <!-- <tr style="border: 10;">
                                             <td colspan="6"></td>
-                                        </tr>
-            
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nomor SP2D</th>
-                                            <th>Nilai SP2D</th>
-                                            <th>Jenis Potongan</th>
-                                        </tr>
-                                        @php $no=1; @endphp
-                                        @foreach ($datapajaklsrekap as $row)
-                                        <tr>
-                                            <td style="width: 2%">{{ $no++ }}</td>
-                                            <td style="width: 25%">{{ $row->nomor_sp2d }}</td>
-                                            <td style="width: 20%">Rp. {{ number_format($row->nilai_sp2d) }}</td>
-                                            <td style="width: 20%">{{ $row->jenis_pajak }}</td>
-                                        </tr>
-                                        @endforeach
-                                        <tr style="border: 10;" align="left">
-                                            <td colspan="5" align="right"><b>TOTAL</b></td>
-                                            {{-- <td><b>Rp. {{ number_format($datapajaklsrekap->nilai_pajak) }}</b></td> --}}
-                                        </tr>
-            
-                                        <tr>
-                                            <td colspan="6" style="border-bottom: 0;"></td>
-                                        </tr>
-                                        
-                                        <tr style="border: 10;">
-                                            <td style="border: 0;" colspan="3"><center><b></b></center></td>
-                                            <td style="border: 0;" colspan="3"><center><b>{{ $bulanrekap->jabatan_bud_kbud }}</b></center></td>
-                                        </tr>
-                                        
-                                        <tr style="border: 10;">
-                                            <td style="border: 0;" colspan="3" align="center">
-                                                <br/><br/><br/>
-                                            </td>
-                                            <td style="border: 0;" colspan="3" align="center">
-                                                <br/><br/><br/>
-                                            </td>
-                                        </tr>
-            
-                                        <tr>
-                                            <td style="border: 0;" colspan="3"><center><u><b></b></u></center></td>
-                                            <td style="border: 0;" colspan="3">
-                                            <center>
-                                                <u><b>{{ $bulanrekap->nama_bud_kbud }}</b></u><br>
-                                                <b>NIP. {{ $bulanrekap->nip_bud_kbud }}</b>
-                                            </center></td>
-                                        </tr>
+                                        </tr> -->
+                                        <br>
+                                        <tbody>
+                                            <tr>
+                                                <th>No</th>
+                                                <th class="text-center">Kode Akun Pajak</th>
+                                                <th class="text-center">Jenis Pajak</th>
+                                                <th class="text-center">Nilai Pajak</th>
+                                            </tr>
+                                            <!-- @php $no=1; @endphp -->
+                                            <tr>
+                                                <td style="width: 2%">1</td>
+                                                <td class="text-center" style="width: 10%">
+                                                    411211 <br>
+                                                    411121 <br>
+                                                    411122 <br>
+                                                    411124 <br>
+                                                    411128
+                                                </td>
+                                                <td class="text-center" style="width: 15%">
+                                                    Pajak Pertambahan Nilai <br>
+                                                    PPh 21 <br>
+                                                    Pajak Penghasilan PS 22 <br>
+                                                    Pajak Penghasilan PS 23 <br>
+                                                    Pajak Penghasilan PS 24
+                                                </td>
+                                                <td class="text-center" style="width: 5%">
+                                                    Pajak Pertambahan Nilai <br>
+                                                    PPh 21 <br>
+                                                    Pajak Penghasilan PS 22 <br>
+                                                    Pajak Penghasilan PS 23 <br>
+                                                    Pajak Penghasilan PS 24
+                                                </td>
+                                            </tr>
+
+                                            @php $total = 0; @endphp
+                                                <tr style="border: 10;" align="left">
+                                                    <td colspan="3" align="right"><b>TOTAL</b></td>
+                                                    <td align="right"> Rp. <b>{{ number_format($total = $datapajaklsrekap->sum('nilai_pajak'), 0) }}</b></td>
+                                                </tr>
                                     </table>
                                 </div>
-            
+
+                                <br><br><br>
+                                <div class="row" border="0" align="center" style="width: 150%">
+                                    <div class="col-1">
+                                    </div>
+                                    <div class="col-4">
+                                        </td>
+                                    </div>
+                                    <div class="col-5" style="width: 15%;">
+                                        Palu, {{ now()->format('d M Y') }}<br>
+                                        <td><center><b>{{ $bulanrekap->jabatan_bud_kbud }}</b></center></td><br><br><br><br>
+                                        <u><b>{{ $bulanrekap->nama_bud_kbud }}</b></u><br>
+                                        <b>NIP. {{ $bulanrekap->nip_bud_kbud }}</b>
+                                    </div>
+                                </div>
+                                    
                             </div>
                         </div>
                     </div>
