@@ -152,7 +152,7 @@ class PajakguadminController extends Controller
         if ($request->ajax()) {
 
             $datapajaklssipdgu = DB::table('tb_potongangu')
-                                ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_potongangu.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan')
+                                ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_potongangu.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.keterangan_sp2d')
                                 ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
                                 ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
                                 ->where('sp2d.jenis',['GU'])

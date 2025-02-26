@@ -51,11 +51,12 @@
                                                     <!-- <th></th> -->
                                                     {{-- <th>Nomor SPM</th> --}}
                                                     <th style="width: 5%;">Tanggal SP2D</th>
-                                                    <th style="width: 28%;">Nomor SP2D</th>
-                                                    <th style="width: 10%;">Nilai SP2D</th>
-                                                    <th style="width: 15%;">Jenis Pajak</th>
-                                                    <th style="width: 10%;">Nilai Pajak</th>
-                                                    <th style="width: 13%;">E-Biling</th>
+                                                    <th style="width: 17%;">Nomor SP2D</th>
+                                                    <th style="width: 25%;">Keterangan</th>
+                                                    <th style="width: 7%;">Nilai SP2D</th>
+                                                    <th style="width: 8%;">Jenis Pajak</th>
+                                                    <th class="text-right" style="width: 7%;">Nilai Pajak</th>
+                                                    <th class="text-right" style="width: 8%;">E-Biling</th>
                                                     
                                                 </tr>
                                             </thead>

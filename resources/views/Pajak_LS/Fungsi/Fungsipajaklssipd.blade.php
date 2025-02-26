@@ -45,6 +45,7 @@
             // {data: 'nomor_spm', name: 'nomor_spm'},
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+            {data: 'keterangan_sp2d', name: 'keterangan_sp2d'},
             {data: 'nilai_sp2d', name: 'nilai_sp2d'},
             {data: 'jenis_pajak', name: 'jenis_pajak'},
             {data: 'nilai_pajak', name: 'nilai_pajak'},

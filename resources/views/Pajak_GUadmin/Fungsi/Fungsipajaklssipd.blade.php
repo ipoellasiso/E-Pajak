@@ -27,6 +27,7 @@
             {data: 'nomor_spm', name: 'nomor_spm'},
             {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
             {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+            {data: 'keterangan_sp2d', name: 'keterangan_sp2d'},
             {data: 'nilai_sp2d', name: 'nilai_sp2d'},
             {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
             {data: 'id_billing', name: 'id_billing'},

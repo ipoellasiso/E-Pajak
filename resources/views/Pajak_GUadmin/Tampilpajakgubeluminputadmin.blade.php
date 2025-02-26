@@ -52,6 +52,7 @@
                                                     <th>Nomor SPM</th>
                                                     <th>Tanggal SP2D</th>
                                                     <th>Nomor SP2D</th>
+                                                    <th>Uraian</th>
                                                     <th>Nilai SP2D</th>
                                                     <th>Jenis Pajak</th>
                                                     <th>E-Billing</th>

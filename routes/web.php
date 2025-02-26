@@ -178,6 +178,7 @@ Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middlewa
 Route::get('/tampilpajakguadmin', [PajakguadminController::class, 'index'])->middleware('auth:web','checkRole:User,Admin');
 // Route::get('/pilihspmsp2dgusipd', [PajakguadminController::class, 'pilihspmsp2dgusipd'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/tampilpajakguadminbeluminput', [PajakguadminController::class, 'tampilpajakgusipdbeluminput'])->middleware('auth:web','checkRole:User,Admin');
+Route::get('/tampilpajaklsadminbeluminput', [PajaklsController::class, 'tampilpajaklssipdbeluminput'])->middleware('auth:web','checkRole:User,Admin');
 
 // ======= Export Data  Pajakls =======
 Route::get('/datapajak/export', [PajaklsController::class, 'export'])->middleware('auth:web','checkRole:User,Admin');
