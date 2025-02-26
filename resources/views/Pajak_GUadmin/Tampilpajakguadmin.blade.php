@@ -31,15 +31,15 @@
                                             <h5 class="card-title">{{ $title }}</h5>
                                         </div>
                                         <div class="col-4">
-                                            <!-- <div class="float-end">
+                                            <div class="float-end">
                                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="javascript:void(0)" id="createPajakgu" data-toggle="tooltip" data-placement="top" title="klik"> Tambah </a>
-                                                    <a class="dropdown-item" href="javascript:void(0)" id="uploadPajakgu" data-toggle="tooltip" data-placement="top" title="klik"> Upload </a>
+                                                    <!-- <a class="dropdown-item" href="javascript:void(0)" id="createPajakgu" data-toggle="tooltip" data-placement="top" title="klik"> Tambah </a> -->
+                                                    <a class="dropdown-item" href="javascript:void(0)" id="uploadPajakgu" data-toggle="tooltip" data-placement="top" title="klik"> Download Excel </a>
                                                 </ul>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </div>
 

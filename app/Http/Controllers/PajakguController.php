@@ -261,6 +261,7 @@ class PajakguController extends Controller
                 'no_spm' => $request->nomor_spm,
                 'id_opd' => $id_opd,
                 'status2' => 'Terima',
+                'status1' => 'Terima',
                 'periode' => date('M'),
             ];
 

@@ -183,6 +183,9 @@ Route::get('/tampilpajaklsadminbeluminput', [PajaklsController::class, 'tampilpa
 // ======= Export Data  Pajakls =======
 Route::get('/datapajak/export', [PajaklsController::class, 'export'])->middleware('auth:web','checkRole:User,Admin');
 
+// ======= Export Data  Pajakgu =======
+Route::get('/datapajak/export', [PajaklsController::class, 'export'])->middleware('auth:web','checkRole:User,Admin');
+
 //======== Laporan LS =========
 Route::get('/tampillaporanls', [LaporanlsController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 Route::get('/cetaklaporanls', [LaporanlsController::class, 'laporanls'])->name('cetaklaporanls')->middleware('auth:web','checkRole:Admin');

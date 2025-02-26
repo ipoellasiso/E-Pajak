@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DataExport;
+use App\Exports\DataExportGU;
+use App\Imports\DataImport;
+use Maatwebsite\Excel\Row;
 
 class PajakguadminController extends Controller
 {
@@ -53,7 +58,7 @@ class PajakguadminController extends Controller
         if ($request->ajax()) {
 
             $datapajakgu = DB::table('pajakkppgu')
-                        ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.rek_belanja')
+                        ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.rek_belanja', 'pajakkppgu.status1')
                         // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                         // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
                         // ->join('tb_tbp',  'tb_tbp.ntpn', 'pajakkppgu.ntpn')
@@ -79,7 +84,18 @@ class PajakguadminController extends Controller
                                             </ul>
                                         </div>
                                 ';
-                        }else{
+                        } if($row->status1 == 'Terima')
+                        {
+                            $btn = '    <div class="dropdown">
+                                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Aksi
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="lihatPajakgu dropdown-item" data-id="'.$row->id.'" href="/pajakgu/lihat/'.$row->id.'">Lihat</a></li>
+                                            </ul>
+                                        </div>
+                                ';
+                        } else{
 
                             $btn = '    <div class="dropdown">
                                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -609,4 +625,11 @@ class PajakguadminController extends Controller
 
         return response()->json(['success'=>'Data Berhasil Dihapus']);
     }
+
+    public function export()
+    {
+        $nama_file = 'Data Pajak GU-'.date('Y-m-d_H-i-s').'.xlsx';
+        return Excel::download(new DataExportGU, $nama_file);
+    }
+
 }

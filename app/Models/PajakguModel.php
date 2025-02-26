@@ -27,5 +27,6 @@ class PajakguModel extends Model
         'id_opd',
         'no_spm',
         'periode',
+        'status1'
     ];
 }
