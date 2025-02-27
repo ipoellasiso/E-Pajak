@@ -28,7 +28,7 @@
                     <div class="col-8">
                     </div>
                     <div class="col-2">
-                        <button id="cetakpdfls" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
+                        <button id="cetakpdflsrekap" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
                         </button>
                         <button id="cetakexcells" target="blank" type="button" class="btn btn-outline-info m-b-xs">
@@ -47,6 +47,7 @@
                         <td colspan="6" style="width: 55%;">
                             <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
                             <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA</center></font>
+                            {{-- <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font> --}}
                             <font style="font-size: 13pt;font-weight: bold;"><center>TAHUN ANGGARAN 2025</center></font>
                             <!-- <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font> -->
                         </td>
@@ -145,14 +146,13 @@
         {{-- ################################# Fungsi ################################### --}}
         <script>
         $(document).ready(function(){
-                $("#cetakpdfls").click(function(e){
-                    var periode = $('#periode').val();
-                    var akun_pajak = $("#akun_pajak").val();
-                    var status2 = $("#status2").val();
-                    var nama_skpd = $("#nama_skpd").val();
+                $("#cetakpdflsrekap").click(function(e){
+                    var periode2 = $('#periode2').val();
+                    var status22 = $("#status22").val();
+                    // var nama_skpd24 = $("#nama_skpd24").val();
                     // alert( nama_skpd + "" + periode + "" + akun_pajak + "" + status2);
-                    params = "?page=laporan&nama_skpd=" + nama_skpd + "&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
-                    window.open("/laporanpajakls-cetak"+params,"_blank");
+                    params = "?page=rekaplaporan&periode2=" + periode2 + "&status22=" + status22
+                    window.open("/laporanpajaklsrekap-cetak"+params,"_blank");
                 });
             });
 
