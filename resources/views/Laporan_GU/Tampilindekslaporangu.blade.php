@@ -215,7 +215,7 @@
                                                         <button type="submit" id="tcari1" class="btn btn-outline-primary m-b-xs caribaru">
                                                             <i class="fa fa-enter"></i>Cari
                                                         </button>
-                                                        <button type="submit" id="tcari2" class="btn btn-outline-primary m-b-xs caribarurekap">
+                                                        <button type="submit" id="tcari2" class="btn btn-outline-primary m-b-xs caribarurekapsemuaopd">
                                                             <i class="fa fa-enter"></i>Cari 2
                                                         </button>
                                                         <button type="submit" id="tcari3" class="btn btn-outline-primary m-b-xs caribarurekap_per_opd">
@@ -245,7 +245,7 @@
 
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-body tampillaporanls1 tampillaporanls1rekap tampillaporanls1rekap2">
+                                <div class="card-body tampillaporangu1 tampillaporangu1rekapsemuaopd tampillaporangu1rekap tampillaporangu1rekap2">
                                 </div> <!-- end card body-->
                             </div> <!-- end card -->
                         </div><!-- end col-->
@@ -259,7 +259,7 @@
 
         {{-- ################################# Fungsi ################################### --}}
     
-        @include('Laporan_LS.Fungsi.Fungsi')
+        @include('Laporan_GU.Fungsi.Fungsi')
 
         {{-- ############################## Batas Fungsi ################################ --}}
         

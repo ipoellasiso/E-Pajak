@@ -89,18 +89,18 @@
                                             </td>
                                             @php $total2 = 0; @endphp
                                             <td class="text-right" style="width: 5%" align="right">
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411211')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411121')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411122')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411124')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411128')->sum('nilai_pajak'), 0) }}
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411211')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411121')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411122')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411124')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411128')->sum('nilai_pajak'), 0) }}
                                             </td>
                                         </tr>
 
                                         @php $total = 0; @endphp
                                             <tr style="border: 10;" align="left">
                                                 <td colspan="3" align="right"><b>TOTAL</b></td>
-                                                <td align="right"><b>{{ number_format($total = $datapajaklsrekap->sum('nilai_pajak'), 0) }}</b></td>
+                                                <td align="right"><b>{{ number_format($total = $datapajakgurekap->sum('nilai_pajak'), 0) }}</b></td>
                                             </tr>
                                 </table>
                             </div>
@@ -141,12 +141,12 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
-            // window.print();
+            window.print();
 
-            // setTimeout(() => {
-            //     window.close();
-            //     window.location.href = '/laporanpajaklsrekap-cetak';
-            // }, 1000);
+            setTimeout(() => {
+                window.close();
+                window.location.href = '/laporanpajaklsrekap-cetak';
+            }, 1000);
         </script>
 
     </body>

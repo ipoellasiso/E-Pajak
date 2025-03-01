@@ -155,6 +155,8 @@ class LaporanlsController extends Controller
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkpp.periode','like',"%".$request->periode2."%")
                             ->where('pajakkpp.status2','like', "%".$request->status22."%")
+                            ->where('pajakkpp.periode','like',"%".$request->periode3."%")
+                            ->where('pajakkpp.status2','like', "%".$request->status23."%")
                             ->get();
 
             $bulanrekap = DB::table('pajakkpp')
@@ -164,6 +166,8 @@ class LaporanlsController extends Controller
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkpp.periode','like',"%".$request->periode2."%")
                             ->where('pajakkpp.status2','like', "%".$request->status22."%")
+                            ->where('pajakkpp.periode','like',"%".$request->periode3."%")
+                            ->where('pajakkpp.status2','like', "%".$request->status23."%")
                             ->first();
             
             
@@ -297,6 +301,8 @@ class LaporanlsController extends Controller
                             ->where('pajakkpp.periode','like',"%".$request->periode."%")
                             ->where('pajakkpp.akun_pajak','like',"%".$request->akun_pajak."%")
                             ->where('pajakkpp.status2','like', "%".$request->status2."%")
+                            ->where('pajakkpp.periode','like',"%".$request->periode3."%")
+                            ->where('pajakkpp.status2','like', "%".$request->status23."%")
                             ->get();
 
             $cetakbulan = DB::table('pajakkpp')
@@ -307,6 +313,8 @@ class LaporanlsController extends Controller
                             ->where('pajakkpp.periode','like',"%".$request->periode."%")
                             ->where('pajakkpp.akun_pajak','like',"%".$request->akun_pajak."%")
                             ->where('pajakkpp.status2','like', "%".$request->status2."%")
+                            ->where('pajakkpp.periode','like',"%".$request->periode3."%")
+                            ->where('pajakkpp.status2','like', "%".$request->status23."%")
                             ->first();
         
         if ($request->page == 'laporan'){
@@ -350,6 +358,8 @@ class LaporanlsController extends Controller
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkpp.periode','like',"%".$request->periode2."%")
                             ->where('pajakkpp.status2','like', "%".$request->status22."%")
+                            ->where('pajakkpp.periode','like',"%".$request->periode3."%")
+                            ->where('pajakkpp.status2','like', "%".$request->status23."%")
                             ->get();
             
             $bulanrekap = DB::table('pajakkpp')
@@ -359,6 +369,8 @@ class LaporanlsController extends Controller
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkpp.periode','like',"%".$request->periode2."%")
                             ->where('pajakkpp.status2','like', "%".$request->status22."%")
+                            ->where('pajakkpp.periode','like',"%".$request->periode3."%")
+                            ->where('pajakkpp.status2','like', "%".$request->status23."%")
                             ->first();
         
         if ($request->page == 'rekaplaporan'){

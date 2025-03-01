@@ -4,7 +4,7 @@
         @include('Template.Head')
         
         {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     </head>
     <body style="background-color: white;">
 
@@ -24,20 +24,20 @@
         {{-- <a onclick="this.href='/laporanpajakls-cetak/' + 'nama_skpd=' + document.getElementById('nama_skpd').value + '&periode=' + document.getElementById('periode').value + '&akun_pajak=' + document.getElementById('akun_pajak').value + '&status2=' + document.getElementById('status2').value " target="blank" type="submit" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
             <i class="fa fa-enter"></i>PDF   --}}
             <br>
-            <div class="row" border="0" align="center" style="width: 200%">
+            <div class="row" border="0" align="center" style="width: 180%">
                 <div class="col-1 text-right" align="center" style="width: 15%;  margin-top: 15px;">
                     <td colspan="0" style="width: 5%;"><center><img src="/theme/assets/images/13.png" width="80" height="100"></center></td>
                 </div>
-                <div class="col-4 align-middle fw-bold text-center" style="width: 20%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
+                <div class="col-10 align-middle fw-bold text-center" style="width: 25%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                     <td colspan="6" style="width: 55%;">
                         <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
                         <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA</center></font>
-                        <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font>
+                        {{-- <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font> --}}
                         <font style="font-size: 13pt;font-weight: bold;"><center>TAHUN ANGGARAN 2025</center></font>
                         <!-- <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font> -->
                     </td>
                 </div>
-                <div class="col-5">
+                <div class="col-1">
 
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                     
-                                <table class="table-bordered" border="1" cellpadding="10" align="center" cellspacing="20" style="width: 80%">
+                                <table class="table-bordered" border="1" cellpadding="10" align="center" cellspacing="20" style="width: 100%">
                                     
         
                                     <!-- DATA SUPPLIER -->
@@ -89,18 +89,18 @@
                                             </td>
                                             @php $total2 = 0; @endphp
                                             <td class="text-right" style="width: 5%" align="right">
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411211')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411121')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411122')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411124')->sum('nilai_pajak'), 0) }} <br>
-                                                {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411128')->sum('nilai_pajak'), 0) }}
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411211')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411121')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411122')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411124')->sum('nilai_pajak'), 0) }} <br>
+                                                {{ number_format($total2 = $datapajakgurekap->where('akun_pajak', '411128')->sum('nilai_pajak'), 0) }}
                                             </td>
                                         </tr>
 
                                         @php $total = 0; @endphp
                                             <tr style="border: 10;" align="left">
                                                 <td colspan="3" align="right"><b>TOTAL</b></td>
-                                                <td align="right"><b>{{ number_format($total = $datapajaklsrekap->sum('nilai_pajak'), 0) }}</b></td>
+                                                <td align="right"><b>{{ number_format($total = $datapajakgurekap->sum('nilai_pajak'), 0) }}</b></td>
                                             </tr>
                                 </table>
                             </div>
@@ -139,7 +139,7 @@
         <!-- Javascripts -->
         @include('Template.Script')
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
         <script>
             // window.print();
 

@@ -3,11 +3,11 @@
         $(document).ready(function () {
             var tampilawal = '1';
             $.ajax({
-                url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
+                url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawal +'/tampilawal',
                 type: "GET",
                 data: 'tampilawal=' + tampilawal,
                 success: function (data) {
-                    $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1').html(data);//menampilkan data ke dalam modal
                 }
             });
         });
@@ -17,11 +17,11 @@
         $(document).ready(function () {
             var tampilawal = '1';
             $.ajax({
-                url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
+                url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawal +'/tampilawal',
                 type: "GET",
                 data: 'tampilawal=' + tampilawal,
                 success: function (data) {
-                    $('.tampillaporanls1rekap').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1rekap').html(data);//menampilkan data ke dalam modal
                 }
             });
         });
@@ -35,27 +35,27 @@
         var nama_skpd = $("#nama_skpd").val();
         var tampilawal = '1';
         $.ajax({
-            url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampil',
+            url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawal +'/tampil',
             type: "GET",
             data: 'nama_skpd=' + nama_skpd + '&periode=' + periode + '&akun_pajak=' + akun_pajak + '&status2=' + status2,
                 success: function (data) {
-                    $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1').html(data);//menampilkan data ke dalam modal
                 }
             });
     });
 
-    $('body').on('click', '.caribarurekap', function (e) {
+    $('body').on('click', '.caribarurekapsemuaopd', function (e) {
         e.preventDefault();
         var periode2 = $('#periode2').val();
         var status22 = $("#status22").val();
         // var nama_skpd24 = $("#nama_skpd24").val();
-        var tampilawalrekap = '2';
+        var tampilawalrekapsemuaopd = '3';
         $.ajax({
-            url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawalrekap +'/tampilrekap',
+            url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawalrekapsemuaopd +'/tampilrekapsemuaopd',
             type: "GET",
             data: 'periode2=' + periode2 + '&status22=' + status22,
                 success: function (data) {
-                    $('.tampillaporanls1rekap').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1rekapsemuaopd').html(data);//menampilkan data ke dalam modal
                 }
             });
     });
@@ -67,11 +67,11 @@
         var nama_skpd24 = $("#nama_skpd24").val();
         var tampilawalrekap = '2';
         $.ajax({
-            url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawalrekap +'/tampilrekap',
+            url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawalrekap +'/tampilrekap',
             type: "GET",
             data: 'nama_skpd24=' + nama_skpd24 + '&periode3=' + periode3 + '&status23=' + status23,
                 success: function (data) {
-                    $('.tampillaporanls1rekap2').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1rekap2').html(data);//menampilkan data ke dalam modal
                 }
             });
     });
@@ -114,11 +114,11 @@
         $('#nama_skpd24').val('').trigger('change');
         var tampilawal = '1';
         $.ajax({
-                url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
+                url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawal +'/tampilawal',
                 type: "GET",
                 data: 'tampilawal=' + tampilawal,
                 success: function (data) {
-                    $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1').html(data);//menampilkan data ke dalam modal
                 }
         });
     });
@@ -155,11 +155,11 @@
         $('#nama_skpd24').val('').trigger('change');
         var tampilawal = '1';
         $.ajax({
-                url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
+                url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawal +'/tampilawal',
                 type: "GET",
                 data: 'tampilawal=' + tampilawal,
                 success: function (data) {
-                    $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1').html(data);//menampilkan data ke dalam modal
                 }
         });
     });
@@ -197,11 +197,11 @@
         $('#pilihrekap').val('').trigger('change');
         var tampilawal = '1';
         $.ajax({
-                url: "{{ route('laporan.pajakls.index') }}" +'/' + tampilawal +'/tampilawal',
+                url: "{{ route('laporan.pajakgu.index') }}" +'/' + tampilawal +'/tampilawal',
                 type: "GET",
                 data: 'tampilawal=' + tampilawal,
                 success: function (data) {
-                    $('.tampillaporanls1').html(data);//menampilkan data ke dalam modal
+                    $('.tampillaporangu1').html(data);//menampilkan data ke dalam modal
                 }
         });
     });

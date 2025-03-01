@@ -28,10 +28,10 @@
                     <div class="col-8">
                     </div>
                     <div class="col-2">
-                        <button id="cetakpdflsrekap" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
+                        <button id="cetakpdfgurekapsemuaopd" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
                         </button>
-                        <button id="cetakexcells" target="blank" type="button" class="btn btn-outline-info m-b-xs">
+                        <button id="cetakexcelgusemuaopd" target="blank" type="button" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
                         </button>
                     </div>
@@ -46,8 +46,8 @@
                     <div class="col-4 align-middle fw-bold text-center" style="width: 20%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                         <td colspan="6" style="width: 55%;">
                             <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
-                            <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA</center></font>
-                            <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font>
+                            <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA GU</center></font>
+                            {{-- <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekapsemuaopd->nama_skpd }}</center></font> --}}
                             <font style="font-size: 13pt;font-weight: bold;"><center>TAHUN ANGGARAN 2025</center></font>
                             <!-- <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font> -->
                         </td>
@@ -102,18 +102,18 @@
                                                 </td>
                                                 @php $total2 = 0; @endphp
                                                 <td class="text-right" style="width: 5%" align="right">
-                                                    Rp. {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411211')->sum('nilai_pajak'), 0) }} <br>
-                                                    Rp. {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411121')->sum('nilai_pajak'), 0) }} <br>
-                                                    Rp. {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411122')->sum('nilai_pajak'), 0) }} <br>
-                                                    Rp. {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411124')->sum('nilai_pajak'), 0) }} <br>
-                                                    Rp. {{ number_format($total2 = $datapajaklsrekap->where('akun_pajak', '411128')->sum('nilai_pajak'), 0) }}
+                                                    Rp. {{ number_format($total2 = $datapajakgurekapsemuaopd->where('akun_pajak', '411211')->sum('nilai_pajak'), 0) }} <br>
+                                                    Rp. {{ number_format($total2 = $datapajakgurekapsemuaopd->where('akun_pajak', '411121')->sum('nilai_pajak'), 0) }} <br>
+                                                    Rp. {{ number_format($total2 = $datapajakgurekapsemuaopd->where('akun_pajak', '411122')->sum('nilai_pajak'), 0) }} <br>
+                                                    Rp. {{ number_format($total2 = $datapajakgurekapsemuaopd->where('akun_pajak', '411124')->sum('nilai_pajak'), 0) }} <br>
+                                                    Rp. {{ number_format($total2 = $datapajakgurekapsemuaopd->where('akun_pajak', '411128')->sum('nilai_pajak'), 0) }}
                                                 </td>
                                             </tr>
 
                                             @php $total = 0; @endphp
                                                 <tr style="border: 10;" align="left">
                                                     <td colspan="3" align="right"><b>TOTAL</b></td>
-                                                    <td align="right"> Rp. <b>{{ number_format($total = $datapajaklsrekap->sum('nilai_pajak'), 0) }}</b></td>
+                                                    <td align="right"> Rp. <b>{{ number_format($total = $datapajakgurekapsemuaopd->sum('nilai_pajak'), 0) }}</b></td>
                                                 </tr>
                                     </table>
                                 </div>
@@ -127,9 +127,9 @@
                                     </div>
                                     <div class="col-5" style="width: 15%;">
                                         Palu, {{ now()->format('d M Y') }}<br>
-                                        <td><center><b>{{ $bulanrekap->jabatan_bud_kbud }}</b></center></td><br><br><br><br>
-                                        <u><b>{{ $bulanrekap->nama_bud_kbud }}</b></u><br>
-                                        <b>NIP. {{ $bulanrekap->nip_bud_kbud }}</b>
+                                        <td><center><b>{{ $bulanrekapsemuaopd->jabatan_bud_kbud }}</b></center></td><br><br><br><br>
+                                        <u><b>{{ $bulanrekapsemuaopd->nama_bud_kbud }}</b></u><br>
+                                        <b>NIP. {{ $bulanrekapsemuaopd->nip_bud_kbud }}</b>
                                     </div>
                                 </div>
                                     
@@ -146,18 +146,18 @@
         {{-- ################################# Fungsi ################################### --}}
         <script>
         $(document).ready(function(){
-                $("#cetakpdflsrekap").click(function(e){
+                $("#cetakpdfgurekapsemuaopd").click(function(e){
                     var periode3 = $('#periode3').val();
                     var status23 = $("#status23").val();
                     var nama_skpd24 = $("#nama_skpd24").val();
                     // alert( nama_skpd + "" + periode + "" + akun_pajak + "" + status2);
-                    params = "?page=rekaplaporan&nama_skpd24=" + nama_skpd24 + "&periode3=" + periode3 + "&status23=" + status23
-                    window.open("/laporanpajaklsrekap-cetak"+params,"_blank");
+                    params = "?page=rekaplaporansemuaopd&periode3=" + periode3 + "&status23=" + status23
+                    window.open("/laporanpajakgurekapsemuaopd-cetak"+params,"_blank");
                 });
             });
 
         $(document).ready(function(){
-            $("#cetakexcells").click(function(e){
+            $("#cetakexcelgusemuaopd").click(function(e){
                 var periode = $('#periode').val();
                 var akun_pajak = $("#akun_pajak").val();
                 var status2 = $("#status2").val();
