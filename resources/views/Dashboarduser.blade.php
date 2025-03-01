@@ -27,7 +27,7 @@
                           <div class="card stat-widget">
                               <div class="card-body">
                                 <h5 class="card-title">Total Pajak LS</h5>
-                                <h2>{{ number_format($total_pajakgu) }}</h2>
+                                <h2>{{ number_format($total_pajakls) }}</h2>
                                 <p>Rp.</p>
                                     <div class="progress">
                                       <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>

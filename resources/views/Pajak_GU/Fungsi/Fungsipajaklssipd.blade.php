@@ -36,6 +36,25 @@
         ]
     });
 
+    var table = $('.tabelpajakgubeluminput').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "/tampilpajakgubeluminput",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            // {data: 'status2', name: 'status2'},
+            {data: 'nomor_spm', name: 'nomor_spm'},
+            {data: 'tanggal_sp2d', name: 'tanggal_sp2d'},
+            {data: 'nomor_sp2d', name: 'nomor_sp2d'},
+            {data: 'keterangan_sp2d', name: 'keterangan_sp2d'},
+            {data: 'nilai_sp2d', name: 'nilai_sp2d'},
+            {data: 'nama_pajak_potongan', name: 'nama_pajak_potongan'},
+            {data: 'id_billing', name: 'id_billing'},
+            {data: 'nilai_tbp_pajak_potongan', name: 'nilai_tbp_pajak_potongan'},
+            
+        ]
+    });
+
     // edit data
     $('body').on('click', '.editPajakgusipd', function()  {
         var iduser = $(this).data('id');

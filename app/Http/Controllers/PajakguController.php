@@ -203,6 +203,66 @@ class PajakguController extends Controller
         return view('Pajak_GU.Tampilpajakgu');
     }
 
+    public function pajakgubeluminput(Request $request)
+    {
+        $userId = Auth::guard('web')->user()->id;
+        $data = array(
+            'title'                => 'Data Pajak GU Belum Diinput',
+            'active_side_pajakls'  => 'active',
+            'active_pajakgu'       => 'active',
+            'page_title'           => 'Penatausahaan',
+            'breadcumd1'           => 'Data Pajak',
+            'breadcumd2'           => 'GU Belum Diinput',
+            'userx'                => UserModel::where('id',$userId)->first(['fullname','role','gambar',]),
+            'opd'                  => DB::table('users')
+                                    // ->join('opd',  'opd.id', 'users.id_opd')
+                                    // ->select('fullname','nama_opd')
+                                    ->where('nama_opd', auth()->user()->nama_opd)
+                                    ->first(),
+            'total_ppngu'          => PajakguModel::where('jenis_pajak', 'Pajak Pertambahan Nilai')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph21gu'        => PajakguModel::where('jenis_pajak', 'PPH 21')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph22gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 22')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),                        
+        );
+
+        if ($request->ajax()) {
+
+            $datapajaklssipdgu = DB::table('tb_potongangu')
+                                ->select('tb_tbp.nomor_tbp','tb_tbp.tanggal_tbp','tb_tbp.nilai_tbp','tb_tbp.keterangan_tbp','tb_tbp.no_npd','tb_tbp.no_spm', 'tb_tbp.tgl_spm', 'tb_tbp.nilai_spm', 'sp2d.nama_skpd', 'tb_tbp.status', 'tb_potongangu.id', 'sp2d.jenis', 'sp2d.nomor_spm', 'sp2d.nomor_sp2d', 'sp2d.nilai_sp2d', 'sp2d.tanggal_sp2d', 'tb_potongangu.nama_pajak_potongan', 'tb_potongangu.id_billing', 'tb_potongangu.nilai_tbp_pajak_potongan', 'sp2d.keterangan_sp2d')
+                                ->join('tb_tbp', 'tb_tbp.id_tbp', 'tb_potongangu.id_tbp')
+                                ->join('sp2d', 'sp2d.nomor_spm', 'tb_tbp.no_spm')
+                                ->where('sp2d.jenis',['GU'])
+                                // ->where('tb_potongangu.statuspil',['0'])
+                                ->where('tb_potongangu.status1',['Terima'])
+                                ->where('tb_potongangu.status3',['0'])
+                                ->where('tb_tbp.nama_skpd', auth()->user()->nama_opd)
+                                ->get();
+
+            return Datatables::of($datapajaklssipdgu)
+                    ->addIndexColumn()
+                    ->addColumn('status2', function($row){
+                        $btn1 = '
+                                    <a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" class="editPajakgusipd btn btn-outline-info m-b-xs btn-sm">Pilih
+                                    </a>
+                                ';
+
+                        return $btn1;
+                    })
+                    ->addColumn('nilai_tbp_pajak_potongan', function($row) {
+                        return number_format($row->nilai_tbp_pajak_potongan);
+                    })
+                    ->addColumn('nilai_sp2d', function($row) {
+                        return number_format($row->nilai_sp2d);
+                    })
+                    ->rawColumns(['status2'])
+                    ->make(true);
+        }
+
+        return view('Pajak_GU.Tampilpajakgubeluminput', $data);
+    }
+
     public function store(Request $request)
     {
         // request()->validate([

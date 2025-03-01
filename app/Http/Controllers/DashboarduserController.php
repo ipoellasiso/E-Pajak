@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PajakguModel;
+use App\Models\PajaklsModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,7 @@ class DashboarduserController extends Controller
             'total_pph23gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 23')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
             'total_pph24gu'        => PajakguModel::where('jenis_pajak', 'Pajak Penghasilan PS 24')->where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
             'total_pajakgu'        => PajakguModel::where('status2', 'Terima')->where('pajakkppgu.id_opd', auth()->user()->nama_opd)->sum('nilai_pajak'),
+            'total_pajakls'        => PajaklsModel::join('potongan2',  'potongan2.id', 'pajakkpp.id_potonganls')->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')->where('status2', 'Terima')->where('sp2d.nama_skpd', auth()->user()->nama_opd)->sum('pajakkpp.nilai_pajak'),
         );
 
         return view('Dashboarduser', $data);
