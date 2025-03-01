@@ -28,10 +28,10 @@
                     <div class="col-8">
                     </div>
                     <div class="col-2">
-                        <button id="cetakpdfgurekapsemuaopd" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
+                        <button id="cetakpdfgurekapsemuaopduser" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
                         </button>
-                        <button id="cetakexcelgusemuaopd" target="blank" type="button" class="btn btn-outline-info m-b-xs">
+                        <button id="cetakexcelgusemuaopduser" target="blank" type="button" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
                         </button>
                     </div>
@@ -47,7 +47,7 @@
                         <td colspan="6" style="width: 55%;">
                             <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
                             <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA GU</center></font>
-                            {{-- <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekapsemuaopd->nama_skpd }}</center></font> --}}
+                            <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekapsemuaopd->nama_skpd }}</center></font>
                             <font style="font-size: 13pt;font-weight: bold;"><center>TAHUN ANGGARAN 2025</center></font>
                             <!-- <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font> -->
                         </td>
@@ -132,9 +132,9 @@
                                     </div>
                                     <div class="col-5" style="width: 15%;">
                                         Palu, {{ now()->format('d M Y') }}<br>
-                                        <td><center><b>{{ $bulanrekapsemuaopd->jabatan_bud_kbud }}</b></center></td><br><br><br><br>
-                                        <u><b>{{ $bulanrekapsemuaopd->nama_bud_kbud }}</b></u><br>
-                                        <b>NIP. {{ $bulanrekapsemuaopd->nip_bud_kbud }}</b>
+                                        <td><center><b>PENGGUNA ANGGARAN</b></center></td><br><br><br><br>
+                                        <u><b>{{ $bulanrekapsemuaopd->nama_pa_kpa }}</b></u><br>
+                                        <b>NIP. {{ $bulanrekapsemuaopd->nip_pa_kpa }}</b>
                                     </div>
                                 </div>
                                     
@@ -151,7 +151,7 @@
         {{-- ################################# Fungsi ################################### --}}
         <script>
         $(document).ready(function(){
-                $("#cetakpdfgurekapsemuaopd").click(function(e){
+                $("#cetakpdfgurekapsemuaopduser").click(function(e){
                     var periode3 = $('#periode3').val();
                     var status23 = $("#status23").val();
                     var nama_skpd24 = $("#nama_skpd24").val();

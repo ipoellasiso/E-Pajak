@@ -31,8 +31,8 @@
                 <div class="col-10 align-middle fw-bold text-center" style="width: 44%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                     <td colspan="6" style="width: 55%;">
                         <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
-                        <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA</center></font>
-                        {{-- <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font> --}}
+                        <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA GU</center></font>
+                        <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font>
                         <font style="font-size: 13pt;font-weight: bold;"><center>TAHUN ANGGARAN 2025</center></font>
                         <!-- <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font> -->
                     </td>
@@ -114,9 +114,9 @@
                                 </div>
                                 <div class="col-5" style="width: 15%;">
                                     Palu, {{ now()->format('d M Y') }}<br>
-                                    <td><center><b>{{ $bulanrekap->jabatan_bud_kbud }}</b></center></td><br><br><br><br>
-                                    <u><b>{{ $bulanrekap->nama_bud_kbud }}</b></u><br>
-                                    <b>NIP. {{ $bulanrekap->nip_bud_kbud }}</b>
+                                    <td><center><b>PENGGUNA ANGGARAN</b></center></td><br><br><br><br>
+                                    <u><b>{{ $bulanrekap->nama_pa_kpa }}</b></u><br>
+                                    <b>NIP. {{ $bulanrekap->nip_pa_kpa }}</b>
                                 </div>
                             </div>
                                 

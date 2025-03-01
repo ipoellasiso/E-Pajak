@@ -62,21 +62,12 @@
                                                             
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="form-floating" id="pilihrekap">
-                                                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                                              <option selected>Pilih</option>
-                                                              <option value="1" onclick="pilih(0)">Semua OPD</option>
-                                                              <option value="2" onclick="pilih(1)">Per OPD</option>
-                                                            </select>
-                                                            <label for="floatingSelect">Cari Berdasarkan Rekapitulasi Penyetoran Pajak</label>
-                                                        </div>
-
                                                         <div class="text-center" id="forminput1a">
                                                             <label>Cari Berdasarkan Rincian Penyetoran Pajak</label>
                                                         </div>
                                                         {{-- === form input rekapitulasi penyetoran pajak === --}}
                                                         <div class="text-center" id="forminput2a">
-                                                            {{-- <label>Cari Berdasarkan Rekapitulasi Penyetoran Pajak</label> --}}
+                                                            <label>Cari Berdasarkan Rekapitulasi Penyetoran Pajak</label>
                                                         </div>
                                                         <br>
                                                         <div id="forminput1b">

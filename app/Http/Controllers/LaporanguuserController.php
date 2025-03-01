@@ -96,8 +96,9 @@ class LaporanguuserController extends Controller
                             ->get();
 
             $bulan =      DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('pajakkppgu.periode','like',"%".$request->periode."%")
                             ->where('pajakkppgu.akun_pajak','like',"%".$request->akun_pajak."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status2."%")
@@ -140,7 +141,7 @@ class LaporanguuserController extends Controller
         );
 
         if ($request->tampilawalrekap) {
-            return view('Laporan_GU.Viewkosonglaporangu',[]);
+            return view('Laporan_GU_User.Viewkosonglaporangu',[]);
         } else {
             // $bulan1 = PajaklsModel::findOrFail($request->periode);
             // $bulan = 'Satu'. ' '. $bulan1->periode;
@@ -153,22 +154,25 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->get();
 
             $bulanrekap = DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode2."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
             
             
 
             // return view('Laporan_LS.Laporan_Rekap.Viewisilaporanlsrekap',$data, compact('datapajaklsrekap', 'bulanrekap'));
-            return view('Laporan_GU.Laporan_Rekap.Viewisilaporangurekap',[
+            return view('Laporan_GU_User.Laporan_Rekap.Viewisilaporangurekap',[
                 'data' => $data,
                 'datapajakgurekap' => $datapajakgurekap,
                 'bulanrekap' => $bulanrekap,
@@ -201,7 +205,7 @@ class LaporanguuserController extends Controller
         );
 
         if ($request->tampilawalrekap) {
-            return view('Laporan_GU.Viewkosonglaporangu',[]);
+            return view('Laporan_GU_User.Viewkosonglaporangu',[]);
         } else {
             // $bulan1 = PajaklsModel::findOrFail($request->periode);
             // $bulan = 'Satu'. ' '. $bulan1->periode;
@@ -214,22 +218,25 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->get();
 
             $bulanrekapsemuaopd = DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode2."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
             
             
 
             // return view('Laporan_LS.Laporan_Rekap.Viewisilaporanlsrekap',$data, compact('datapajaklsrekap', 'bulanrekap'));
-            return view('Laporan_GU.Laporan_Rekap.Viewisilaporangurekapsemuaopd',[
+            return view('Laporan_GU_User.Laporan_Rekap.Viewisilaporangurekapsemuaopd',[
                 'data' => $data,
                 'datapajakgurekapsemuaopd' => $datapajakgurekapsemuaopd,
                 'bulanrekapsemuaopd' => $bulanrekapsemuaopd,
@@ -280,21 +287,24 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.status2','like', "%".$request->status2."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->get();
 
             $cetakbulan = DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode."%")
                             ->where('pajakkppgu.akun_pajak','like',"%".$request->akun_pajak."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status2."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
         
         if ($request->page == 'laporan'){
-            return view('Laporan_GU.cetakisilaporangu', $data, compact('cetakpajakgu', 'cetakbulan'));
+            return view('Laporan_GU_User.cetakisilaporangu', $data, compact('cetakpajakgu', 'cetakbulan'));
         }
 
         // return view('Laporan_LS.cetakisilaporanls', $data, compact('cetakpajakls', 'cetakbulan'));
@@ -334,20 +344,23 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->get();
             
             $bulanrekap = DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode2."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
         
         if ($request->page == 'rekaplaporan'){
-            return view('Laporan_GU.Laporan_Rekap.cetakisilaporangurekap', $data, compact('datapajakgurekap', 'bulanrekap'));
+            return view('Laporan_GU_User.Laporan_Rekap.cetakisilaporangurekap', $data, compact('datapajakgurekap', 'bulanrekap'));
         }
 
         // return view('Laporan_LS.cetakisilaporanls', $data, compact('cetakpajakls', 'cetakbulan'));
@@ -387,20 +400,23 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->get();
             
             $bulanrekap = DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd24."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode2."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status22."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode3."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status23."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
         
         if ($request->page == 'rekaplaporansemuaopd'){
-            return view('Laporan_GU.Laporan_Rekap.cetakisilaporangurekapsemuaopd', $data, compact('datapajakgurekap', 'bulanrekap'));
+            return view('Laporan_GU_User.Laporan_Rekap.cetakisilaporangurekapsemuaopd', $data, compact('datapajakgurekap', 'bulanrekap'));
         }
 
         // return view('Laporan_LS.cetakisilaporanls', $data, compact('cetakpajakls', 'cetakbulan'));
@@ -415,15 +431,18 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.periode','like',"%".$request->periode."%")
                             ->where('pajakkppgu.akun_pajak','like',"%".$request->akun_pajak."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status2."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->get();
         
         $bulan = DB::table('pajakkppgu')
-                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud')
+                            ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode', 'pajakkppgu.status1', 'sp2d.nama_skpd', 'sp2d.nama_bud_kbud', 'sp2d.jabatan_bud_kbud', 'sp2d.nip_bud_kbud', 'users.nama_pa_kpa', 'users.nip_pa_kpa')
                             ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
+                            ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
                             ->where('sp2d.nama_skpd','like', "%".$request->nama_skpd."%")
                             ->where('pajakkppgu.periode','like',"%".$request->periode."%")
                             ->where('pajakkppgu.akun_pajak','like',"%".$request->akun_pajak."%")
                             ->where('pajakkppgu.status2','like', "%".$request->status2."%")
+                            ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
 
         if ($request->page == 'downloadexcel'){

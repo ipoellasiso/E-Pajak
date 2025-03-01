@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-10 align-middle fw-bold text-center text-uppercase" style=" margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                             PEMERINTAH KOTA PALU <br>
-                            REKAPITULASI PENYETORAN PAJAK <br>
+                            REKAPITULASI PENYETORAN PAJAK GU <br>
                             TAHUN ANGGARAN 2025<br>
                         </div>
                         <div class="col-1">
@@ -102,9 +102,9 @@
                                             </div>
                                             <div class="col-4 align-middle fw-bold text-center" style=" margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                                                 Palu, {{ now()->format('d M Y') }}<br>
-                                                {{ $cetakbulan->jabatan_bud_kbud }}<br><br><br><br><br><br>
-                                                {{ $cetakbulan->nama_bud_kbud }}<br>
-                                                NIP. {{ $cetakbulan->nip_bud_kbud }}
+                                                PENGGUNA ANGGARAN<br><br><br><br><br><br>
+                                                <u>{{ $cetakbulan->nama_pa_kpa }}</u><br>
+                                                NIP. {{ $cetakbulan->nip_pa_kpa }}
                                             </div>
                                         </div>
 
