@@ -28,6 +28,8 @@ class UserModel extends Model
         'alamat',
         'no_hp',
         'hobi',
+        'nama_pa_kpa',
+        'nip_pa_kpa'
     ];
 
     protected $hidden = [

@@ -53,6 +53,13 @@
             $('#email').val(data.email);
             $('#role').val(data.role);
             $('#opd').val(data.id_opd);
+            // $('#namaopd2').val(data.nama_opd1);
+            $('#nip').val(data.nip);
+            $('#alamat').val(data.alamat);
+            $('#no_hp').val(data.no_hp);
+            $('#hobi').val(data.hobi);
+            $('#nama_pa_kpa').val(data.nama_pa_kpa);
+            $('#nip_pa_kpa').val(data.nip_pa_kpa);
 
             $('#modal-preview').attr('alt', 'No image available');
             if(data.gambar){

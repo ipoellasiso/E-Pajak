@@ -131,6 +131,12 @@ class UserController extends Controller
                 'role'  => $request->role,
                 'is_active' => 'Nonaktif',
                 'nama_opd'  => $request->nama_opd1,
+                'nip'  => $request->nip,
+                'alamat'  => $request->alamat,
+                'no_hp'  => $request->no_hp,
+                'hobi'  => $request->hobi,
+                'nama_pa_kpa'  => $request->nama_pa_kpa,
+                'nip_pa_kpa'  => $request->nip_pa_kpa,
             ];
 
             if ($files = $request->file('gambar')){

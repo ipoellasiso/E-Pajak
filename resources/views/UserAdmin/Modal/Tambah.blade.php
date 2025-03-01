@@ -58,6 +58,30 @@
                                             <option value="Pegawai">Pegawai</option>
                                         </select>
                                     </div>
+                                    <div class="col mb-4">
+                                        <label>NIP</label>
+                                        <input type="text" class="form-control" name="nip" id="nip" value="" placeholder="nip ...." required>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <label>Alamat</label>
+                                        <input type="text" class="form-control" name="alamat" id="alamat" value="" placeholder="alamat ...." required>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <label>Nomor Hp</label>
+                                        <input type="text" class="form-control" name="no_hp" id="no_hp" value="" placeholder="no_hp ...." required>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <label>Hobi</label>
+                                        <input type="text" class="form-control" name="hobi" id="hobi" value="" placeholder="hobi ...." required>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <label>Nama PA / KPA</label>
+                                        <input type="text" class="form-control" name="nama_pa_kpa" id="nama_pa_kpa" value="" placeholder="nama_pa_kpa ...." required>
+                                    </div>
+                                    <div class="col mb-4">
+                                        <label>Nip PA / KPA</label>
+                                        <input type="text" class="form-control" name="nip_pa_kpa" id="nip_pa_kpa" value="" placeholder="nip_pa_kpa ...." required>
+                                    </div>
                                 {{-- </div> --}}
                                 {{-- <div class="col-12"> --}}
                                     <div class="col mb-4">
