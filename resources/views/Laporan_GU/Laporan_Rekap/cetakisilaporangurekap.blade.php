@@ -25,13 +25,13 @@
             <i class="fa fa-enter"></i>PDF   --}}
             <br>
             <div class="row" border="0" align="center" style="width: 200%">
-                <div class="col-1 text-right" align="center" style="width: 15%;  margin-top: 15px;">
+                <div class="col-1 text-right" align="center" style="width: 5%;  margin-top: 20px;">
                     <td colspan="0" style="width: 5%;"><center><img src="/theme/assets/images/13.png" width="80" height="100"></center></td>
                 </div>
-                <div class="col-4 align-middle fw-bold text-center" style="width: 20%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
+                <div class="col-4 align-middle fw-bold text-center" style="width: 40%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                     <td colspan="6" style="width: 55%;">
                         <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
-                        <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA</center></font>
+                        <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA GU</center></font>
                         <font style="font-size: 13pt;font-weight: bold;"><center>{{ $bulanrekap->nama_skpd }}</center></font>
                         <font style="font-size: 13pt;font-weight: bold;"><center>TAHUN ANGGARAN 2025</center></font>
                         <!-- <font style="font-size: 11pt;font-weight:13"><center>Alamat : Jl. Baruga No. 2 No.Tlp : 0451-9384 Kode Pos : 94362</center></font> -->
@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                     
-                                <table class="table-bordered" border="1" cellpadding="10" align="center" cellspacing="20" style="width: 80%">
+                                <table class="table-bordered" border="1" cellpadding="10" align="center" cellspacing="20" style="width: 100%">
                                     
         
                                     <!-- DATA SUPPLIER -->
@@ -106,13 +106,13 @@
                             </div>
 
                             <br><br><br>
-                            <div class="row" border="0" align="center" style="width: 150%">
+                            <div class="row" border="0" align="center" style="width: 145%">
                                 <div class="col-1">
                                 </div>
                                 <div class="col-4">
                                     </td>
                                 </div>
-                                <div class="col-5" style="width: 15%;">
+                                <div class="col-7" style="width: 20%;">
                                     Palu, {{ now()->format('d M Y') }}<br>
                                     <td><center><b>{{ $bulanrekap->jabatan_bud_kbud }}</b></center></td><br><br><br><br>
                                     <u><b>{{ $bulanrekap->nama_bud_kbud }}</b></u><br>

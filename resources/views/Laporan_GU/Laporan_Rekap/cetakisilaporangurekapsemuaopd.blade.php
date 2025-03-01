@@ -25,10 +25,10 @@
             <i class="fa fa-enter"></i>PDF   --}}
             <br>
             <div class="row" border="0" align="center" style="width: 180%">
-                <div class="col-1 text-right" align="center" style="width: 15%;  margin-top: 15px;">
+                <div class="col-1 text-right" align="center" style="width: 8%;  margin-top: 25px;">
                     <td colspan="0" style="width: 5%;"><center><img src="/theme/assets/images/13.png" width="80" height="100"></center></td>
                 </div>
-                <div class="col-10 align-middle fw-bold text-center" style="width: 25%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
+                <div class="col-10 align-middle fw-bold text-center" style="width: 44%; margin-top: 15px; text-align: center; font-size: 17px; font-weight: bold;">
                     <td colspan="6" style="width: 55%;">
                         <font style="font-size: 20pt;font-weight: bold;"><center>PEMERINTAH KOTA PALU</center></font>
                         <font style="font-size: 13pt;font-weight: bold;"><center>REKAPITULASI PAJAK REALISASI BELANJA</center></font>
