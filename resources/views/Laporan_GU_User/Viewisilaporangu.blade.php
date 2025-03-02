@@ -129,8 +129,8 @@
                     var akun_pajak = $("#akun_pajak").val();
                     var status2 = $("#status2").val();
                     // alert( nama_skpd + "" + periode + "" + akun_pajak + "" + status2);
-                    params = "?page=laporan&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
-                    window.open("/laporanpajakgu-cetak"+params,"_blank");
+                    params = "?page=laporanuser&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
+                    window.open("/laporanpajakguuser-cetak"+params,"_blank");
                 });
             });
 
@@ -141,8 +141,8 @@
                 var status2 = $("#status2").val();
                 var nama_skpd = $("#nama_skpd").val();
                 // alert( nama_skpd + "" + periode + "" + akun_pajak + "" + status2);
-                params = "?page=downloadexcel&nama_skpd=" + nama_skpd + "&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
-                window.open("/laporan.downloadlaporanexcel"+params,"_blank");
+                params = "?page=downloadexceluser&nama_skpd=" + nama_skpd + "&periode=" + periode + "&akun_pajak=" + akun_pajak + "&status2=" + status2
+                window.open("/laporan.downloadlaporanexceluser"+params,"_blank");
             });
         });
         </script>

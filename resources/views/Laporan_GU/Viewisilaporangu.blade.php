@@ -123,7 +123,7 @@
         {{-- ################################# Fungsi ################################### --}}
         <script>
         $(document).ready(function(){
-                $("#cetakpdfls").click(function(e){
+                $("#cetakpdfgu").click(function(e){
                     var periode = $('#periode').val();
                     var akun_pajak = $("#akun_pajak").val();
                     var status2 = $("#status2").val();

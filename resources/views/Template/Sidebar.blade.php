@@ -124,7 +124,7 @@
           <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilindekslaporangu"><i class="far fa-circle"></i>GU</a></li>
           @endif
           @if(Auth::user()->role == 'User')
-          <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilindekslaporangu"><i class="far fa-circle"></i>GU</a></li>
+          <li @if(isset($active_pajakgu)){{ $active_pajakgu }} @endif><a href="/tampilindekslaporanguuser"><i class="far fa-circle"></i>GU</a></li>
           @endif
         </ul>
       </li>

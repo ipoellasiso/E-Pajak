@@ -303,7 +303,7 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
         
-        if ($request->page == 'laporan'){
+        if ($request->page == 'laporanuser'){
             return view('Laporan_GU_User.cetakisilaporangu', $data, compact('cetakpajakgu', 'cetakbulan'));
         }
 
@@ -359,7 +359,7 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
         
-        if ($request->page == 'rekaplaporan'){
+        if ($request->page == 'rekaplaporanuser'){
             return view('Laporan_GU_User.Laporan_Rekap.cetakisilaporangurekap', $data, compact('datapajakgurekap', 'bulanrekap'));
         }
 
@@ -415,7 +415,7 @@ class LaporanguuserController extends Controller
                             ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                             ->first();
         
-        if ($request->page == 'rekaplaporansemuaopd'){
+        if ($request->page == 'rekaplaporansemuaopduser'){
             return view('Laporan_GU_User.Laporan_Rekap.cetakisilaporangurekapsemuaopd', $data, compact('datapajakgurekap', 'bulanrekap'));
         }
 
