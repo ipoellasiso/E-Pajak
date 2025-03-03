@@ -176,7 +176,7 @@ Route::post('/dtbpjs/terimabpjsupdate/{id}', [BpjsController::class, 'terimabpjs
 Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 Route::get('/tampilregsp2d', [Registersp2dController::class, 'index'])->middleware('auth:web','checkRole:Admin');
 
-// ======= DATA PAJAKGU =======
+// ======= DATA PAJAKGU ADMIN =======
 Route::get('/tampilpajakguadmin', [PajakguadminController::class, 'index'])->middleware('auth:web','checkRole:User,Admin');
 // Route::get('/pilihspmsp2dgusipd', [PajakguadminController::class, 'pilihspmsp2dgusipd'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/tampilpajakguadminbeluminput', [PajakguadminController::class, 'tampilpajakgusipdbeluminput'])->middleware('auth:web','checkRole:User,Admin');

@@ -406,8 +406,8 @@ class PajakguController extends Controller
         $userId = Auth::guard('web')->user()->id;
         $data = array(
             'title'                => 'Edit Data Pajak GU',
-            'active_dtpajakguedit'       => 'active',
-            'active_pajakguedit'       => 'active',
+            'active_dtpajakguedit' => 'active',
+            'active_pajakguedit'   => 'active',
             'page_title'           => 'Penatausahaan',
             'breadcumd1'           => ' Edit Data Pajak',
             'breadcumd2'           => 'GU',
@@ -419,15 +419,9 @@ class PajakguController extends Controller
                                     ->first(),
             'dtpajakgu'            => DB::table('pajakkppgu')
                                     ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode')
-                                    // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
-                                    // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
-                                    // ->join('tb_tbp',  'tb_tbp.ntpn', 'pajakkppgu.ntpn')
                                     ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
-                                    // ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
-
                                     ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
-                                    // ->where('pajakkpp.status2', ['Terima'])
-                                    // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
+                                    ->where('pajakkppgu.id', $id)
                                     ->first(),
                                     
                                     // ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'potongan2.nilai_pajak','pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'potongan2.status1', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'potongan2.id_pajakkpp', 'pajakkppgu.id_opd')

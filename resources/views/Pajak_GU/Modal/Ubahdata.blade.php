@@ -63,7 +63,7 @@
                                                 <div class="row">
                                                     <div class="col mb-5">
                                                         <label for="akun_pajak">Akun Pajak</label>
-                                                            <select class="form-select" id="akun_pajak" name="akun_pajak">
+                                                            <select class="form-select" id="akun_pajak6" name="akun_pajak">
                                                                 <option value="{{ $dtpajakgu->akun_pajak }}">{{ $dtpajakgu->akun_pajak }}</option>
                                                             </select>
                                                         
@@ -79,7 +79,7 @@
                                                     </div>
                                                     <div class="col mb-5">
                                                         <label>Jenis Pajak:</label>
-                                                        <select class="form-select" id="jenis_pajak" name="jenis_pajak">
+                                                        <select class="form-select" id="nama_pajak_potongan5" name="jenis_pajak">
                                                             <option value="{{ $dtpajakgu->jenis_pajak }}">{{ $dtpajakgu->jenis_pajak }}</option>
                                                         </select>
                                                     </div>
