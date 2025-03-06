@@ -104,6 +104,9 @@ class VerifikasitbpController extends Controller
                     ->addColumn('nilai_tbp', function($row) {
                         return number_format($row->nilai_tbp);
                     })
+                    ->addColumn('nilai_tbp_pajak_potongan', function($row) {
+                        return number_format($row->nilai_tbp_pajak_potongan);
+                    })
                     ->addColumn('status', function($row){
                         if($row->status1 == 'Belum_Verifikasi')
                         {
@@ -126,7 +129,7 @@ class VerifikasitbpController extends Controller
                         }
                         return $btn1;
                     })
-                    ->rawColumns(['nilai_tbp', 'status', 'statustolak'])
+                    ->rawColumns(['nilai_tbp', 'status', 'statustolak','nilai_tbp_pajak_potongan'])
                     ->make(true);
         }
 

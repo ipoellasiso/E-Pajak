@@ -231,7 +231,7 @@ class PajaklsController extends Controller
                     ->addColumn('nilai_sp2d', function($row) {
                         return number_format($row->nilai_sp2d);
                     })
-                    ->rawColumns(['status2','nilai_pajak','nilai_pajak'])
+                    ->rawColumns(['status2','nilai_pajak','nilai_sp2d'])
                     ->make(true);
         }
 

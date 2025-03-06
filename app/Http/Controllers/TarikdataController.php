@@ -50,6 +50,10 @@ class TarikdataController extends Controller
 
             return DataTables::of($dt)
                     ->addIndexColumn()
+                    ->addColumn('nilai_sp2d', function($row) {
+                        return number_format($row->nilai_sp2d);
+                    })
+                    ->rawColumns(['nilai_sp2d'])
                     ->make(true);
         }
 
@@ -89,6 +93,10 @@ class TarikdataController extends Controller
 
             return DataTables::of($dt1)
                     ->addIndexColumn()
+                    ->addColumn('nilai_sp2d', function($row) {
+                        return number_format($row->nilai_sp2d);
+                    })
+                    ->rawColumns(['nilai_sp2d'])
                     ->make(true);
         }
 
