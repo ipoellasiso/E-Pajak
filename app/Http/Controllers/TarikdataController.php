@@ -530,7 +530,10 @@ class TarikdataController extends Controller
                 DB::table('tb_belanjagu')->insert($data1);
             } 
 
-            foreach($potongantbp as $row1){
+            if ($potongantbp == null){
+                return redirect()->back()->with('error', 'Maaf TBP ini tidak ada Pajak');
+            }else {
+                foreach($potongantbp as $row1){
                 $data2 = [
                     'nama_pajak_potongan' => $row1["nama_pajak_potongan"],
                     'id_billing' => $row1["id_billing"],
@@ -539,6 +542,7 @@ class TarikdataController extends Controller
                     'status1' => 'Belum_Verifikasi'
                 ];
                 DB::table('tb_potongangu')->insert($data2);
+                }
             }
         
         return redirect()->back()->with('status', 'Data Berhasil diSimpan');
