@@ -468,7 +468,7 @@ class TarikdataController extends Controller
 
         }
 
-        public function save_jsontbp(Request $request)
+    public function save_jsontbp(Request $request)
     {
         // Validasi input
         $nomoracak = Str::random(10);
@@ -485,6 +485,9 @@ class TarikdataController extends Controller
             return redirect()->back()->with('error', 'TBP Sudah Ada');
         }
 
+        if ($potongantbp == null){
+            return redirect()->back()->with('error', 'Maaf TBP ini tidak Punya Pajak');
+        }
             // foreach($dt  as $row3){
                 $datatbp = [
                     'id_tbp' => $nomoracak,
@@ -495,19 +498,7 @@ class TarikdataController extends Controller
                     'no_npd' => $dt["nomor_npd"],
                     'nama_skpd' => $dt["nama_skpd"],
                     'tanggal_tbp' => Carbon::Parse($dt["tanggal_tbp"])->format('Y-m-d'),
-                    // 'nama_pa_kpa' => $dt["nama_pa_kpa"],
-                    // 'nip_pa_kpa' => $dt["nip_pa_kpa"],
-                    // 'jabatan_pa_kpa' => $dt["jabatan_pa_kpa"],
-                    // 'nama_bp_bpp' => $dt["nama_bp_bpp"],
-                    // 'nip_bp_bpp' => $dt["nip_bp_bpp"],
-                    // 'jabatan_bp_bpp' => $dt["jabatan_bp_bpp"],
-                    // 'akun_pajak' => $request->akun_pajak,
-                    // 'nama_npwp' => $request->nama_npwp, 
-                    // 'ntpn' => $request->ntpn, 
-                    // 'id_billing' => $request->id_billing,
                     'no_spm' => $request->no_spm,
-                    // 'status' => 'Belum_Verifikasi',
-                    // 'statuspilihtbp' => '0'
                 ];
 
                 // if ($files = $request->file('bukti_pemby')){
@@ -518,7 +509,6 @@ class TarikdataController extends Controller
                 // }
 
                 DB::table('tb_tbp')->insert($datatbp);
-            // } 
 
             foreach($detail as $row){
                 $data1 = [
@@ -530,9 +520,10 @@ class TarikdataController extends Controller
                 DB::table('tb_belanjagu')->insert($data1);
             } 
 
-            if ($potongantbp == null){
-                return redirect()->back()->with('error', 'Maaf TBP ini tidak ada Pajak');
-            }else {
+            // if ($potongantbp == null){
+            //     return redirect()->back()->with('error', 'Maaf TBP ini tidak Punya Pajak');
+            // }
+
                 foreach($potongantbp as $row1){
                 $data2 = [
                     'nama_pajak_potongan' => $row1["nama_pajak_potongan"],
@@ -543,11 +534,11 @@ class TarikdataController extends Controller
                 ];
                 DB::table('tb_potongangu')->insert($data2);
                 }
-            }
+            
         
         return redirect()->back()->with('status', 'Data Berhasil diSimpan');
 
-        }
+    }
 
     public function tariktolaktbp($id)
     {
