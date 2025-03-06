@@ -102,7 +102,7 @@ class PajakguadminController extends Controller
                                             Aksi
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><a class="dropdown-item" data-id="'.$row->id.'" href="/pajakgu/edit/'.$row->id.'">Ubah</a></li>
+                                                <li><a class="dropdown-item" data-id="'.$row->id.'" href="/pajakgu/editadmin/'.$row->id.'">Ubah</a></li>
                                                 <li><a class="deletePajakgu dropdown-item" data-id="'.$row->id.'" href="javascript:void(0)">Delete</a></li>
                                             </ul>
                                         </div>
@@ -345,7 +345,7 @@ class PajakguadminController extends Controller
         
     }
 
-    public function update(Request $request, $id)
+    public function updateadmin(Request $request, $id)
     {
         request()->validate([
             'bukti_pemby' => 'image|mimes:png,jpg,jpeg,gif,svg|max:5000',
@@ -384,9 +384,11 @@ class PajakguadminController extends Controller
             $updatepajakgu->nomor_npwp = $request->get('nomor_npwp');
             $updatepajakgu->jenis_pajak = $request->get('jenis_pajak');
             $updatepajakgu->rek_belanja = $request->get('rek_belanja');
+            $updatepajakgu->periode = $request->get('periode');
             // $updatepajakgu->id_opd = $request->get('id_opd');
             $updatepajakgu->nilai_pajak = str_replace('.','', $request->get('nilai_pajak'));
             $updatepajakgu->status2 = 'Terima';
+            $updatepajakgu->status1 = 'Terima';
             
             
 
@@ -406,7 +408,7 @@ class PajakguadminController extends Controller
         
     }
 
-    public function edit($id)
+    public function editadmin($id)
     {
 
         $userId = Auth::guard('web')->user()->id;
@@ -424,28 +426,17 @@ class PajakguadminController extends Controller
                                     ->where('nama_opd', auth()->user()->nama_opd)
                                     ->first(),
             'dtpajakgu'            => DB::table('pajakkppgu')
-                                    ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd')
+                                    ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'pajakkppgu.id_opd', 'pajakkppgu.periode')
                                     // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
                                     // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
                                     // ->join('tb_tbp',  'tb_tbp.ntpn', 'pajakkppgu.ntpn')
                                     ->join('sp2d', 'sp2d.nomor_spm', 'pajakkppgu.no_spm')
                                     // ->join('users', 'users.nama_opd', 'pajakkppgu.id_opd')
-
-                                    ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
+                                    ->where('pajakkppgu.id', $id)
+                                    // ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
                                     // ->where('pajakkpp.status2', ['Terima'])
                                     // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
                                     ->first(),
-                                    
-                                    // ->select('pajakkppgu.ebilling', 'sp2d.tanggal_sp2d', 'pajakkppgu.nilai_pajak', 'sp2d.nomor_sp2d', 'sp2d.nomor_spm', 'sp2d.tanggal_spm', 'pajakkppgu.nomor_npwp', 'pajakkppgu.akun_pajak', 'pajakkppgu.ntpn', 'pajakkppgu.jenis_pajak', 'potongan2.nilai_pajak','pajakkppgu.rek_belanja','pajakkppgu.nama_npwp', 'pajakkppgu.id_potonganls', 'pajakkppgu.id', 'potongan2.status1', 'pajakkppgu.status2', 'pajakkppgu.created_at', 'pajakkppgu.bukti_pemby', 'sp2d.nilai_sp2d', 'pajakkppgu.nilai_pajak', 'potongan2.id_pajakkpp', 'pajakkppgu.id_opd')
-                                    // // ->join('tb_akun_pajak', 'tb_akun_pajak.id', '=', 'pajakkpp.akun_pajak')
-                                    // // ->join('tb_jenis_pajak', 'tb_jenis_pajak.id', '=', 'pajakkpp.jenis_pajak')
-                                    // ->join('potongan2',  'potongan2.id', 'pajakkppgu.id_potonganls')
-                                    // ->join('sp2d', 'sp2d.idhalaman', 'potongan2.id_potongan')
-                                    // ->where('pajakkppgu.id_opd', auth()->user()->nama_opd)
-                                    // // ->where('pajakkpp.status2', ['Terima'])
-                                    // // ->whereBetween('sp2d.tanggal_sp2d', ['2024-01-01', '2024-03-31'])
-                                    // ->where('pajakkppgu.id', $id)
-                                    // ->first(),
         );
         // return response()->json($pajakls);
         return view('Pajak_GUadmin.Modal.Ubahdata',$data);
@@ -486,7 +477,7 @@ class PajakguadminController extends Controller
         return view('Pajak_GUadmin.Modal.Lihat',$data);
     }
 
-    public function editpajakgu($id)
+    public function editpajakguadmin($id)
     {
         $where = array('id' => $id);
         $pajakgu = PajakguModel::where($where)->first();
@@ -527,7 +518,7 @@ class PajakguadminController extends Controller
         // return view('Penatausahaan.Pajakls.Pajakls', compact('akunpajak'));
     }
 
-    public function tolakgu($id)
+    public function tolakguadmin($id)
     {
         $where = array('id' => $id);
         $pajakgusipd = PajakguModel::where($where)->first();
@@ -535,7 +526,7 @@ class PajakguadminController extends Controller
         return response()->json($pajakgusipd);
     }
 
-    public function tolakguupdate(Request $request, string $id)
+    public function tolakguupdateadmin(Request $request, string $id)
     {
 
         PotonganguModel::where('id_billing',$request->get('ebilling'))
@@ -547,12 +538,13 @@ class PajakguadminController extends Controller
         PajakguModel::where('ebilling',$request->get('ebilling'))
         ->update([
             'status2' => 'Tolak',
+            'status1' => 'Tolak',
         ]);
 
             return redirect('tampilpajakguadmin')->with('success','Data Berhasil Ditolak');
     }
 
-    public function terimagu($id)
+    public function terimaguadmin($id)
     {
         $where = array('id' => $id);
         $pajakgusipd = PajakguModel::where($where)->first();
@@ -560,18 +552,20 @@ class PajakguadminController extends Controller
         return response()->json($pajakgusipd);
     }
 
-    public function terimaguupdate(Request $request, string $id)
+    public function terimaguupdateadmin(Request $request, string $id)
     {
 
         PotonganguModel::where('id_billing',$request->get('ebilling'))
         ->update([
             'status3' => '1',
             'status4' => 'Input',
+            
         ]);
 
         PajakguModel::where('ntpn',$request->get('ntpn'))
         ->update([
             'status2' => 'Terima',
+            'status1' => 'Terima',
         ]);
 
             return redirect('tampilpajakguadmin')->with('success','Data Berhasil Ditolak');
@@ -616,10 +610,10 @@ class PajakguadminController extends Controller
         return response()->json(['success'=>'Data Berhasil Terima']);
     }
 
-    public function destroy($id)
+    public function destroyadmin($id)
     {
-        $data = PajakguModel::where('id',$id)->first(['bukti_pemby']);
-        unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
+        // $data = PajakguModel::where('id',$id)->first(['bukti_pemby']);
+        // unlink("app/assets/images/bukti_pemby_pajak/".$data->bukti_pemby);
 
         PajakguModel::where('id', $id)->delete();
 
