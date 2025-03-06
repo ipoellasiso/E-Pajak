@@ -91,15 +91,16 @@
 
                     Swal.fire({
                         icon: "error",
-                        title: "Error",
-                        text: data.error
+                        title: "Gagal Menyimpan !",
+                        text: data.text
                     })
 
                     table.draw();
                 }
             },
             error: function(data){
-                console.log('Error:', data);
+                // error(xhr.responseJSON.text, 'Gagal !')
+                console.log('Gagal !:', data);
                 $('saveBtn').html('Simpan');
             }
         });

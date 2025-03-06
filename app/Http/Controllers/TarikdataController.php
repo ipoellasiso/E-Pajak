@@ -44,7 +44,7 @@ class TarikdataController extends Controller
                         ->select('jenis', 'nomor_sp2d','tanggal_sp2d','nama_skpd','keterangan_sp2d','nilai_sp2d','nomor_spm')
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->where('jenis',['LS'])
-                        ->whereBetween('sp2d.tanggal_sp2d', ['2024-11-01', '2024-12-31'])
+                        ->whereBetween('sp2d.tanggal_sp2d', ['2025-01-01', '2025-12-31'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->get();
 
@@ -83,7 +83,7 @@ class TarikdataController extends Controller
             $dt1 = DB::table('sp2d')
                         ->select('nomor_sp2d','tanggal_sp2d','nama_skpd','keterangan_sp2d','nilai_sp2d','nomor_spm', 'jenis')
                         ->whereIn('jenis',['GU'])
-                        ->whereBetween('sp2d.tanggal_sp2d', ['2024-11-01', '2024-12-31'])
+                        ->whereBetween('sp2d.tanggal_sp2d', ['2025-01-01', '2025-12-31'])
                         // ->whereBetween('sp2d.tanggal_sp2d', ['2024-07-01', '2024-07-30'])
                         ->get();
 

@@ -34,7 +34,7 @@
                                 <div class="row mb-4">
                                     <div class="col">
                                         <label for="akun_pajak">Akun Pajak</label>
-                                            <select class="form-select" id="akun_pajak" name="akun_pajak">
+                                            <select class="form-select" id="akun_pajak" name="akun_pajak" required>
                                                     <option value=""></option> 
                                             </select>
                                     </div>
@@ -48,7 +48,7 @@
                                 <div class="row mb-4">
                                     <div class="col">
                                         <label>Ebilling</label>
-                                        <input type="text" class="form-control" name="ebilling" id="ebillingg" value="" placeholder="" required>
+                                        <input type="text" class="form-control" name="ebilling" id="ebillingg" value="" placeholder="">
                                     </div>
                                     <div class="col">
                                         <label>Rekening Belanja</label>
@@ -58,7 +58,7 @@
                                 <div class="row mb-4">
                                     <div class="col">
                                         <label>NTPN</label>
-                                        <input type="text" class="form-control" name="ntpn" id="ntpn" value="" placeholder="" required>
+                                        <input type="text" class="form-control" name="ntpn" id="ntpn" value="" placeholder="">
                                     </div>
                                     <div class="col">
                                         <label>Nilai Pajak</label>
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="col">
                                         <label>Nomor Daftar Penguji</label>
-                                        <input type="text" class="form-control" name="no_penguji" id="no_penguji" value="" placeholder="" required>
+                                        <input type="text" class="form-control" name="no_penguji" id="no_penguji" value="" placeholder="">
                                     </div>
                                 </div>
                                 

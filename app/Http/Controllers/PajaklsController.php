@@ -18,6 +18,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DataExport;
 use App\Imports\DataImport;
 use Maatwebsite\Excel\Row;
+use Illuminate\Support\Facades\Validator;
 
 class PajaklsController extends Controller
 {
@@ -239,9 +240,30 @@ class PajaklsController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate([
-            // 'bukti_pemby' => 'required|mimes:pdf',
-        ]);
+        // request()->validate([
+        //     // 'bukti_pemby' => 'required|mimes:pdf',
+        //     'ntpn' => 'required|string|max:16',
+        // ]);
+
+        $rules = [
+            'ebilling' => 'required|max:15|min:15',
+            'ntpn' => 'required|max:16|min:16',
+        ];
+
+        $text = [
+            'ebilling.required' => 'Ebiling Tidak Boleh Kosong',
+            'ebilling.max' => 'Ebiling Maximal 15 digit',
+            'ebilling.min' => 'Ebiling Tidak Boleh Kurang dari 15 Digit',
+            'ntpn.required' => 'NTPN Tidak Boleh Kosong',
+            'ntpn.max' => 'NTPN Maximal 16 digit',
+            'ntpn.min' => 'NTPN Tidak Boleh Kurang dari 16 Digit',
+        ];
+
+        $validasi = validator::make($request->all(), $rules, $text);
+        if ($validasi->fails())
+        {
+            return response()->json(['success' => 0, 'text' => $validasi->errors()->first()]);
+        }
 
         $nomoracak = Str::random(10);
         $pajaklsId = $request->id;
