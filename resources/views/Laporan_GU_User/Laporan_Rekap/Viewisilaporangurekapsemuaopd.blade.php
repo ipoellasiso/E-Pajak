@@ -31,9 +31,9 @@
                         <button id="cetakpdfgurekapsemuaopduser" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
                             <i class="fa fa-enter"></i>PDF  
                         </button>
-                        <button id="cetakexcelgusemuaopduser" target="blank" type="button" class="btn btn-outline-info m-b-xs">
+                        {{-- <button id="cetakexcelgusemuaopduser" target="blank" type="button" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
             

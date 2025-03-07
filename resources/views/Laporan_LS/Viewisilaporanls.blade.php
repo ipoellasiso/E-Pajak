@@ -16,11 +16,14 @@
                     </div>
                     <div class="col-2">
                         <button id="cetakpdfls" target="blank" type="button" class="btn btn-outline-primary m-b-xs text-center" style="text-align: center">
-                            <i class="fa fa-enter"></i>PDF  
+                            <i class="fa fa-enter" ></i>PDF  
                         </button>
-                        <button id="cetakexcells" target="blank" type="button" class="btn btn-outline-info m-b-xs">
+                        <button class="btn btn-outline-info m-b-xs" onclick="tablesToExcel(['tbl1'], ['Pajak_Ls'], 'Pajakls.xls', 'Excel')">
+                            <i class="fa fa-enter" ></i>Excel
+                        </button>
+                        {{-- <button id="cetakexcells" target="blank" type="button" class="btn btn-outline-info m-b-xs">
                             <i class="fa fa-enter"></i>Excel
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
             
@@ -47,20 +50,24 @@
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-body table-responsive">
-                                            <table id="" class="display table table-bordered" style="width:100%">
+                                            <table id="tbl1" class="display table table-bordered" style="width:100%">
                                                 <thead class="table-dark">
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Nama OPD</th>
+                                                        {{-- <th>Nama OPD</th> --}}
                                                         <th>Nomor SPM</th>
                                                         <th>Tanggal SP2D</th>
                                                         <th>Nomor SP2D</th>
                                                         <th>Nilai SP2D</th>
+                                                        <th>Rekening Belanja</th>
                                                         <th>Akun Pajak</th>
                                                         <th>Jenis Pajak</th>
+                                                        <th>Nomor NPWP</th>
+                                                        <th>Nama NPWP</th>
                                                         <th>Nilai Pajak</th>
                                                         <th>E-Biling</th>
                                                         <th>NTPN</th>
+                                                        <th>Ket</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -69,16 +76,20 @@
                                                     @foreach ($datapajakls as $d )
                                                         <tr>
                                                             <td>{{ $no++ }}</td>
-                                                            <td>{{ $d->nama_skpd }}</td>
+                                                            {{-- <td>{{ $d->nama_skpd }}</td> --}}
                                                             <td>{{ $d->nomor_spm }}</td>
                                                             <td>{{ $d->tanggal_sp2d }}</td>
                                                             <td>{{ $d->nomor_sp2d }}</td>
                                                             <td>{{ number_format($d->nilai_sp2d) }}</td>
+                                                            <td>{{ $d->rek_belanja }}</td>
                                                             <td>{{ $d->akun_pajak }}</td>
                                                             <td>{{ $d->jenis_pajak }}</td>
+                                                            <td>{{ $d->nomor_npwp }}</td>
+                                                            <td>{{ $d->nama_npwp }}</td>
                                                             <td>{{ number_format($d->nilai_pajak) }}</td>
                                                             <td>{{ $d->ebilling }}</td>
                                                             <td>{{ $d->ntpn }}</td>
+                                                            <td>{{ $d->nama_skpd }} - {{ $d->periode }}</td>
                                                         </tr>
                                                         
                                                     @endforeach

@@ -37,7 +37,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item" href="javascript:void(0)" id="createPajakls" data-toggle="tooltip" data-placement="top" title="klik"> Tambah Data </a>
-                                                    <a class="dropdown-item" href="/datapajak/export" data-toggle="tooltip" data-placement="top" title="klik"> Download Data </a>
+                                                    {{-- <a class="dropdown-item" href="/datapajak/export" data-toggle="tooltip" data-placement="top" title="klik"> Download Data </a> --}}
                                                 </ul>
                                             </div>
                                         </div>
