@@ -49,14 +49,14 @@
                                                                 <br>
                                                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="text1(0)">
                                                                 <label class="form-check-label" for="flexRadioDefault1">
-                                                                Rincian Penyetoran Pajak
+                                                                Rincian Penyetoran Pajak LS
                                                                 </label>
                                                             </div>
                                                             <br>
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="text1(1)">
                                                                 <label class="form-check-label" for="flexRadioDefault2">
-                                                                Rekapitulasi Penyetoran Pajak
+                                                                Rekapitulasi Penyetoran Pajak LS
                                                                 </label>
                                                             </div>
                                                             
