@@ -32,47 +32,35 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="float-end">
-                                                {{-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <!-- <a class="dropdown-item" href="javascript:void(0)" id="createPajakgu" data-toggle="tooltip" data-placement="top" title="klik"> Tambah </a> -->
-                                                    <a class="dropdown-item" href="/datapajakgu/export" id="uploadPajakgu" data-toggle="tooltip" data-placement="top" title="klik"> Download Excel </a>
-                                                </ul> --}}
+                                                    <a class="dropdown-item" href="javascript:void(0)" id="createBpjs" data-toggle="tooltip" data-placement="top" title="klik"> Tambah </a>
+                                                    <a class="dropdown-item" href="javascript:void(0)" id="uploadBpjs" data-toggle="tooltip" data-placement="top" title="klik"> Upload </a>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <table id="zero-conf" class="tabelpajakgu1 display table table-hover" style="width:100%">
+                                    <table id="tabelbpjs" class="display table table-hover" style="width:100%">
                                         <thead>
+                                            <!-- <tr>
+                                                <th rowspan="2">NO</th>
+                                                <th class="text-center" colspan ="4">SP2D</th>
+                                                <th class="text-center" colspan="5">POTONGAN</th>
+                                                <th class="text-center" colspan="2">KETERANGAN</th>
+                                            </tr> -->
                                             <tr>
                                                 <th>NO</th>
-                                                <th>Nama OPD</th>
-                                                <th>Nomor SPM</th>
-                                                <th>Tanggal SP2D</th>
-                                                <th>Nomor SP2D</th>
-                                                <th>Nilai SP2D</th>
-                                                <th>Rek. Belanja</th>
-                                                <th>Akun Pajak</th>
-                                                <th>Jenis Pajak</th>
-                                                <th>Nilai Pajak</th>
+                                                <th>Akun Potongan</th>
+                                                <th>Nilai Potongan</th>
                                                 <th>E-Biling</th>
                                                 <th>NTPN</th>
-                                                <th class="text-center">Status</th>
-                                                <th class="text-center">Action</th>
-                                                <th></th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        {{-- <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> --}}
                                     </table>
                                 </div>
                             </div>
@@ -83,12 +71,10 @@
                                 <div class="col-3">
                                     <div class="invoice-info">
                                         {{-- @foreach ($total as $d) --}}
-                                        <p>Pajak Pertambahan Nilai <span>{{ number_format($total_ppngu) }}</span></p>
-                                            <p>PPH 21<span>{{ number_format($total_pph21gu) }}</span></p>
-                                            <p>Pajak Penghasilan Ps 22<span>{{ number_format($total_pph22gu) }}</span></p>
-                                            <p>Pajak Penghasilan Ps 23<span>{{ number_format($total_pph23gu) }}</span></p>
-                                            <p>Pajak Penghasilan Ps 24<span>{{ number_format($total_pph24gu) }}</span></p>
-                                            <p class="bold">Total Pajak <span>{{ number_format($total_pajakgu) }}</span></p>
+                                        <p>Iuran Jaminan Kesehatan 4 %<span>{{ number_format($total_4) }}</span></p>
+                                        <p>Iuran Jaminan Kesehatan 1 %<span>{{ number_format($total_1) }}</span></p>
+                                        <p class="bold">Total Pajak <span>{{ number_format($total_potongan) }}</span></p>
+                                        {{-- <input type="text" class="amount" id="totalnp"> --}}
                                         {{-- @endforeach --}}
                                         <div class="d-grid gap-2">
                                           {{-- <button class="btn btn-danger m-t-xs" type="button">Print Invoice</button> --}}
@@ -106,21 +92,23 @@
 
         {{-- ################################# Modal ################################### --}}
         
-        @include('Pajak_GUadmin.Modal.Terima')
-        @include('Pajak_GUadmin.Modal.Tolak')
-        @include('Pajak_GUadmin.Modal.Tambah')
-        @include('Pajak_GUadmin.Modal.Datapajakls')
-        @include('Pajak_GUadmin.Modal.AjukanTBP')
+        @include('Bpjs.Modal.Tambah')
+        @include('Bpjs.Modal.Databpjs')
+        @include('Bpjs.Modal.Terima')
+        @include('Bpjs.Modal.Tolak')
+        @include('Bpjs.Modal.Ubah')
+        @include('Bpjs.Modal.Databpjsedit')
 
         {{-- ############################## Batas Modal ################################ --}}
 
         {{-- ################################# Fungsi ################################### --}}
 
-        @include('Pajak_GUadmin.Fungsi.Fungsi')
-        @include('Pajak_GUadmin.Fungsi.Fungsipajaklssipd')
-        @include('Pajak_GUadmin.Fungsi.Fungsitbp')
+        @include('Bpjs.Fungsi.Fungsi')
+        @include('Bpjs.Fungsi.Fungsibpjssipd')
+        @include('Bpjs.Fungsi.Fungsibpjssipdedit')
 
         {{-- ############################## Batas Fungsi ################################ --}}
+        
         
         <!-- Javascripts -->
         @include('Template.Script')

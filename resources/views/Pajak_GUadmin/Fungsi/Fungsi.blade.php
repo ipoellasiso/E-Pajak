@@ -123,7 +123,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: "DELETE",
-                    url: "/pajakgu/destroy/"+id,
+                    url: "/pajakgu/destroyadmin/"+id,
                     dataType: "JSON",
                     success: function(data)
                     {
@@ -261,7 +261,7 @@
 
     $('body').on('click', '.tolakPajakgu', function()  {
         var iduser = $(this).data('id');
-        $.get("/pajakgu/tolakgu/"+iduser, function (data) {
+        $.get("/pajakgu/tolakguadmin/"+iduser, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#edittolak_modal').modal('show');
             $('#id').val(data.id);
@@ -281,7 +281,7 @@
 
         $.ajax({
             type:'POST',
-            url: "/pajakgu/tolakguupdate/"+id,
+            url: "/pajakgu/tolakguupdateadmin/"+id,
             data: formData,
             cacha: false,
             contentType: false,
@@ -310,7 +310,7 @@
 
     $('body').on('click', '.terimaPajakgu', function()  {
         var iduser = $(this).data('id');
-        $.get("/pajakgu/terimagu/"+iduser, function (data) {
+        $.get("/pajakgu/terimaguadmin/"+iduser, function (data) {
             // $('#saveBtn').val("edit-pajakls");
             $('#editterima_modal').modal('show');
             $('#id1').val(data.id);
@@ -330,7 +330,7 @@
 
         $.ajax({
             type:'POST',
-            url: "/pajakgu/terimaguupdate/"+id,
+            url: "/pajakgu/terimaguupdateadmin/"+id,
             data: formData,
             cacha: false,
             contentType: false,

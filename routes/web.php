@@ -182,6 +182,13 @@ Route::get('/tampilpajakguadmin', [PajakguadminController::class, 'index'])->mid
 Route::get('/tampilpajakguadminbeluminput', [PajakguadminController::class, 'tampilpajakgusipdbeluminput'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/tampilpajaklsadminbeluminput', [PajaklsController::class, 'tampilpajaklssipdbeluminput'])->middleware('auth:web','checkRole:User,Admin');
 Route::get('/tampilpajakgubeluminput', [PajakguController::class, 'pajakgubeluminput'])->middleware('auth:web','checkRole:User,Admin');
+Route::get('/pajakgu/tolakguadmin/{id}', [PajakguadminController::class, 'tolakguadmin'])->middleware('auth:web','checkRole:User,Admin');
+Route::post('/pajakgu/tolakguupdateadmin/{id}', [PajakguadminController::class, 'tolakguupdateadmin'])->middleware('auth:web','checkRole:User,Admin');
+Route::get('/pajakgu/terimaguadmin/{id}', [PajakguadminController::class, 'terimaguadmin'])->middleware('auth:web','checkRole:User,Admin');
+Route::post('/pajakgu/terimaguupdateadmin/{id}', [PajakguadminController::class, 'terimaguupdateadmin'])->middleware('auth:web','checkRole:User,Admin');
+Route::get('/pajakgu/editadmin/{id}', [PajakguadminController::class, 'editadmin'])->middleware('auth:web','checkRole:User,Admin');
+Route::post('/pajakgu/updateadmin/{id}', [PajakguadminController::class, 'updateadmin'])->middleware('auth:web','checkRole:User,Admin');
+Route::delete('/pajakgu/destroyadmin/{id}', [PajakguadminController::class, 'destroyadmin'])->middleware('auth:web','checkRole:User,Admin');
 
 // ======= Export Data  Pajakls =======
 Route::get('/datapajak/export', [PajaklsController::class, 'export'])->middleware('auth:web','checkRole:User,Admin');
